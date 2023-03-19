@@ -40,9 +40,9 @@ export default {
   width: 250px;
   cursor: pointer;
   border: 1px groove #39495c;
-  margin-bottom: 18px;
   border-radius: 10px;
   display: inline-block;
+  margin: 20px;
 }
 .imageWithPrice {
   position: relative;
@@ -50,11 +50,13 @@ export default {
 }
 .image {
   width: 100%;
+  height: 200px;
   border-radius: 10px;
+  object-fit: cover;
 }
 .price {
   position: absolute;
-  bottom: 5px;
+  bottom: 4px;
   left: 0;
   margin: 0;
   padding: 10px;
