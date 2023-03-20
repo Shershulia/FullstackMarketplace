@@ -9,7 +9,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 public class SecurityConfig {
-
     // inject SecurityFilterChain and tell that all requests are authenticated
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {

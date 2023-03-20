@@ -17,6 +17,7 @@
 
 <script>
 import axios from "axios";
+import jwt_decode from "jwt-decode";
 
 export default {
   data() {
@@ -28,15 +29,18 @@ export default {
   methods: {
     login() {
       axios
-        .post("/login", {
+        .post("http://localhost:8090/token", {
           username: this.username,
           password: this.password,
         })
         .then((response) => {
-          const token = response.data.token;
-          // save the token to local storage or a Vuex store
+          console.log(response);
+          const token = response.data;
+          localStorage.setItem("token", token); // store the token in local storage
           axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
           // set the default authorization header for future requests
+          const decodedToken = jwt_decode(token);
+          this.$store.dispatch("validateToken", decodedToken);
           this.$router.push("/"); // redirect to the home page
         })
         .catch((error) => {

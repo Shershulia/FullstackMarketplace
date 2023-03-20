@@ -22,7 +22,7 @@ public class TokenController {
 
     // keyStr is hardcoded here for testing purpose
     // in a real scenario, it should either be stored in a database or injected from the environment
-    public static final String keyStr = "testsecrettestsecrettestsecrettestsecrettestsecret";
+    public static final String keyStr = "secret"; // this should be a secret key
     private static final Duration JWT_TOKEN_VALIDITY = Duration.ofMinutes(5);
 
 
