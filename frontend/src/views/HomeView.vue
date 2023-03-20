@@ -2,12 +2,7 @@
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png" />
     <HelloWorld msg="Welcome to Your Vue.js App" />
-    <LittleItemCard
-      :name="exampleItem.name"
-      :image="exampleItem.image"
-      :location="exampleItem.location"
-      :price="exampleItem.price"
-    ></LittleItemCard>
+    <LittleItemCard :item="exampleItem"></LittleItemCard>
     <ListOfLittleItems :listOfItems="items"></ListOfLittleItems>
   </div>
 </template>
@@ -27,6 +22,7 @@ export default {
   data() {
     return {
       exampleItem: {
+        id: 1,
         name: "Gaming chair for beginner",
         image:
           "https://i.pinimg.com/736x/bd/c9/83/bdc9832e5f32ee6168f10536549551bc--kids-bedroom-ideas-girls-bedroom.jpg",
@@ -35,13 +31,14 @@ export default {
       },
       items: [
         {
+          id: 2,
           name: "Gaming chair for advanced",
-          image:
-            "https://a.d-cd.net/1YAAAgKereA-100.jpg",
+          image: "https://a.d-cd.net/1YAAAgKereA-100.jpg",
           location: "Bottom of the sea",
           price: 200,
         },
         {
+          id: 1,
           name: "Gaming chair for beginner",
           image:
             "https://i.pinimg.com/736x/bd/c9/83/bdc9832e5f32ee6168f10536549551bc--kids-bedroom-ideas-girls-bedroom.jpg",
@@ -49,6 +46,7 @@ export default {
           price: 100,
         },
         {
+          id: 3,
           name: "Mobile gaming chair",
           image: "https://i.redd.it/ksqjj3d3ikp51.jpg",
           location: "Fast Delivery",

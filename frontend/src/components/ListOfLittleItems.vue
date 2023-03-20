@@ -1,12 +1,7 @@
 <template>
   <ul class="listOfCards">
     <li v-for="exampleItem in listOfItems" :key="exampleItem.name">
-      <LittleItemCard
-        :name="exampleItem.name"
-        :image="exampleItem.image"
-        :location="exampleItem.location"
-        :price="exampleItem.price"
-      ></LittleItemCard>
+      <LittleItemCard :item="exampleItem"></LittleItemCard>
     </li>
   </ul>
 </template>
