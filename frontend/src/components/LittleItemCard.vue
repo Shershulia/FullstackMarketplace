@@ -1,7 +1,5 @@
 <template>
-  <router-link
-    :to="{ name: 'ItemDetails', params: { id: item.id} }"
-  >
+  <router-link :to="{ name: 'ItemDetails', params: { id: item.id } }">
     <div class="littleCard">
       <div class="imageWithPrice">
         <p class="price">{{ item.price }} kr,-</p>
