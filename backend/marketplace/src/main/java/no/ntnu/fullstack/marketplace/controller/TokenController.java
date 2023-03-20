@@ -1,10 +1,11 @@
-package ntnu.fullstack.marketplace.marketplace.controller;
+package no.ntnu.fullstack.marketplace.controller;
+
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
-import no.ntnu.idatt2105.tokenauth.demo.dao.MockDao;
-import no.ntnu.idatt2105.tokenauth.demo.model.LoginRequest;
+import no.ntnu.fullstack.marketplace.dao.MockDao;
+import no.ntnu.fullstack.marketplace.model.LoginRequest;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

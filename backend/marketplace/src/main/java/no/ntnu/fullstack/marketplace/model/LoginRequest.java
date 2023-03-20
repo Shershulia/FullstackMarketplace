@@ -1,4 +1,4 @@
-package ntnu.fullstack.marketplace.marketplace.model;
+package no.ntnu.fullstack.marketplace.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;

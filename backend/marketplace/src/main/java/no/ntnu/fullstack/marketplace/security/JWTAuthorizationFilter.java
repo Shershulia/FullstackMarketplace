@@ -1,4 +1,5 @@
-package ntnu.fullstack.marketplace.marketplace.security;
+package no.ntnu.fullstack.marketplace.security;
+
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
@@ -7,7 +8,7 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import no.ntnu.idatt2105.tokenauth.demo.controller.TokenController;
+import no.ntnu.fullstack.marketplace.controller.TokenController;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.http.HttpHeaders;

@@ -1,7 +1,7 @@
-package ntnu.fullstack.marketplace.marketplace.controller;
+package no.ntnu.fullstack.marketplace.controller;
 
-import no.ntnu.idatt2105.tokenauth.demo.dao.MockDao;
-import no.ntnu.idatt2105.tokenauth.demo.model.UserInfoResponse;
+import no.ntnu.fullstack.marketplace.model.UserInfoResponse;
+import no.ntnu.fullstack.marketplace.dao.MockDao;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.web.bind.annotation.*;
 

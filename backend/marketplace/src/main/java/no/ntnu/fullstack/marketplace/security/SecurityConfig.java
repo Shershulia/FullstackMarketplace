@@ -1,4 +1,4 @@
-package ntnu.fullstack.marketplace.marketplace.security;
+package no.ntnu.fullstack.marketplace.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

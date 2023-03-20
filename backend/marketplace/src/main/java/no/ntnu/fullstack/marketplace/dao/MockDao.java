@@ -1,6 +1,6 @@
-package no.ntnu.idatt2105.tokenauth.demo.dao;
+package no.ntnu.fullstack.marketplace.dao;
 
-import no.ntnu.idatt2105.tokenauth.demo.model.UserInfoResponse;
+import no.ntnu.fullstack.marketplace.model.UserInfoResponse;
 
 import java.util.ArrayList;
 import java.util.List;
