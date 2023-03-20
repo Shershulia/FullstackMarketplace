@@ -27,4 +27,7 @@ nav a {
 nav a.router-link-exact-active {
   color: #42b983;
 }
+p {
+  font-family: Serif;
+}
 </style>
