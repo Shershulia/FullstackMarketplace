@@ -93,7 +93,7 @@
             <version>7.0</version>
         </dependency>
 
-        <!--		<dependency>-->
+		<!--		<dependency>-->
 <!--			<groupId>org.hibernate</groupId>-->
 <!--			<artifactId>hibernate-core</artifactId>-->
 <!--			<scope>runtime</scope>-->
