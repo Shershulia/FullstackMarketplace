@@ -2,13 +2,13 @@
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png" />
     <HelloWorld msg="Welcome to Your Vue.js App" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
     <LittleItemCard
       :name="exampleItem.name"
       :image="exampleItem.image"
       :location="exampleItem.location"
       :price="exampleItem.price"
     ></LittleItemCard>
+    <router-link to=/about>About us</router-link>
   </div>
 </template>
 

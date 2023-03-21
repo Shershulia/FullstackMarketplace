@@ -34,7 +34,6 @@
 
 <script>
 import {useI18n} from "vue-i18n";
-import i18n from "@/i18n";
 
 export default {
   name: 'NavigationBar',
@@ -68,6 +67,7 @@ export default {
     },
     setLanguage(language) {
       this.currentLanguage = language;
+      console.log(window.navigator.language);
       console.log("Language switched to", language);
       if(this.currentLanguage === 'Norwegian') {
         this.$i18n.locale = 'no'
