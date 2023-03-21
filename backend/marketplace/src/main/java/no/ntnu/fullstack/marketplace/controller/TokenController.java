@@ -4,7 +4,7 @@ package no.ntnu.fullstack.marketplace.controller;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
-import no.ntnu.fullstack.marketplace.dao.MockDao;
+import no.ntnu.fullstack.marketplace.dao.AccountDao;
 import no.ntnu.fullstack.marketplace.model.LoginRequest;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.HttpStatus;
@@ -31,8 +31,8 @@ public class TokenController {
     public String generateToken(final @RequestBody LoginRequest loginRequest) throws Exception {
         // if username and password are valid, issue an access token
         // note that subsequent requests need this token
-        if (MockDao.checkUserCredentials(loginRequest.getUsername(), loginRequest.getPassword())) {
-            return generateToken(loginRequest.getUsername());
+        if (AccountDao.checkUserCredentials(loginRequest.username(), loginRequest.password())) {
+            return generateToken(loginRequest.username());
         }
 
         throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Access denied, wrong credentials....");

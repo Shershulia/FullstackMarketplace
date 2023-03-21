@@ -7,10 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class LoginRequest {
-
-    private final String username;
-    private final String password;
+public record LoginRequest(String username, String password) {
 
     @JsonCreator
     public LoginRequest(@JsonProperty("username") final String username, @JsonProperty("password") final String password) {
@@ -18,13 +15,15 @@ public class LoginRequest {
         this.password = password;
     }
 
+    @Override
     @JsonProperty("username")
-    public String getUsername() {
+    public String username() {
         return username;
     }
 
+    @Override
     @JsonProperty("password")
-    public String getPassword() {
+    public String password() {
         return password;
     }
 }

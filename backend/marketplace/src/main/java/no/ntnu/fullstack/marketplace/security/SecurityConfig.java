@@ -1,5 +1,8 @@
 package no.ntnu.fullstack.marketplace.security;
 
+
+//was a bit strict with the h2 console, so disabled temporarily
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -15,8 +18,14 @@ public class SecurityConfig {
         http
                 .csrf().disable()
                 .cors().and()
+//                .csrf(csrf -> csrf
+//                        .ignoringRequestMatchers(
+//                                RequestMatcher -> "/h2-console/**".equals(RequestMatcher.getRequestURI())
+//                        )
+//                )
                 .authorizeHttpRequests()
                     .requestMatchers("/token").permitAll()
+//                    .requestMatchers("/h2-console/**").permitAll()
                     .anyRequest().authenticated().and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .addFilterBefore(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
