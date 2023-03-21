@@ -29,9 +29,9 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(
-            HttpServletRequest request,
-            HttpServletResponse response,
-            FilterChain filterChain) throws ServletException, IOException {
+        HttpServletRequest request,
+        HttpServletResponse response,
+        FilterChain filterChain) throws ServletException, IOException {
 
         // check Bearer auth header
         final String header = request.getHeader(HttpHeaders.AUTHORIZATION);
@@ -55,8 +55,7 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
         // Note that user details should be fetched from the database in real scenarios
         // this is case we will retrieve use details from mock
         UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(
-                username,
-                null,
+                username,null,
                 Collections.singletonList(new SimpleGrantedAuthority(ROLE_USER)));
         SecurityContextHolder.getContext().setAuthentication(auth);
 

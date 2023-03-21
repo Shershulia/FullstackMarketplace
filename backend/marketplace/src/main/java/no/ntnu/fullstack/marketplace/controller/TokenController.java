@@ -67,7 +67,6 @@ public class TokenController {
             verifier.verify(jwtToken);
             return JWT.decode(jwtToken).getSubject();
         }
-
         throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Access denied, wrong credentials....");
     }
 }
