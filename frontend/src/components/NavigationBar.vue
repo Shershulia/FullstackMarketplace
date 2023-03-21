@@ -67,14 +67,22 @@ export default {
     },
     setLanguage(language) {
       this.currentLanguage = language;
-      console.log(window.navigator.language);
       console.log("Language switched to", language);
       if(this.currentLanguage === 'Norwegian') {
-        this.$i18n.locale = 'no'
+        this.$i18n.locale = 'nb'
       }
       else {
         this.$i18n.locale = 'en'
       }
+    }
+  },
+  mounted() {
+    const availableLocales = this.$i18n.availableLocales
+    const userLanguage = window.navigator.language
+    if (availableLocales.includes(userLanguage)) {
+      this.$i18n.locale = userLanguage;
+    } else {
+      this.$i18n.locale = 'en';
     }
   }
 }
