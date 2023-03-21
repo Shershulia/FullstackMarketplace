@@ -3,7 +3,7 @@
     :center="this.center"
     :zoom="15"
     map-type-id="terrain"
-    style="width: 300px; height: 300px"
+    style="width: 200px; height: 200px"
   >
     <GMapMarker
       :position="this.center"
@@ -46,14 +46,6 @@ export default {
         lat: 51.093048,
         lng: 6.84212,
       },
-      markers: [
-        {
-          position: {
-            lat: 51.093048,
-            lng: 6.84212,
-          },
-        }, // Along list of clusters
-      ],
     };
   },
 };

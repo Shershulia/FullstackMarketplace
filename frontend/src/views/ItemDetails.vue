@@ -10,7 +10,10 @@
         <img class="gpsIcon" :src="require(`@/assets/locationLogo.png`)" />
         <p class="item-location">{{ item.location }}</p>
       </div>
-      <p class="item-description">{{ item.description }}</p>
+      <div class="locationWithMap">
+        <p class="item-description">{{ item.description }}</p>
+        <GoogleMap class="map" :address="this.item.location" />
+      </div>
       <div class="item-actions">
         <button class="add-to-cart-button">Add to cart</button>
         <button class="buy-now-button">Buy now</button>
@@ -21,8 +24,12 @@
 
 <script>
 import { useRoute } from "vue-router";
+import GoogleMap from "@/components/GoogleMap.vue";
 export default {
   name: "ItemDetails",
+  components: {
+    GoogleMap,
+  },
   data() {
     return {
       id: 0,
@@ -94,11 +101,6 @@ export default {
 .item-location i {
   margin-right: 5px;
 }
-
-.item-actions {
-  margin-top: 20px;
-}
-
 .add-to-cart-button,
 .buy-now-button {
   background-color: #008cba;
@@ -132,5 +134,25 @@ export default {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
+}
+.locationWithMap {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-gap: 10px;
+  padding: 10px;
+}
+
+.item-description {
+  font-size: 30px;
+  grid-column: 1/3;
+}
+
+.map {
+  grid-column: 3/4;
+}
+
+.item-actions {
+  grid-column: 1/3;
+  margin-top: 20px;
 }
 </style>

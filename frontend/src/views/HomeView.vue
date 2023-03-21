@@ -12,7 +12,6 @@
 import HelloWorld from "@/components/HelloWorld.vue";
 import LittleItemCard from "@/components/LittleItemCard.vue";
 import ListOfLittleItems from "@/components/ListOfLittleItems.vue";
-import GoogleMap from "@/components/GoogleMap.vue";
 
 export default {
   name: "HomeView",
@@ -20,7 +19,6 @@ export default {
     ListOfLittleItems,
     HelloWorld,
     LittleItemCard,
-    GoogleMap,
   },
   data() {
     return {
