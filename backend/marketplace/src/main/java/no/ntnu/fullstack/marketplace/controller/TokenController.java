@@ -6,6 +6,7 @@ import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import no.ntnu.fullstack.marketplace.dao.MockDao;
 import no.ntnu.fullstack.marketplace.model.LoginRequest;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +20,7 @@ import java.time.Instant;
 @EnableAutoConfiguration
 @CrossOrigin
 public class TokenController {
+
 
     // keyStr is hardcoded here for testing purpose
     // in a real scenario, it should either be stored in a database or injected from the environment
