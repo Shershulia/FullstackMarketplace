@@ -1,35 +1,26 @@
 <template>
-  <div class="littleCard">
-    <div class="imageWithPrice">
-      <p class="price">{{ price }} kr,-</p>
-      <img class="image" :src="image" />
-    </div>
+  <router-link
+    :to="{ name: 'ItemDetails', params: { id: item.id} }"
+  >
+    <div class="littleCard">
+      <div class="imageWithPrice">
+        <p class="price">{{ item.price }} kr,-</p>
+        <img class="image" :src="item.image" />
+      </div>
 
-    <p class="name">{{ name }}</p>
-    <p class="location">Location: {{ location }}</p>
-  </div>
+      <p class="name">{{ item.name }}</p>
+      <p class="location">Location: {{ item.location }}</p>
+    </div>
+  </router-link>
 </template>
 
 <script>
 export default {
   name: "LittleItemCard",
   props: {
-    name: {
-      type: String,
+    item: {
+      type: Object,
       required: true,
-    },
-    price: {
-      type: Number,
-      required: true,
-    },
-    location: {
-      type: String,
-      default: "Unknown",
-    },
-    image: {
-      type: String,
-      default:
-        "https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled-1150x647.png",
     },
   },
 };
@@ -40,9 +31,9 @@ export default {
   width: 250px;
   cursor: pointer;
   border: 1px groove #39495c;
-  margin-bottom: 18px;
   border-radius: 10px;
   display: inline-block;
+  margin: 20px;
 }
 .imageWithPrice {
   position: relative;
@@ -50,11 +41,13 @@ export default {
 }
 .image {
   width: 100%;
+  height: 200px;
   border-radius: 10px;
+  object-fit: cover;
 }
 .price {
   position: absolute;
-  bottom: 5px;
+  bottom: 4px;
   left: 0;
   margin: 0;
   padding: 10px;
