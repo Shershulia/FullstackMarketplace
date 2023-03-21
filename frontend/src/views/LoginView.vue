@@ -1,7 +1,7 @@
 <template>
   <div class="login">
     <h2>Login</h2>
-    <form @submit.prevent="login">
+    <form @submit.prevent="onSubmit">
       <div>
         <label for="username">Username:</label>
         <input type="text" id="username" v-model="username" />
@@ -16,9 +16,6 @@
 </template>
 
 <script>
-import axios from "axios";
-import jwt_decode from "jwt-decode";
-
 export default {
   data() {
     return {
@@ -27,21 +24,17 @@ export default {
     };
   },
   methods: {
-    login() {
-      axios
-        .post("http://localhost:8090/token", {
+    onSubmit() {
+      this.$store
+        .dispatch("login", {
           username: this.username,
           password: this.password,
         })
         .then((response) => {
           console.log(response);
-          const token = response.data;
-          localStorage.setItem("token", token); // store the token in local storage
-          axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-          // set the default authorization header for future requests
-          const decodedToken = jwt_decode(token);
-          this.$store.dispatch("validateToken", decodedToken);
-          this.$router.push("/"); // redirect to the home page
+          //validate token
+          // this.$store.dispatch("validateToken");
+          this.$router.push("/user");
         })
         .catch((error) => {
           console.error(error);

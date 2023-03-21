@@ -1,47 +1,38 @@
 package no.ntnu.fullstack.marketplace.dao;
 
 import no.ntnu.fullstack.marketplace.model.UserInfoResponse;
-import no.ntnu.fullstack.marketplace.dao.AbsctractDao;
 
-import java.util.ArrayList;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+import javax.transaction.Transactional;
 import java.util.List;
 
-//database connection with spring boot and h2 database
+public class AccountDao {
 
+    @PersistenceContext
+    private EntityManager entityManager;
 
-public class AccountDao extends AbsctractDao<UserInfoResponse> {
-
-
-    public AccountDao() {
-        setClazz(UserInfoResponse.class);
+    @Transactional
+    public boolean checkUserCredentials(final String username, final String password) {
+        TypedQuery<UserInfoResponse> query = entityManager.createQuery(
+                "SELECT u FROM UserInfoResponse u WHERE u.username = :username AND u.password = :password",
+                UserInfoResponse.class);
+        query.setParameter("username", username);
+        query.setParameter("password", password);
+        List<UserInfoResponse> results = query.getResultList();
+        return results.size() > 0;
     }
 
-    private static List<UserInfoResponse> users = new ArrayList<UserInfoResponse>() {
-        {
-            add(new UserInfoResponse("Ole", "Nordmann", "M", "ole1", "password1"));
-            add(new UserInfoResponse("Kari", "Grossmann", "F", "kari2", "password2"));
-            add(new UserInfoResponse("John", "Smith", "M", "john3", "password3"));
-        }
-    };
-
-    public static boolean checkUserCredentials(final String username, final String password) {
-        for(UserInfoResponse user : users){
-            if(user.getUsername().equals(username) && user.getPassword().equals(password))  {
-                return true;
-            }
-        }
-        return false;
+    @Transactional
+    public UserInfoResponse getUser(final String userId) {
+        return entityManager.find(UserInfoResponse.class, userId);
     }
 
-    public static UserInfoResponse getUser(final String userId){
-        for(UserInfoResponse user : users){
-            if(user.getUsername().equals(userId)){
-                return user;
-            }
-        }
-        return null;
+    @Transactional
+    public UserInfoResponse saveUser(final UserInfoResponse user) {
+        entityManager.persist(user);
+        return user;
     }
-
-
 
 }

@@ -12,9 +12,9 @@ public class MockDao {
 
     private static List<UserInfoResponse> users = new ArrayList<UserInfoResponse>() {
         {
-            add(new UserInfoResponse("Ole", "Nordmann", "M", "ole1", "password1"));
-            add(new UserInfoResponse("Kari", "Grossmann", "F", "kari2", "password2"));
-            add(new UserInfoResponse("John", "Smith", "M", "john3", "password3"));
+            add(new UserInfoResponse("Ole", "Nordmann", "M", 67,1,"ole1", "password1"));
+            add(new UserInfoResponse("Kari", "Grossmann", "F", 53,2 ,"kari2", "password2"));
+            add(new UserInfoResponse("John", "Smith", "M", null,3,"john3", "password3"));
         }
     };
 
