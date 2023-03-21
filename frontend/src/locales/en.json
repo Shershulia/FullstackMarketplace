@@ -1,0 +1,12 @@
+{
+  "message": "hello i18n !!",
+  "language": "Language",
+  "english": "English",
+  "norwegian": "Norwegian",
+  "account": "Account",
+  "shopping": "Shopping",
+  "favorites": "Favorites",
+  "cart": "Cart",
+  "sign-up": "Sign up",
+  "log-in": "Log in"
+}

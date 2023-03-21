@@ -3,29 +3,29 @@
     <ul class="navbar-nav">
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" role="button" aria-haspopup="true" aria-expanded="false" @click="toggleLanguageDropdown" id="language">
-          Language
+          {{ t('language') }}
         </a>
         <div class="dropdown-menu" v-if="showLanguageDropdown" @click="hideLanguageDropdown">
-          <a class="dropdown-item" href="#" @click.prevent="setLanguage('English')">English</a>
-          <a class="dropdown-item" href="#" @click.prevent="setLanguage('Norwegian')">Norwegian</a>
+          <a class="dropdown-item" href="#" @click.prevent="setLanguage('English')">{{ t('english') }}</a>
+          <a class="dropdown-item" href="#" @click.prevent="setLanguage('Norwegian')">{{ t('norwegian') }}</a>
         </div>
       </li>
       <li class="nav-item">
-        <router-link to="/shopping" class="nav-link" id="shopping">Shopping</router-link>
+        <router-link to="/shopping" class="nav-link" id="shopping">{{ t('shopping') }}</router-link>
       </li>
       <li class="nav-item">
-        <router-link to="/favorites" class="nav-link" id="favorites">Favorites</router-link>
+        <router-link to="/favorites" class="nav-link" id="favorites">{{ t('favorites') }}</router-link>
       </li>
       <li class="nav-item">
-        <router-link to="/cart" class="nav-link" id="cart">Cart</router-link>
+        <router-link to="/cart" class="nav-link" id="cart">{{ t('cart') }}</router-link>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" role="button" aria-haspopup="true" aria-expanded="false" @click="toggleAccountDropdown" id="account">
-          Account
+          {{ t('account') }}
         </a>
         <div class="dropdown-menu" v-if="showAccountDropdown" @click="hideAccountDropdown">
-          <a class="dropdown-item" href="#">Sign up</a>
-          <a class="dropdown-item" href="#">Log in</a>
+          <a class="dropdown-item" href="#">{{ t('sign-up') }}</a>
+          <a class="dropdown-item" href="#">{{ t('log-in') }}</a>
         </div>
       </li>
     </ul>
@@ -33,8 +33,18 @@
 </template>
 
 <script>
+import {useI18n} from "vue-i18n";
+import i18n from "@/i18n";
+
 export default {
   name: 'NavigationBar',
+  setup() {
+    const { t } = useI18n({
+      inheritLocale: true,
+      useScope: 'local'
+    })
+    return { t }
+  },
   data() {
     return {
       showLanguageDropdown: false,
@@ -60,18 +70,10 @@ export default {
       this.currentLanguage = language;
       console.log("Language switched to", language);
       if(this.currentLanguage === 'Norwegian') {
-        document.getElementById('shopping').innerHTML = 'Kjøp';
-        document.getElementById('favorites').innerHTML = 'Favoritter';
-        document.getElementById('cart').innerHTML = 'Handlevogn';
-        document.getElementById('language').innerHTML = 'Språk';
-        document.getElementById('user').innerHTML = 'Bruker';
+        this.$i18n.locale = 'no'
       }
       else {
-        document.getElementById('shopping').innerHTML = 'Shopping';
-        document.getElementById('favorites').innerHTML = 'Favorites';
-        document.getElementById('cart').innerHTML = 'Cart';
-        document.getElementById('language').innerHTML = 'Language';
-        document.getElementById('user').innerHTML = 'User';
+        this.$i18n.locale = 'en'
       }
     }
   }
