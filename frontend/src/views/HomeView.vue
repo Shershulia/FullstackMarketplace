@@ -4,6 +4,7 @@
     <HelloWorld msg="Welcome to Your Vue.js App" />
     <LittleItemCard :item="exampleItem"></LittleItemCard>
     <ListOfLittleItems :listOfItems="items"></ListOfLittleItems>
+    <GoogleMap :address="exampleItem.location" />
   </div>
 </template>
 
@@ -11,6 +12,7 @@
 import HelloWorld from "@/components/HelloWorld.vue";
 import LittleItemCard from "@/components/LittleItemCard.vue";
 import ListOfLittleItems from "@/components/ListOfLittleItems.vue";
+import GoogleMap from "@/components/GoogleMap.vue";
 
 export default {
   name: "HomeView",
@@ -18,6 +20,7 @@ export default {
     ListOfLittleItems,
     HelloWorld,
     LittleItemCard,
+    GoogleMap,
   },
   data() {
     return {
@@ -26,7 +29,7 @@ export default {
         name: "Gaming chair for beginner",
         image:
           "https://i.pinimg.com/736x/bd/c9/83/bdc9832e5f32ee6168f10536549551bc--kids-bedroom-ideas-girls-bedroom.jpg",
-        location: "Trondheim",
+        location: "Falkenborgvegen 1, 7044 Trondheim",
         price: 100,
       },
       items: [
