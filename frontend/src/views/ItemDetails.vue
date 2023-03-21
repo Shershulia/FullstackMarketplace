@@ -6,7 +6,11 @@
     <div class="item-details">
       <h2 class="item-name">{{ item.name }}</h2>
       <p class="item-price">{{ item.price }} kr,-</p>
-      <p class="item-location"><i class="fas fa-map-marker-alt"></i> {{ item.location }}</p>
+      <div class="locationWithImage">
+        <img class="gpsIcon" :src="require(`@/assets/locationLogo.png`)" />
+        <p class="item-location">{{ item.location }}</p>
+      </div>
+      <p class="item-description">{{ item.description }}</p>
       <div class="item-actions">
         <button class="add-to-cart-button">Add to cart</button>
         <button class="buy-now-button">Buy now</button>
@@ -25,8 +29,10 @@ export default {
       item: {
         id: this.id,
         name: "Gaming chair for beginner",
+        description:
+          "This is very god chair, it saved my back during the playing",
         image:
-            "https://i.pinimg.com/736x/bd/c9/83/bdc9832e5f32ee6168f10536549551bc--kids-bedroom-ideas-girls-bedroom.jpg",
+          "https://i.pinimg.com/736x/bd/c9/83/bdc9832e5f32ee6168f10536549551bc--kids-bedroom-ideas-girls-bedroom.jpg",
         location: "Trondheim",
         price: 100,
       },
@@ -69,7 +75,7 @@ export default {
 }
 
 .item-name {
-  font-size:36px;
+  font-size: 36px;
   font-weight: bold;
   margin: 0 0 10px 0;
 }
@@ -95,7 +101,7 @@ export default {
 
 .add-to-cart-button,
 .buy-now-button {
-  background-color: #008CBA;
+  background-color: #008cba;
   color: #fff;
   border-radius: 5px;
   padding: 10px 20px;
@@ -106,14 +112,25 @@ export default {
 
 .add-to-cart-button:hover,
 .buy-now-button:hover {
-  background-color: #005F6B;
+  background-color: #005f6b;
 }
 
 .buy-now-button {
-  background-color: #4CAF50;
+  background-color: #4caf50;
 }
 
 .buy-now-button:hover {
-  background-color: #26773C;
+  background-color: #26773c;
+}
+.gpsIcon {
+  max-width: 15px;
+  max-height: 15px;
+}
+.locationWithImage {
+  margin-left: 200px;
+  margin-right: 200px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 </style>
