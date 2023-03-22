@@ -100,7 +100,6 @@ body {
   font-size: 16px;
   border-bottom: 1px solid #ccc;
   border-radius: 5px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 .navbar-nav {
   display: flex;
