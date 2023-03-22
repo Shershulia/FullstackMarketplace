@@ -5,13 +5,13 @@
         <div class="col-md-6 col-lg-6">
           <h4>FAQ</h4>
           <ul class="list-unstyled">
-            <li><router-link to="/faq">List of Frequently Asked Questions</router-link></li>
+            <li><router-link to="/faq">{{ $t('footer-faq') }}</router-link></li>
           </ul>
         </div>
         <div class="col-md-6 col-lg-6">
-          <h4>About Us</h4>
+          <h4>{{ $t('footer-about-us1') }}</h4>
           <ul class="list-unstyled">
-            <li><router-link to="/about">About Us, Our Story and Mission</router-link></li>
+            <li><router-link to="/about">{{ $t('footer-about-us2') }}</router-link></li>
           </ul>
         </div>
       </div>
