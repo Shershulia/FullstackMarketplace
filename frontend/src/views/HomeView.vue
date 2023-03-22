@@ -23,7 +23,7 @@ export default {
     return {
       exampleItem: {
         id: 1,
-        name: "Gaming chair for beginner",
+        name: "1",
         image:
           "https://i.pinimg.com/736x/bd/c9/83/bdc9832e5f32ee6168f10536549551bc--kids-bedroom-ideas-girls-bedroom.jpg",
         location: "Falkenborgvegen 1, 7044 Trondheim",
@@ -33,7 +33,7 @@ export default {
       items: [
         {
           id: 2,
-          name: "Gaming chair for advanced",
+          name: "12",
           image: "https://a.d-cd.net/1YAAAgKereA-100.jpg",
           location: "Oslo",
           price: 200,
@@ -41,7 +41,7 @@ export default {
         },
         {
           id: 1,
-          name: "Gaming chair for beginner",
+          name: "1",
           image:
             "https://i.pinimg.com/736x/bd/c9/83/bdc9832e5f32ee6168f10536549551bc--kids-bedroom-ideas-girls-bedroom.jpg",
           location: "Trondheim",

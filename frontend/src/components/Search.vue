@@ -16,7 +16,9 @@
       placeholder="Search by location (or Current)"
       class="searchInput"
       v-model="searchLocation"
+      @keyup.enter="findLocation"
   />
+
   <ListOfLittleItems v-if="itemsList.length" :listOfItems="itemsList"></ListOfLittleItems>
   <p v-else>Nothing was found on request: {{this.searchValue}} </p>
 </template>
@@ -34,13 +36,15 @@ async function getLatAndLng(location){
   return fetch(url)
       .then((response) => response.json())
       .then((data) => {
-        const { lat, lng } = data.results[0].geometry;
-        let latAndLng= [];
+        if (data.results.length > 0) {
+          const { lat, lng } = data.results[0].geometry;
+          let latAndLng= [];
 
-        latAndLng[0] = lat;
-        latAndLng[1] = lng;
-        console.log(latAndLng);
-        return latAndLng;
+          latAndLng[0] = lat;
+          latAndLng[1] = lng;
+          return latAndLng;
+        }
+        throw new Error("No results found");
       })
       .catch((error) => console.error(error));
 }
@@ -55,11 +59,8 @@ async function getLatAndLng(location){
     async mounted() {
       for (const item of this.items) {
         const latAndLng = await getLatAndLng(item.location);
-        console.log(item.location)
-        console.log(latAndLng);
         item["latitude"] = latAndLng[0];
         item["longitude"] = latAndLng[1];
-        console.log(item);
       }
     },
     components: {
@@ -70,32 +71,46 @@ async function getLatAndLng(location){
         searchValue:"",
         searchCategory:"",
         searchLocation:"",
+        latitude:"",
+        longitude:"",
       };
     },
     computed: {
       itemsList() {
-        let items = this.items;
-        if (this.searchValue.trim().length > 0) {
-          items = items.filter((item) => item.name.toLowerCase().includes(this.searchValue.trim().toLowerCase()));
-        }
-        if (this.searchCategory !== "") {
-          items = items.filter((item) => item.category.toLowerCase() === this.searchCategory.toLowerCase());
-        }
-        if (navigator.geolocation && this.searchLocation.toLowerCase()==="current") {
-          navigator.geolocation.getCurrentPosition((position) => {
-            const userLocation = {
-              latitude: position.coords.latitude,
-              longitude: position.coords.longitude
-            };
-            items.sort((a, b) => {
-              const aDistance = this.getDistance(userLocation, a);
-              const bDistance = this.getDistance(userLocation, b);
-              return aDistance - bDistance;
-            });
-          });
-        }
-        return items;
-      }
+         let items = this.items;
+         if (this.searchValue.trim().length > 0) {
+           items = items.filter((item) => item.name.toLowerCase().includes(this.searchValue.trim().toLowerCase()));
+         }
+         if (this.searchCategory !== "") {
+           items = items.filter((item) => item.category.toLowerCase() === this.searchCategory.toLowerCase());
+         }
+         if (navigator.geolocation && this.searchLocation.toLowerCase() === "current") {
+           navigator.geolocation.getCurrentPosition((position) => {
+             const userLocation = {
+               latitude: position.coords.latitude,
+               longitude: position.coords.longitude
+             };
+             items.sort((a, b) => {
+               const aDistance = this.getDistance(userLocation, a);
+               const bDistance = this.getDistance(userLocation, b);
+               return aDistance - bDistance;
+             });
+           });
+         }
+         if (this.searchLocation.length > 0) {
+
+           const location = {
+             latitude: this.latitude,
+             longitude:  this.longitude
+           };
+           items.sort((a, b) => {
+             const aDistance = this.getDistance(location, a);
+             const bDistance = this.getDistance(location, b);
+             return aDistance - bDistance;
+           });
+         }
+         return items;
+       }
     },
     methods: {
       getDistance(userLocation, itemLocation) {
@@ -117,6 +132,11 @@ async function getLatAndLng(location){
       deg2rad(deg) {
         return deg * (Math.PI/180);
       },
+      async findLocation() {
+        const latAndLng = await getLatAndLng(this.searchLocation);
+        this.latitude= latAndLng[0];
+        this.longitude= latAndLng[1];
+      }
 
     }
   };
