@@ -154,13 +154,26 @@ export default {
 };
 </script>
 <style>
+
+@media screen and (min-width: 768px) {
+  .registration_form {
+    margin: 50px auto;
+  }
+}
+@media screen and (max-width: 767px) {
+  .registration_form {
+    margin: 50px auto 20% 20%;
+  }
+}
 .registration_form {
-  margin: 50px auto;
+  align-content: center;
   max-width: 500px;
   padding: 30px;
   background-color: #f7f7f7;
   border-radius: 5px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  display: inline-block;
+
 }
 
 h1 {
