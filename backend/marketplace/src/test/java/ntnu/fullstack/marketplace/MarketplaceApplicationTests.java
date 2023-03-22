@@ -1,4 +1,4 @@
-package ntnu.fullstack.marketplace.marketplace;
+package ntnu.fullstack.marketplace;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
