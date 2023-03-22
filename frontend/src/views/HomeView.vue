@@ -4,6 +4,7 @@
     <HelloWorld msg="Welcome to Your Vue.js App" />
     <LittleItemCard :item="exampleItem"></LittleItemCard>
     <ListOfLittleItems :listOfItems="items"></ListOfLittleItems>
+    <GoogleMap :address="exampleItem.location" />
   </div>
 </template>
 
@@ -26,7 +27,7 @@ export default {
         name: "Gaming chair for beginner",
         image:
           "https://i.pinimg.com/736x/bd/c9/83/bdc9832e5f32ee6168f10536549551bc--kids-bedroom-ideas-girls-bedroom.jpg",
-        location: "Trondheim",
+        location: "Falkenborgvegen 1, 7044 Trondheim",
         price: 100,
       },
       items: [
