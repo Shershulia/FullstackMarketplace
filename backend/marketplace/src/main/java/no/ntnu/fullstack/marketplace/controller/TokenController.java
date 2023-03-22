@@ -4,7 +4,7 @@ package no.ntnu.fullstack.marketplace.controller;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
-import no.ntnu.fullstack.marketplace.dao.MockDao;
+//import no.ntnu.fullstack.marketplace.dao.MockDao;
 //import no.ntnu.fullstack.marketplace.dao.UserDao;
 import no.ntnu.fullstack.marketplace.model.LoginRequest;
 import no.ntnu.fullstack.marketplace.controller.UserController;
@@ -38,7 +38,7 @@ public class TokenController {
     //public static final String keyStr = System.getenv("JWT_SECRET_KEY");
 
     // t key
-    private static final Duration JWT_TOKEN_VALIDITY = Duration.ofSeconds(15); //really short validity for testing purpose
+    private static final Duration JWT_TOKEN_VALIDITY = Duration.ofSeconds(150); //really short validity for testing purpose
 
 
     @PostMapping(value = "")
@@ -53,10 +53,7 @@ public class TokenController {
             }
         }
 
-
-//        if (MockDao.checkUserCredentials(loginRequest.username(), loginRequest.password())) {
-//            return generateToken(loginRequest.username());
-//        }
+        System.out.println("Access denied, wrong credentials....");
 
         throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Access denied, wrong credentials....");
     }
@@ -87,4 +84,17 @@ public class TokenController {
         }
         throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Access denied, wrong credentials....");
     }
+
+    public static String getTokenSubject(final String token) {
+        // verify access token and return user id
+        if (token != null && token.startsWith("Bearer ")) { // Bearer is the default prefix for JWT
+            final String jwtToken = token.substring(7);
+            final Algorithm hmac512 = Algorithm.HMAC512(keyStr);
+            final JWTVerifier verifier = JWT.require(hmac512).build();
+            verifier.verify(jwtToken);
+            return JWT.decode(jwtToken).getSubject();
+        }
+        return null;
+    }
+
 }

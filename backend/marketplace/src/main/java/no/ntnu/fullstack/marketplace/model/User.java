@@ -17,6 +17,17 @@ public class User {
     private String password;
     @Column (name = "name")
     private String name;
+
+    @Column (name = "lastname")
+    private String lastname;
+
+    @Column (name = "gender")
+    private String gender;
+
+    @Column (name = "age")
+    private Integer age;
+    @Column (name = "location")
+    private String location;
     @Column (name = "phone")
     private String phone;
     @Column (name = "email")
