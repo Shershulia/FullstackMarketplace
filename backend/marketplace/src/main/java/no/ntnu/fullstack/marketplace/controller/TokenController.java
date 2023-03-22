@@ -49,7 +49,7 @@ public class TokenController {
         User user = userService.getUserByUsername(loginRequest.username());
         if (user != null) {
             if (user.getPassword().equals(loginRequest.password())) {
-                return generateToken(loginRequest.username());
+                return generateToken(user.getId());
             }
         }
 
@@ -58,12 +58,12 @@ public class TokenController {
         throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Access denied, wrong credentials....");
     }
 
-    public String generateToken(final String userId) {
+    public String generateToken(final Long userId) {
         final Instant now = Instant.now();
         final Algorithm hmac512 = Algorithm.HMAC512(keyStr);
         final JWTVerifier verifier = JWT.require(hmac512).build();
         return JWT.create()
-                .withSubject(userId)
+                .withSubject(String.valueOf(userId))
                 .withIssuer("fullstack_marketplace_api")
                 .withIssuedAt(now)
                 .withExpiresAt(now.plusMillis(JWT_TOKEN_VALIDITY.toMillis()))

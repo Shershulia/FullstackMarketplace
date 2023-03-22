@@ -5,6 +5,8 @@ import no.ntnu.fullstack.marketplace.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @RestController
 @CrossOrigin
@@ -12,11 +14,11 @@ public class ItemController {
     @Autowired
     ItemService itemService;
 
-//    @GetMapping("/item")
-//    private List<Item> getAllItems() {
-//        System.out.println("Get all items");
-//        return itemService.getAllItem();
-//    }
+    @GetMapping("/item")
+    private List<Item> getAllItems() {
+        System.out.println("Get all items");
+        return itemService.getAllItem();
+    }
 
     @GetMapping("/item/{id}")
     private Item getItem(@PathVariable("id") Long id) {
@@ -30,6 +32,7 @@ public class ItemController {
     {
         itemService.delete(id);
     }
+
     //creating post mapping that post the student detail in the database
     @PostMapping("/item/update")
     private Long saveItem(@RequestBody Item item, @RequestHeader (name="Authorization") String token)

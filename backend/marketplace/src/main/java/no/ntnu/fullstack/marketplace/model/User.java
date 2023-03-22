@@ -6,10 +6,10 @@ import jakarta.persistence.*;
 @Table (name = "USERDATA")
 //@Table
 public class User {
+    @Column (name = "id")
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Id
-//    @Column (name = "id")
-//    @GeneratedValue (strategy = GenerationType.IDENTITY)
-//    private Long id;
+    private Long id;
 
     @Column (name = "username", nullable = false, unique = true)
     private String username;
@@ -53,8 +53,8 @@ public class User {
 
     }
 
-    public String getId() {
-        return username;
+    public Long getId() {
+        return id;
     }
 
     public void setId(String id) {

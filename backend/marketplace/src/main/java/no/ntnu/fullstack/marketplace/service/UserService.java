@@ -13,6 +13,7 @@ public class UserService
 {
     @Autowired
     UserRepository userRepository;
+
     //getting all user records
     public List<User> getAllUser()
     {
@@ -21,7 +22,7 @@ public class UserService
         return users;
     }
     //getting a specific record
-    public User getUserById(String id)
+    public User getUserById(Long id)
     {
         return userRepository.findById(id).get();
     }
@@ -48,7 +49,7 @@ public class UserService
     }
 
     //deleting a specific record
-    public void delete(String id)
+    public void delete(Long id)
     {
         userRepository.deleteById(id);
     }
