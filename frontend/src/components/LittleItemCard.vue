@@ -1,16 +1,22 @@
 <template>
-  <router-link :to="{ name: 'ItemDetails', params: { id: item.id } }">
-    <div class="littleCard">
-      <div class="imageWithPrice">
-        <p class="price">{{ item.price }} kr,-</p>
+  <div class="littleCard">
+    <div class="imageWithPrice">
+      <p class="price">{{ item.price }} kr,-</p>
+      <button v-on:click="addToCart(item)" class="addToCartButton">
+        <img class="cartIcon" :src="require(`@/assets/cartIcon.png`)" />
+      </button>
+      <router-link :to="{ name: 'ItemDetails', params: { id: item.id } }">
         <img class="image" :src="item.image" />
-      </div>
-
+      </router-link>
+    </div>
+    <router-link :to="{ name: 'ItemDetails', params: { id: item.id } }">
       <p class="name">{{ item.name }}</p>
       <p class="location">Location: {{ item.location }}</p>
-    </div>
-  </router-link>
+    </router-link>
+
+  </div>
 </template>
+
 
 <script>
 export default {
@@ -20,6 +26,12 @@ export default {
       type: Object,
       required: true,
     },
+  },
+  methods: {
+    addToCart(item){
+      console.log(item)
+    }
+
   },
 };
 </script>
@@ -69,5 +81,21 @@ export default {
   color: #777;
   text-overflow: ellipsis;
   overflow: hidden;
+}
+.addToCartButton{
+  position: absolute;
+  bottom: 4px;
+  right: 0;
+  margin: 0;
+  padding: 10px;
+  border-radius: 10px;
+  color: white;
+  background-color: rgb(126, 126, 126, 0.7);}
+.addToCartButton:hover{
+  transform: rotate(360deg);
+}
+.cartIcon{
+  width: 20px;
+  height: 20px;
 }
 </style>
