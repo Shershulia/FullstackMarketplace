@@ -1,10 +1,15 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link>
-    <router-link to="/login">Login</router-link>
-  </nav>
+  <NavigationBar />
   <router-view />
 </template>
+
+<script>
+import NavigationBar from "@/components/NavigationBar";
+export default {
+  components: {NavigationBar}
+}
+
+</script>
 
 <style>
 #app {
