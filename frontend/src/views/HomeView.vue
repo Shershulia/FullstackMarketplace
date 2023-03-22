@@ -5,6 +5,9 @@
     <LittleItemCard :item="exampleItem"></LittleItemCard>
     <ListOfLittleItems :listOfItems="items"></ListOfLittleItems>
     <GoogleMap :address="exampleItem.location" />
+    <RegisterUser/>
+
+
   </div>
 </template>
 
@@ -12,13 +15,16 @@
 import HelloWorld from "@/components/HelloWorld.vue";
 import LittleItemCard from "@/components/LittleItemCard.vue";
 import ListOfLittleItems from "@/components/ListOfLittleItems.vue";
-
+import RegisterUser from "@/views/RegisterUser.vue";
+import GoogleMap from "@/components/GoogleMap.vue";
 export default {
   name: "HomeView",
   components: {
     ListOfLittleItems,
     HelloWorld,
     LittleItemCard,
+    RegisterUser,
+    GoogleMap,
   },
   data() {
     return {
