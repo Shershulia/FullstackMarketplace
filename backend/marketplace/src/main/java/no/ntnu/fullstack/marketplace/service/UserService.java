@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserService
 {
-//    @Autowired
+    @Autowired
     UserRepository userRepository;
     //getting all user records
     public List<User> getAllUser()
@@ -21,16 +21,34 @@ public class UserService
         return users;
     }
     //getting a specific record
-    public User getUserById(Long id)
+    public User getUserById(String id)
     {
         return userRepository.findById(id).get();
     }
+
+    public User getUserByUsername(String username)
+    {
+        List<User> users = getAllUser();
+        for (User user : users) {
+            if (user.getUsername().equals(username)) {
+                return user;
+            }
+        }
+        return null;
+    }
+
     public void saveOrUpdate(User user)
     {
         userRepository.save(user);
     }
+
+    public void newUser(User user)
+    {
+        userRepository.save(user);
+    }
+
     //deleting a specific record
-    public void delete(Long id)
+    public void delete(String id)
     {
         userRepository.deleteById(id);
     }

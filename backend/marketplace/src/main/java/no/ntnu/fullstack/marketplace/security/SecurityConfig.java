@@ -26,6 +26,7 @@ public class SecurityConfig {
                 .authorizeRequests()
                 .requestMatchers("/token").permitAll()//add new fully public endpoints here. H2-console is only for developmen
                 .requestMatchers(PathRequest.toH2Console()).permitAll()//add new fully public endpoints here. H2-console is only for developmen
+                .requestMatchers("/user/**").permitAll()//add new fully public endpoints here. H2-console is only for developmen
 //                .requestMatchers("/h2-console/**").permitAll()//add new fully public endpoints here. H2-console is only for developmen
 //                .requestMatchers("/error/**").permitAll()//add new fully public endpoints here. H2-console is only for developmen
                 .anyRequest().authenticated().and()

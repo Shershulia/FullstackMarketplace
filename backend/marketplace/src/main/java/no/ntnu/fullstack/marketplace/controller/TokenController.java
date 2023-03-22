@@ -5,7 +5,11 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import no.ntnu.fullstack.marketplace.dao.MockDao;
+//import no.ntnu.fullstack.marketplace.dao.UserDao;
 import no.ntnu.fullstack.marketplace.model.LoginRequest;
+import no.ntnu.fullstack.marketplace.controller.UserController;
+import no.ntnu.fullstack.marketplace.model.User;
+import no.ntnu.fullstack.marketplace.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.HttpStatus;
@@ -15,11 +19,15 @@ import org.springframework.web.server.ResponseStatusException;
 import java.time.Duration;
 import java.time.Instant;
 
-@RestController
 @RequestMapping(value = "/token")
 @EnableAutoConfiguration
 @CrossOrigin
+@RestController
 public class TokenController {
+
+
+    @Autowired
+    UserService userService;
 
 
     // keyStr is hardcoded here for testing purpose
@@ -38,9 +46,17 @@ public class TokenController {
     public String generateToken(final @RequestBody LoginRequest loginRequest) throws Exception {
         // if username and password are valid, issue an access token
         // note that subsequent requests need this token
-        if (MockDao.checkUserCredentials(loginRequest.username(), loginRequest.password())) {
-            return generateToken(loginRequest.username());
+        User user = userService.getUserByUsername(loginRequest.username());
+        if (user != null) {
+            if (user.getPassword().equals(loginRequest.password())) {
+                return generateToken(loginRequest.username());
+            }
         }
+
+
+//        if (MockDao.checkUserCredentials(loginRequest.username(), loginRequest.password())) {
+//            return generateToken(loginRequest.username());
+//        }
 
         throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Access denied, wrong credentials....");
     }

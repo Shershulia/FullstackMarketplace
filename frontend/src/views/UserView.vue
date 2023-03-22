@@ -11,6 +11,7 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
   computed: {
     user() {
@@ -27,6 +28,21 @@ export default {
     if (this.$store.getters.token == null || this.$store.getters.token == "") {
       this.$router.push("/login");
     }
+
+    //axios call to get user info
+    axios
+      .get("http://localhost:8090/user", {
+        headers: {
+          Authorization: "Bearer " + this.$store.getters.token,
+        },
+      })
+      .then((response) => {
+        console.log(response);
+        // this.$store.commit("setUserInfo", response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   },
   methods: {
     logout() {

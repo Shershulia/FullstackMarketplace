@@ -1,11 +1,5 @@
 <template>
   <div class="home">
-    <LittleItemCard
-      :name="exampleItem.name"
-      :image="exampleItem.image"
-      :location="exampleItem.location"
-      :price="exampleItem.price"
-    ></LittleItemCard>
     <img alt="Vue logo" src="../assets/logo.png" />
     <HelloWorld msg="Welcome to Your Vue.js App" />
     <LittleItemCard :item="exampleItem"></LittleItemCard>
@@ -14,7 +8,6 @@
 </template>
 
 <script>
-
 import HelloWorld from "@/components/HelloWorld.vue";
 import LittleItemCard from "@/components/LittleItemCard.vue";
 import ListOfLittleItems from "@/components/ListOfLittleItems.vue";
