@@ -1,12 +1,11 @@
 <template>
-  <NavigationBar />
   <div class="about-us">
     <h1>{{ t('about-us1') }}</h1>
     <p>{{ t('about-us2') }}</p>
     <h2>{{ t('about-us3') }}</h2>
     <ul>
-      <li><strong>{{ t('about-us4') }}</strong>{{ t('about-us5') }}</li>
-      <li><strong>{{ t('about-us6') }}</strong> {{ t('about-us7') }}</li>
+      <li><strong>{{ t('about-us4') }}</strong>{{ t('about-us5') }}</li> <br /> <br />
+      <li><strong>{{ t('about-us6') }}</strong> {{ t('about-us7') }}</li> <br /> <br />
       <li><strong>{{ t('about-us8') }}</strong>{{ t('about-us9') }}</li>
     </ul>
     <h2>{{ t('about-us10') }}</h2>
@@ -31,7 +30,12 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+body {
+  margin: 0;
+  padding: 0;
+}
+
 .about-us {
   max-width: 800px;
   margin: 0 auto;
@@ -49,6 +53,12 @@ export default {
 }
 .about-us li {
   margin-bottom: 10px;
+}
+
+@media (max-width: 912px) and (min-width: 768px) {
+  .about-us{
+    height: 100vh;
+  }
 }
 </style>
 

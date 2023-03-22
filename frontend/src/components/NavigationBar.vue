@@ -89,15 +89,19 @@ export default {
 </script>
 
 <style>
+body {
+  margin: 0;
+  padding: 0;
+}
+
 .navbar {
   background-color: whitesmoke;
   overflow: hidden;
   font-size: 16px;
-  border: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
   border-radius: 5px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
-
 .navbar-nav {
   display: flex;
   justify-content: space-between;
@@ -128,5 +132,18 @@ export default {
   cursor: pointer;
   white-space: normal;
 }
+
+@media (max-width: 450px) {
+  .footer .row {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .footer .col-md-6 {
+    width: 50%;
+  }
+}
+
+
 
 </style>

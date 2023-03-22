@@ -1,12 +1,17 @@
 <template>
-  <NavigationBar />
+  <header>
+    <NavigationBar />
+  </header>
   <router-view />
+  <footer><MarketplaceFooter />
+  </footer>
 </template>
 
 <script>
 import NavigationBar from "@/components/NavigationBar";
+import MarketplaceFooter from "@/components/MarketplaceFooter"
 export default {
-  components: {NavigationBar}
+  components: {NavigationBar, MarketplaceFooter}
 }
 
 </script>
