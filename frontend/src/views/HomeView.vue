@@ -4,7 +4,7 @@
     <HelloWorld msg="Welcome to Your Vue.js App" />
     <LittleItemCard :item="exampleItem"></LittleItemCard>
     <ListOfLittleItems :listOfItems="items"></ListOfLittleItems>
-    <RegisterUser/>
+    <RegisterUser />
   </div>
 </template>
 

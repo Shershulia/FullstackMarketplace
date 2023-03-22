@@ -5,26 +5,44 @@
       <div class="oblig_inf">
         <p for="username">Email:</p>
         <input
-          name="username"
           v-model="email"
           type="email"
           placeholder="Enter your email..."
+          :class="{ 'invalid-input': v$.$error && v$.email.$error }"
         />
+        <p class="errorMessage" v-if="v$.email.$error">
+          {{ v$.email.$errors[0].$message }}
+        </p>
         <p for="password">Password</p>
         <div class="showPassword">
           <input
             v-model="password"
             placeholder="Enter your password..."
             :type="showPassword ? 'text' : 'password'"
+            :class="{ 'invalid-input': v$.$error && v$.password.$error }"
           />
           <input type="checkbox" v-model="showPassword" id="show-password" />
+
+          <ul class="ulErrors" v-if="v$.password.$error">
+            <li
+              class="liErrors"
+              v-for="value in v$.password.$errors"
+              :key="value"
+            >
+              <p class="errorMessage">{{ value.$message }}</p>
+            </li>
+          </ul>
         </div>
         <p for="password">Confirm password:</p>
         <input
           v-model="confirmPassword"
           type="password"
           placeholder="Confirm your password..."
+          :class="{ 'invalid-input': password !== confirmPassword }"
         />
+        <p class="errorMessage" v-if="this.password !== this.confirmPassword">
+          Passwords should match
+        </p>
       </div>
       <div class="personal_information">
         <p for="firstName">First name</p>
@@ -32,14 +50,22 @@
           name="firstName"
           v-model="firstName"
           placeholder="Enter your first name..."
+          :class="{ 'invalid-input': v$.$error && v$.firstName.$error }"
         />
+        <p class="errorMessage" v-if="v$.firstName.$error">
+          {{ v$.firstName.$errors[0].$message }}
+        </p>
 
         <p for="lastName">Last name</p>
         <input
           name="lastName"
           v-model="lastName"
           placeholder="Enter your last name..."
+          :class="{ 'invalid-input': v$.$error && v$.lastName.$error }"
         />
+        <p class="errorMessage" v-if="v$.lastName.$error">
+          {{ v$.lastName.$errors[0].$message }}
+        </p>
         <p for="age">Age</p>
         <input name="age" v-model="age" placeholder="Age:" type="number" />
       </div>
@@ -51,8 +77,19 @@
   </div>
 </template>
 <script>
+import useValidate from "@vuelidate/core";
+import { required, email, minLength, helpers } from "@vuelidate/validators";
+const onlyLetters = (value) => value.match(/^[a-zA-Z\s]*$/);
+
+const onedigit = (value) => value.match(/(?=.*\d)/);
+const oneUpperCase = (value) => value.match(/(?=.*[A-Z])/);
+
+const oneLowerCase = (value) => value.match(/(?=.*[a-z])/);
 export default {
   name: "App",
+  setup() {
+    return { v$: useValidate() };
+  },
   data() {
     return {
       email: "",
@@ -64,16 +101,54 @@ export default {
       showPassword: false,
     };
   },
+  validations() {
+    return {
+      firstName: {
+        required,
+        onlyLetters: helpers.withMessage(
+          "Here accepted only letters",
+          onlyLetters
+        ),
+      },
+      lastName: {
+        required,
+        onlyLetters: helpers.withMessage(
+          "Here accepted only letters",
+          onlyLetters
+        ),
+      },
+      email: { required, email },
+      password: {
+        required,
+        onedigit: helpers.withMessage(
+          "Password should contain at least one digit",
+          onedigit
+        ),
+        oneUpperCase: helpers.withMessage(
+          "Password should contain at least one upper case",
+          oneUpperCase
+        ),
+        oneLowerCase: helpers.withMessage(
+          "Password should contain at least one lower case",
+          oneLowerCase
+        ),
+        minLength: minLength(8),
+      },
+    };
+  },
   methods: {
     async login() {
-      let request = {
-        email: this.email,
-        password: this.password,
-        firstName: this.firstName,
-        lastName: this.lastName,
-        age: this.age,
-      };
-      console.log(request);
+      this.v$.$validate(); // checks all inputs
+      if (!this.v$.$error && this.password === this.confirmPassword) {
+        let request = {
+          email: this.email,
+          password: this.password,
+          firstName: this.firstName,
+          lastName: this.lastName,
+          age: this.age,
+        };
+        console.log(request);
+      }
     },
   },
 };
@@ -165,5 +240,22 @@ button {
   position: absolute;
   top: 0%;
   left: 45%;
+}
+
+.ulErrors {
+  list-style-type: none;
+  margin: 0px;
+  padding: 0;
+}
+
+.liErrors {
+  margin: 0.5em 0;
+}
+
+.errorMessage {
+  color: red;
+}
+input.invalid-input {
+  border: 2px solid red;
 }
 </style>
