@@ -4,8 +4,10 @@
     <HelloWorld msg="Welcome to Your Vue.js App" />
     <LittleItemCard :item="exampleItem"></LittleItemCard>
     <ListOfLittleItems :listOfItems="items"></ListOfLittleItems>
-    <RegisterUser />
     <GoogleMap :address="exampleItem.location" />
+    <RegisterUser/>
+
+
   </div>
 </template>
 
@@ -14,6 +16,7 @@ import HelloWorld from "@/components/HelloWorld.vue";
 import LittleItemCard from "@/components/LittleItemCard.vue";
 import ListOfLittleItems from "@/components/ListOfLittleItems.vue";
 import RegisterUser from "@/views/RegisterUser.vue";
+import GoogleMap from "@/components/GoogleMap.vue";
 export default {
   name: "HomeView",
   components: {
@@ -21,6 +24,7 @@ export default {
     HelloWorld,
     LittleItemCard,
     RegisterUser,
+    GoogleMap,
   },
   data() {
     return {
