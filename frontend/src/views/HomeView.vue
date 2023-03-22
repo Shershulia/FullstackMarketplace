@@ -35,7 +35,7 @@ export default {
           id: 2,
           name: "Gaming chair for advanced",
           image: "https://a.d-cd.net/1YAAAgKereA-100.jpg",
-          location: "Bottom of the sea",
+          location: "Oslo",
           price: 200,
           category: "?"
         },
@@ -53,7 +53,7 @@ export default {
           id: 3,
           name: "Mobile gaming chair",
           image: "https://i.redd.it/ksqjj3d3ikp51.jpg",
-          location: "Fast Delivery",
+          location: "Bergen",
           price: 300,
           category: "Chair"
 
