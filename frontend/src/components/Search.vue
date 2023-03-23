@@ -71,10 +71,10 @@ async function getLatAndLng(location){
       },
     },
     async mounted() {
-      for (const item of this.items) {
-        const latAndLng = await getLatAndLng(item.location);
-        item["latitude"] = latAndLng[0];
-        item["longitude"] = latAndLng[1];
+        for (let item of this.items) {
+          const latAndLng = await getLatAndLng(item.location);
+          item["latitude"] = latAndLng[0];
+          item["longitude"] = latAndLng[1];
       }
     },
     components: {

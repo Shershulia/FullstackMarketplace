@@ -24,7 +24,6 @@ public class ItemController {
     private Item getItem(@PathVariable("id") Long id) {
         Item item = itemService.getItemById(id);
         return item;
-
     }
 
     @DeleteMapping("/item/{id}")

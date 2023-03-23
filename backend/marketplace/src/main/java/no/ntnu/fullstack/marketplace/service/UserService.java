@@ -6,6 +6,7 @@ import java.util.List;
 import no.ntnu.fullstack.marketplace.model.User;
 import no.ntnu.fullstack.marketplace.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -13,6 +14,10 @@ public class UserService
 {
     @Autowired
     UserRepository userRepository;
+
+
+    //salt for bcrypt hashing TODO: move to config file or env variable
+    private static String salt = "";
 
     //getting all user records
     public List<User> getAllUser()
@@ -40,11 +45,15 @@ public class UserService
 
     public void saveOrUpdate(User user)
     {
+        //hash password with bcrypt
+        user.setPassword(this.hashPassword(user.getPassword()));
         userRepository.save(user);
     }
 
     public void newUser(User user)
     {
+        //hash password with bcrypt
+        user.setPassword(this.hashPassword(user.getPassword()));
         userRepository.save(user);
     }
 
@@ -53,4 +62,16 @@ public class UserService
     {
         userRepository.deleteById(id);
     }
+
+
+    public static String hashPassword(String password) {
+//        System.out.println("Hashing password");
+//        return BCrypt.hashpw(password, BCrypt.gensalt());
+        return password; //TODO: remove this
+    }
+//    public Long getNewId() {
+//        //get post with highest id and add
+//        List<User> users = new ArrayList<User>();
+//
+//    }
 }

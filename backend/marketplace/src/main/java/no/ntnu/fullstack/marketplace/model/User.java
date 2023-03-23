@@ -6,47 +6,43 @@ import jakarta.persistence.*;
 @Table (name = "USERDATA")
 //@Table
 public class User {
-    @Column (name = "id")
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Id
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
+//    @Column (name = "id", columnDefinition = "serial", nullable = false)
+    @Column (name = "id")
     private Long id;
 
     @Column (name = "username", nullable = false, unique = true)
     private String username;
+    @Column (name = "email")
+    private String email;
     @Column (name = "password", nullable = false)
     private String password;
+
     @Column (name = "name")
     private String name;
 
     @Column (name = "lastname")
     private String lastname;
-
-    @Column (name = "gender")
-    private String gender;
-
     @Column (name = "age")
     private Integer age;
-    @Column (name = "location")
-    private String location;
-    @Column (name = "phone")
-    private String phone;
-    @Column (name = "email")
-    private String email;
 
-//    public User(String username, String password, String name, String phone, String email) {
-//        this.id = id;
-//        this.username = username;
-//        this.password = password;
-//        this.name = name;
-//        this.phone = phone;
-//        this.email = email;
-//    }
     public User(String username, String password) {
         this.username = username;
         this.password = password;
-        this.name = null;
-        this.phone = null;
         this.email = null;
+        this.name = null;
+        this.lastname = null;
+        this.age = null;
+    }
+
+    public User(String username,String email,String password,String name,String lastname,Integer age){
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.name = name;
+        this.lastname = lastname;
+        this.age = age;
     }
 
     public User() {
@@ -57,8 +53,8 @@ public class User {
         return id;
     }
 
-    public void setId(String id) {
-        this.username = id;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getUsername() {
@@ -77,22 +73,6 @@ public class User {
         this.password = password;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -101,16 +81,40 @@ public class User {
         this.email = email;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
 
     @Override
     public String toString() {
         return "User{" +
-//                "id=" + id +
+                "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
-                ", name='" + name + '\'' +
-                ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
+                ", name='" + name + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", age=" + age +
                 '}';
     }
 }
