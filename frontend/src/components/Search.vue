@@ -19,12 +19,12 @@
           class="searchInput"
           v-model="searchValue"
       />
-      <select v-model="searchCategory">
+      <!-- <select v-model="searchCategory">
         <option value="">Select category</option>
         <option>Chair</option>
         <option>B</option>
         <option>C</option>
-      </select>
+      </select> -->
       <select v-model="searchCategory">
         <option value="">Select category</option>
         <option v-for="category in this.categories" :key="category">{{ category }}</option>
@@ -68,7 +68,6 @@ async function getLatAndLng(location){
       .catch((error) => console.error(error));
 }
   export default {
-    categories: [],
     name: "HomeView",
     props: {
       items: {
@@ -84,6 +83,7 @@ async function getLatAndLng(location){
       }
 
       this.categories = await getItemsCategories();
+
       console.log(this.categories);
 
     },
@@ -92,6 +92,7 @@ async function getLatAndLng(location){
     },
     data() {
       return {
+        categories: [],
         searchValue:"",
         searchCategory:"",
         searchLocation:"",
