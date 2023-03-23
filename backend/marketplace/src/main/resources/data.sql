@@ -1,16 +1,7 @@
-
---creates the userdatabase table, for storing user information
-DROP TABLE IF EXISTS USERDATA;
-CREATE TABLE USERDATA (
---   id BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  username VARCHAR(100) NOT NULL UNIQUE,
-  password VARCHAR(100) NOT NULL,
-  name VARCHAR(100),
-  email VARCHAR(100),
-  phone VARCHAR(20),
-  PRIMARY KEY (username)
-);
-
---inserts some dummy data into the userdatabase table for testing purposes
-INSERT INTO USERDATA VALUES ('ole1', '123', 'Ole Olsen', 'ole@mail.com', '12345678');
-INSERT INTO USERDATA VALUES ('kari1', '123', 'Kari Olsen', 'kari@mail.com', '87654321');
+INSERT INTO USERDATA (id, username, email, password, name, lastname, age)
+VALUES (1, 'ole1', 'john.doe@example.com', 'Asdf1234', 'John', 'Doe', 30);
+INSERT INTO ITEMDATA (name, description, userid, price, location, image, categories, metadata)
+VALUES ('Example Item', 'This is an example item', 1, 1000, 'Oslo', 'https://i.ebayimg.com/00/s/MTAyNFg3Njg=/z/QW0AAOSwanRXghxY/$_86.JPG', 'Example Category 1, Example Category 2', 'Example Metadata 1, Example Metadata 2');
+INSERT INTO ITEMDATA (name, description, userid, price, location, image, categories, metadata)
+VALUES ('Example Item2', 'This is an example item2', 1, 1000, 'Trondheim', 'https://www.gamersdecide.com/sites/default/files/authors/u18518/DSC0490-Edit_1.jpg', 'Example Category 1, Example Category 2', 'Example Metadata 1, Example Metadata 2');
+    
