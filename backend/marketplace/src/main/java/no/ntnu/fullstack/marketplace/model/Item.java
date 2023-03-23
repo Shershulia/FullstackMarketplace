@@ -27,7 +27,7 @@ public class Item {
     private String location;
 
     @Column (name = "image", nullable = false)
-    private String image;
+    private List<String> image;
     @Column (name = "categories")
     private List<String> categories;
 
@@ -109,11 +109,11 @@ public class Item {
         this.userid = userid;
     }
 
-    public String getImage() {
+    public List<String> getImage() {
         return image;
     }
 
-    public void setImage(String image) {
+    public void setImage(List<String> image) {
         this.image = image;
     }
 }

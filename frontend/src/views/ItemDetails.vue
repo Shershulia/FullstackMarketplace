@@ -1,7 +1,12 @@
 <template>
   <div class="item-details-container">
     <div class="item-image">
-      <img :src="item.image" />
+      <img :src="currentImageSrc" />
+      <div class="image-navigation">
+        <button :disabled="imgIndex === 0" @click="imgIndex--">Previous</button>
+        <p>{{ imgIndex + 1 }} / {{ imgNum }}</p>
+        <button :disabled="imgIndex === imgNum - 1" @click="imgIndex++">Next</button>
+      </div>
     </div>
     <div class="item-details">
       <h2 class="item-name">{{ item.name }}</h2>
@@ -24,7 +29,9 @@
 
 <script>
 import { useRoute } from "vue-router";
+import { getItemById } from "@/services/ItemServiceApi";
 import GoogleMap from "@/components/GoogleMap.vue";
+
 export default {
   name: "ItemDetails",
   components: {
@@ -32,22 +39,32 @@ export default {
   },
   data() {
     return {
-      id: 0,
-      item: {
-        id: this.id,
-        name: "Gaming chair for beginner",
-        description:
-          "This is very god chair, it saved my back during the playing",
-        image:
-          "https://i.pinimg.com/736x/bd/c9/83/bdc9832e5f32ee6168f10536549551bc--kids-bedroom-ideas-girls-bedroom.jpg",
-        location: "Trondheim",
-        price: 100,
-      },
+      item: {},
+      imgIndex: 0,
+      imgNum: 0,
     };
   },
-  mounted() {
-    const route = useRoute();
-    this.id = route.params.id;
+  computed: {
+    currentImageSrc() {
+      return this.item.image[this.imgIndex];
+    },
+  },
+  mounted() {},
+  created() {
+    this.fetchItem();
+  },
+  methods: {
+    fetchItem() {
+      const route = useRoute();
+      let id = route.params.id;
+      getItemById(id).then((response) => {
+        let item = response.data;
+        console.log("item");
+        console.log(item);
+        this.imgNum = item.image.length;
+        this.item = item;
+      });
+    },
   },
 };
 </script>
@@ -76,6 +93,13 @@ export default {
   width: 100%;
   height: auto;
   border-radius: 5px;
+}
+
+.image-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
 }
 
 .item-details {

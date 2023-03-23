@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <!-- <ListOfLittleItems :listOfItems="items"></ListOfLittleItems> -->
     <div v-if="items.length">
       <Search :items="items"></Search>
     </div>
@@ -10,12 +11,15 @@
 </template>
 
 <script>
+// import ListOfLittleItems from "@/components/ListOfLittleItems.vue";
 import Search from "@/components/Search.vue"
+
 import { getItems } from "@/services/ItemServiceApi";
 
 export default {
   name: "HomeView",
   components: {
+    // ListOfLittleItems,
     Search
   },
   data() {
