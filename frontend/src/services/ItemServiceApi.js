@@ -38,7 +38,7 @@ export const register = (user) => {
     .then((response) => {
       console.log("New user created with ID:", response.data);
       let id = response.data;
-      if (id != null) {
+      if (id != null && id != 0 && id != "") {
         alert("New user created successfully!");
         //redirect to login page
         this.$router.push("/login");
@@ -47,7 +47,7 @@ export const register = (user) => {
       }
     })
     .catch((error) => {
-      alert("Server error: try again later");
+      // alert("Server error: try again later");
       console.error("Error creating new user:", error);
     });
 };
