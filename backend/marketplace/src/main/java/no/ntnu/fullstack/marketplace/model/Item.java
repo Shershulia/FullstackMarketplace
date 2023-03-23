@@ -2,6 +2,8 @@ package no.ntnu.fullstack.marketplace.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "ITEMDATA")
 public class Item {
@@ -15,30 +17,25 @@ public class Item {
     @Column (name = "description", nullable = false)
     private String description;
 
-    @Column (name = "username", nullable = false)
-    private Long username;
+    @Column (name = "userid", nullable = false)
+    private Long userid;
 
-    @Column (name = "price", nullable = false)
+    @Column (name = "price")
     private Long price;
 
     @Column (name = "location", nullable = false)
     private String location;
 
-    @Column (name = "metadata", nullable = false)
-    private String metadata;
+    @Column (name = "image", nullable = false)
+    private String image;
+    @Column (name = "categories")
+    private List<String> categories;
+
+    @Column (name = "metadata")
+    private List<String> metadata;
 
     public Item() {
     }
-    public Item(String name, String description, Long username, Long price, String location, String metadata) {
-        this.name = name;
-        this.description = description;
-        this.username = username;
-        this.price = price;
-        this.location = location;
-        this.metadata = metadata;
-    }
-
-
 
     public Long getId() {
         return id;
@@ -64,12 +61,12 @@ public class Item {
         this.description = description;
     }
 
-    public Long getUsername() {
-        return username;
+    public Long getUserId() {
+        return userid;
     }
 
-    public void setUsername(Long username) {
-        this.username = username;
+    public void setUser(Long userid) {
+        this.userid = userid;
     }
 
     public Long getPrice() {
@@ -88,11 +85,35 @@ public class Item {
         this.location = location;
     }
 
-    public String getMetadata() {
+    public List<String> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<String> categories) {
+        this.categories = categories;
+    }
+
+    public List<String> getMetadata() {
         return metadata;
     }
 
-    public void setMetadata(String metadata) {
+    public void setMetadata(List<String> metadata) {
         this.metadata = metadata;
+    }
+
+    public Long getUserid() {
+        return userid;
+    }
+
+    public void setUserid(Long userid) {
+        this.userid = userid;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

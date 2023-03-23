@@ -77,7 +77,7 @@
       </div>
       <div class="buttons">
         <input type="submit" value="Register" />
-        <button type="button">Back to login page</button>
+        <button type="button" @click="goToLogin">Back to login page</button>
       </div>
     </form>
   </div>
@@ -145,6 +145,9 @@ export default {
     };
   },
   methods: {
+    goToLogin() {
+      this.$router.push("/login");
+    },
     async login() {
       this.v$.$validate(); // checks all inputs
       if (!this.v$.$error && this.password === this.confirmPassword) {

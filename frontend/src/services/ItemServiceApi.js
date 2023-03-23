@@ -12,25 +12,19 @@ export const getItemBy = (id) => {
   return apiClient.get(`/item/${id}`, {});
 };
 
-//login
+export const getItemIds = () => {
+  return apiClient.get(`/item-id/`, {});
+};
 
-export const login = (username, password) => {
-  let response = apiClient.post("/token", { username, password });
-  console.log(response);
-  //save token to vuex store and set axios header
-  this.$store.commit("setToken", response.data.token);
-  this.$store.commit("setUserId", jwt_decode(response.data.token));
-  axios.defaults.headers.common[
-    "Authorization"
-  ] = `Bearer ${response.data.token}`;
-  return response;
+export const getItems = () => {
+  return apiClient.get(`/item`, {}).then((response) => {
+    return response.data;
+  });
 };
 
 //register
-
 export const register = (user) => {
   console.log("creating user");
-
   console.log(user);
 
   axios
@@ -49,5 +43,27 @@ export const register = (user) => {
     .catch((error) => {
       // alert("Server error: try again later");
       console.error("Error creating new user:", error);
+    });
+};
+
+//login
+export const login = (username, password) => {
+  axios
+    .post("http://localhost:8090/token", {
+      username: username,
+      password: password,
+    })
+    .then((response) => {
+      const token = response.data;
+      const decodedToken = jwt_decode(token);
+      const userId = decodedToken.sub;
+      console.log("token: " + token);
+      console.log("decodedToken: " + decodedToken);
+      console.log("userId: " + userId);
+
+      //save token to vuex store and set axios header
+      this.$store.commit("setToken", token);
+      this.$store.commit("setUserId", userId);
+      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     });
 };

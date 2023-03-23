@@ -47,6 +47,12 @@ export default {
       this.$router.push("/register-user");
     },
   },
+  mounted() {
+    //if store token not empty, redirect to user page
+    if (this.$store.getters.token != null) {
+      this.$router.push("/user");
+    }
+  },
 };
 </script>
 

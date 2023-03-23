@@ -35,12 +35,19 @@ public class UserController {
         User user = userService.getUserById(id);
         return user;
     }
-//
-//    @DeleteMapping("/user/{id}")
-//    private void deleteUser(@PathVariable("id") Long id)
-//    {
-//        userService.delete(id);
-//    }
+    @DeleteMapping("/delete/{id}")
+    private void deleteUser(@RequestBody User user, @RequestHeader (name="Authorization") String token)
+    {
+        String tokenSubject = TokenController.getTokenSubject(token);
+        System.out.println("Token subject: " + tokenSubject.toString() + " id: " + user.getId().toString());
+
+        if (!tokenSubject.equals(user.getId().toString())) {
+            System.out.println("Access denied, wrong credentials....");
+            return;
+        }
+
+        userService.delete(user.getId());
+    }
 
     //creating post mapping that post the student detail in the database
     @PostMapping("/update")
