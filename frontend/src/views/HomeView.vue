@@ -5,9 +5,7 @@
     <LittleItemCard :item="exampleItem"></LittleItemCard>
     <ListOfLittleItems :listOfItems="items"></ListOfLittleItems>
     <GoogleMap :address="exampleItem.location" />
-    <RegisterUser/>
-
-
+    <RegisterUser />
   </div>
 </template>
 

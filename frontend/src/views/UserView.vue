@@ -102,29 +102,6 @@ export default {
     },
   },
 };
-
-// axios
-//               .get(
-//                 "http://localhost:8090/user/" + this.$store.getters.username,
-//                 {
-//                   headers: {
-//                     Authorization: "Bearer " + this.$store.getters.token,
-//                   },
-//                 }
-//               )
-//               .then((response) => {
-//                 console.log(response);
-//                 // this.$store.commit("setUserInfo", response.data);
-//                 let user = {
-//                   username: response.data.username,
-//                   email: response.data.email,
-//                   name: response.data.name,
-//                   phone: response.data.phone,
-//                 };
-//                 //update store
-//                 this.$store.commit("setUser", user);
-//                 return user;
-//               });
 </script>
 
 <style>

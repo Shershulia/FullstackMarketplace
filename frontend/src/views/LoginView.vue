@@ -12,6 +12,7 @@
       </div>
       <button type="submit">Login</button>
     </form>
+    <button @click="registerUser">Register User</button>
   </div>
 </template>
 
@@ -40,6 +41,10 @@ export default {
           console.error(error);
           alert("Invalid username or password");
         });
+    },
+    registerUser() {
+      // Redirect to create user page
+      this.$router.push("/register-user");
     },
   },
 };

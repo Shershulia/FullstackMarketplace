@@ -3,7 +3,13 @@
     <h1>Registration form</h1>
     <form @submit.prevent="login">
       <div class="oblig_inf">
-        <p for="username">Email:</p>
+        <p for="username">Username:</p>
+        <input
+          v-model="username"
+          placeholder="Enter your username..."
+          :class="{ 'invalid-input': v$.$error && v$.username.$error }"
+        />
+        <p for="email">Email:</p>
         <input
           v-model="email"
           type="email"
@@ -76,15 +82,18 @@
     </form>
   </div>
 </template>
+
 <script>
 import useValidate from "@vuelidate/core";
 import { required, email, minLength, helpers } from "@vuelidate/validators";
-const onlyLetters = (value) => value.match(/^[a-zA-Z\s]*$/);
+// import { useStore } from "vuex";
+import { register } from "@/services/ItemServiceApi";
 
+const onlyLetters = (value) => value.match(/^[a-zA-Z\s]*$/);
 const onedigit = (value) => value.match(/(?=.*\d)/);
 const oneUpperCase = (value) => value.match(/(?=.*[A-Z])/);
-
 const oneLowerCase = (value) => value.match(/(?=.*[a-z])/);
+
 export default {
   name: "App",
   setup() {
@@ -92,6 +101,7 @@ export default {
   },
   data() {
     return {
+      username: "",
       email: "",
       password: "",
       confirmPassword: "",
@@ -103,19 +113,17 @@ export default {
   },
   validations() {
     return {
+      username: {
+        required,
+        minLength: minLength(4),
+      },
       firstName: {
         required,
-        onlyLetters: helpers.withMessage(
-          "Here accepted only letters",
-          onlyLetters
-        ),
+        onlyLetters: helpers.withMessage("Letters only", onlyLetters),
       },
       lastName: {
         required,
-        onlyLetters: helpers.withMessage(
-          "Here accepted only letters",
-          onlyLetters
-        ),
+        onlyLetters: helpers.withMessage("Letters only", onlyLetters),
       },
       email: { required, email },
       password: {
@@ -141,20 +149,23 @@ export default {
       this.v$.$validate(); // checks all inputs
       if (!this.v$.$error && this.password === this.confirmPassword) {
         let request = {
+          username: this.username,
           email: this.email,
           password: this.password,
-          firstName: this.firstName,
-          lastName: this.lastName,
+          name: this.firstName,
+          lastname: this.lastName,
           age: this.age,
         };
         console.log(request);
+        //use ItemServiceApi to send request to backend
+        const response = await register(request);
+        console.log(response);
       }
     },
   },
 };
 </script>
 <style>
-
 @media screen and (min-width: 768px) {
   .registration_form {
     margin: 50px auto;
@@ -173,7 +184,6 @@ export default {
   border-radius: 5px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   display: inline-block;
-
 }
 
 h1 {

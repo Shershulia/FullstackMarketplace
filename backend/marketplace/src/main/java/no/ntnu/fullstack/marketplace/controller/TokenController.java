@@ -44,6 +44,10 @@ public class TokenController {
     @PostMapping(value = "")
     @ResponseStatus(value = HttpStatus.CREATED)
     public String generateToken(final @RequestBody LoginRequest loginRequest) throws Exception {
+
+        //hash input password and compare with stored password
+        String hashedPassword = userService.hashPassword(loginRequest.password());
+
         // if username and password are valid, issue an access token
         // note that subsequent requests need this token
         User user = userService.getUserByUsername(loginRequest.username());
