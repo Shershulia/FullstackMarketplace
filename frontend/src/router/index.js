@@ -35,6 +35,12 @@ const routes = [
     component: HomeView,
   },
   {
+    path: "/",
+    name: "homepage",
+    props: true,
+    component: HomeView,
+  },
+  {
     path: "/register-user",
     name: "RegisterUser",
     component: RegisterUser,

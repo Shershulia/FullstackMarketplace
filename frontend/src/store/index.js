@@ -32,7 +32,11 @@ export default createStore({
       state.token = token;
     },
     clearAuthData(state) {
-      state.username = null;
+      state.user.username = null;
+      state.user.name = null;
+      state.user.email = null;
+      state.user.phone = null;
+
       state.token = null;
     },
   },
