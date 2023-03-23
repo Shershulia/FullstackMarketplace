@@ -37,21 +37,21 @@ export const register = (username, email, password, name, lastname, age) => {
   //   age: age,
   // });
 
-  axios
-    .post("http://localhost:8090/user/register", {
-      username: username,
-      email: email,
-      password: password,
-      name: name,
-      lastname: lastname,
-      age: age,
-    })
-    .then((response) => {
-      console.log("response");
+  let user = {
+    username: username,
+    email: email,
+    password: password,
+    name: name,
+    lastname: lastname,
+    age: age,
+  };
+
+  axios.post("http://localhost:8090/user/register", user).then(
+    (response) => {
       console.log(response);
-    })
-    .catch((error) => {
-      console.log("error");
+    },
+    (error) => {
       console.log(error);
-    });
+    }
+  );
 };

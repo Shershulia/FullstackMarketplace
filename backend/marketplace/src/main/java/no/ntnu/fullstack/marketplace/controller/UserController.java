@@ -6,14 +6,16 @@ import com.auth0.jwt.algorithms.Algorithm;
 import no.ntnu.fullstack.marketplace.model.User;
 import no.ntnu.fullstack.marketplace.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 
-@RequestMapping(value = "/user")
-@RestController
+@RequestMapping(value = "/token")
+@EnableAutoConfiguration
 @CrossOrigin
+@RestController
 public class UserController {
     @Autowired
     UserService userService;
