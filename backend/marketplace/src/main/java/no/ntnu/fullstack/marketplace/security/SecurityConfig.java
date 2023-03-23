@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -22,10 +23,10 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .csrf().disable()
-                .cors().and()
+                .cors().disable()
                 .authorizeRequests()
-                .requestMatchers("/user/**").permitAll()//add new fully public endpoints here. H2-console is only for developmen
-                .requestMatchers("/user/register/**").permitAll()//add new fully public endpoints here. H2-console is only for developmen
+                .requestMatchers( "/user/**").permitAll()//add new fully public endpoints here. H2-console is only for developmen
+//                .requestMatchers(HttpMethod.OPTIONS, "/user/register").permitAll()//add new fully public endpoints here. H2-console is only for developmen
                 .requestMatchers("/token").permitAll()//add new fully public endpoints here. H2-console is only for developmen
                 .requestMatchers(PathRequest.toH2Console()).permitAll()//add new fully public endpoints here. H2-console is only for developmen
                 .anyRequest().authenticated().and()

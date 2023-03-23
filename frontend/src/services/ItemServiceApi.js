@@ -3,6 +3,9 @@ import jwt_decode from "jwt-decode";
 
 const apiClient = axios.create({
   baseURL: "http://localhost:8090",
+  headers: {
+    "Access-Control-Allow-Origin": "*",
+  },
 });
 
 export const getItemBy = (id) => {
@@ -25,26 +28,26 @@ export const login = (username, password) => {
 
 //register
 
-export const register = (username, email, password, name, lastname, age) => {
+export const register = (user) => {
   console.log("creating user");
-  console.log(username, email, password, name, lastname, age);
 
-  let user = {
-    id: 1,
-    username: username,
-    email: email,
-    password: password,
-    name: name,
-    lastname: lastname,
-    age: Math.floor(parseInt(age)),
-  };
+  console.log(user);
 
-  apiClient
-    .post("/user/register", user)
+  axios
+    .post("http://localhost:8090/user/register", user)
     .then((response) => {
       console.log("New user created with ID:", response.data);
+      let id = response.data;
+      if (id != null) {
+        alert("New user created successfully!");
+        //redirect to login page
+        this.$router.push("/login");
+      } else {
+        alert("Error creating new user: try a diffrent username");
+      }
     })
     .catch((error) => {
+      alert("Server error: try again later");
       console.error("Error creating new user:", error);
     });
 };

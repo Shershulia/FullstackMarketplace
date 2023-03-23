@@ -65,7 +65,13 @@ public class UserService
 
 
     public static String hashPassword(String password) {
-        System.out.println("Hashing password");
-        return BCrypt.hashpw(password, BCrypt.gensalt());
+//        System.out.println("Hashing password");
+//        return BCrypt.hashpw(password, BCrypt.gensalt());
+        return password; //TODO: remove this
     }
+//    public Long getNewId() {
+//        //get post with highest id and add
+//        List<User> users = new ArrayList<User>();
+//
+//    }
 }

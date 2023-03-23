@@ -3,17 +3,21 @@
     <h2>User Info</h2>
     <div v-if="!editMode">
       <p><strong>Username:</strong> {{ user.username }}</p>
-      <p><strong>Name:</strong> {{ user.name }}</p>
       <p><strong>Email:</strong> {{ user.email }}</p>
-      <p><strong>Phone:</strong> {{ user.phone }}</p>
+      <p><strong>Name:</strong> {{ user.name }}</p>
+      <p><strong>Last Name:</strong> {{ user.lastname }}</p>
+      <p><strong>Age:</strong> {{ user.age }}</p>
       <button @click="toggleEditMode">Edit</button>
     </div>
     <div v-else>
       <p><strong>Username:</strong> {{ user.username }}</p>
+      <p><strong>Email:</strong> <input v-model="editUser.email" /></p>
       <p><strong>userName:</strong> <input v-model="editUser.username" /></p>
       <p><strong>Name:</strong> <input v-model="editUser.name" /></p>
-      <p><strong>Email:</strong> <input v-model="editUser.email" /></p>
-      <p><strong>Phone:</strong> <input v-model="editUser.phone" /></p>
+      <p><strong>Last Name:</strong> <input v-model="editUser.lastname" /></p>
+      <p>
+        <strong>Age:</strong> <input type="number" v-model="editUser.age" />
+      </p>
       <p><strong>Password:</strong> <input v-model="password" /></p>
 
       <button @click="toggleEditMode">Save</button>
@@ -42,9 +46,11 @@ export default {
     editUser() {
       let euser = {
         username: this.user.username,
-        name: this.user.name,
+        password: this.user.password,
         email: this.user.email,
-        phone: this.user.phone,
+        name: this.user.name,
+        lastname: this.user.lastname,
+        age: this.user.age,
       };
       return euser;
     },
@@ -66,6 +72,11 @@ export default {
       if (!this.editMode) {
         //update user info in backend
 
+        if (this.password == "") {
+          alert("password is required");
+          return;
+        }
+
         axios
           .post(
             "http://localhost:8090/user/update",
@@ -73,7 +84,8 @@ export default {
               username: this.editUser.username,
               name: this.editUser.name,
               email: this.editUser.email,
-              phone: this.editUser.phone,
+              lastname: this.editUser.lastname,
+              age: this.editUser.age,
               password: this.password,
             },
             {

@@ -4,6 +4,7 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import no.ntnu.fullstack.marketplace.model.User;
+import no.ntnu.fullstack.marketplace.model.UserRequest;
 import no.ntnu.fullstack.marketplace.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -40,6 +41,7 @@ public class UserController {
 //    {
 //        userService.delete(id);
 //    }
+
     //creating post mapping that post the student detail in the database
     @PostMapping("/update")
     private Long saveUser(@RequestBody User user, @RequestHeader (name="Authorization") String token)
@@ -47,10 +49,7 @@ public class UserController {
         //TODO: get userid from token in header and check if it matches the id in the new user object
 
         String tokenSubject = TokenController.getTokenSubject(token);
-
-        if (!tokenSubject.equals(user.getId())) {
-            return 0L;
-        }
+        user.setId(Long.parseLong(tokenSubject));
 
         System.out.println("Update user");
         System.out.println(user);
@@ -60,24 +59,32 @@ public class UserController {
 
     //create new user and return id
     @PostMapping("/register")
-    @ResponseStatus(value = HttpStatus.CREATED)
     @CrossOrigin
-    private Long newUser(@RequestBody User newUser ){
-        System.out.println("New user");
-        User user = new User(newUser.getUsername(), newUser.getEmail() , newUser.getPassword(), newUser.getName(), newUser.getLastname(), newUser.getAge());
+    private Long newUser(@RequestBody UserRequest userRequest)
+    {
+        //TODO: check if username already exists
+        System.out.println("Register new user");
 
-        User conflictingUser = userService.getUserByUsername(user.getUsername());
-
-        System.out.println("Conflicting user: " + conflictingUser.toString());
-
-        if (conflictingUser != null) {
+        if (userService.getUserByUsername(userRequest.username()) != null) {
+            System.out.println("Username already exists");
             return null;
         }
 
-        System.out.println("New user" + user.getUsername());
-        userService.newUser(user);
-        return user.getId();
+        User user = new User();
+        user.setUsername(userRequest.username());
+        user.setEmail(userRequest.email());
+        user.setPassword(userRequest.password());
+        user.setName(userRequest.name());
+        user.setLastname(userRequest.lastname());
+        user.setAge(userRequest.age());
+
+        System.out.println(user);
+        userService.saveOrUpdate(user);
+        Long id = userService.getUserByUsername(user.getUsername()).getId();
+        System.out.println("New user id: " + id);
+        return id;
     }
+
 
 
 }

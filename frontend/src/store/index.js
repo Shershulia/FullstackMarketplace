@@ -74,7 +74,8 @@ export default createStore({
                   username: response.data.username,
                   email: response.data.email,
                   name: response.data.name,
-                  phone: response.data.phone,
+                  lastname: response.data.lastname,
+                  age: response.data.age,
                 };
                 //update store
                 this.commit("setUser", user);
