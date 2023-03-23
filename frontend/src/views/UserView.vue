@@ -24,12 +24,22 @@
     </div>
     <button id="logoutBtn" @click="logout">Logout</button>
   </div>
-  <div class="itemsIndividual"></div>
+  <div class="itemsIndividual">
+    <p>Your items:</p>
+    <ListOfLittleItems :listOfItems="this.items"></ListOfLittleItems>
+  </div>
+  
 </template>
 
 <script>
 import axios from "axios";
+import {getItemsOfCertainUser} from "@/services/ItemServiceApi";
+import ListOfLittleItems from "@/components/ListOfLittleItems.vue";
+
 export default {
+  components: {
+    ListOfLittleItems
+  },
   data() {
     return {
       editMode: false,
@@ -38,83 +48,101 @@ export default {
     };
   },
   computed: {
-    username() {
-      console.log(this.$store.getters.username);
-      return this.$store.getters.username;
+      username() {
+        console.log(this.$store.getters.username);
+        return this.$store.getters.username;
+      },
+      user() {
+        return this.$store.getters.user;
+      },
+      editUser() {
+        let euser = {
+          username: this.user.username,
+          password: this.user.password,
+          email: this.user.email,
+          name: this.user.name,
+          lastname: this.user.lastname,
+          age: this.user.age,
+        };
+        return euser;
+      },
     },
-    user() {
-      return this.$store.getters.user;
-    },
-    editUser() {
-      let euser = {
-        username: this.user.username,
-        password: this.user.password,
-        email: this.user.email,
-        name: this.user.name,
-        lastname: this.user.lastname,
-        age: this.user.age,
-      };
-      return euser;
-    },
-  },
   mounted() {
-    console.log("mounted");
-    // this.$store.dispatch("getUserInfo");
-    //if store token is empty, redirect to login page
-    // console.log("username: " + this.$store.state.username);
-    // console.log("token: " + this.$store.state.token);
-    if (this.$store.getters.token == null || this.$store.getters.token == "") {
+    if (this.$store.getters.token == null || this.$store.getters.token === "") {
       this.$router.push("/login");
+    } else {
+      if (this.user.id !== null) {
+        getItemsOfCertainUser(this.user.id).then((items) => {
+          console.log("items");
+          console.log(items);
+          this.items = items;
+        });
+      }
+    }
+  },
+  watch: {
+    user: {
+      handler() {
+        if (this.user.id !== null) {
+          getItemsOfCertainUser(this.user.id).then((items) => {
+            console.log("items");
+            console.log(items);
+            this.items = items;
+          });
+        }
+      },
+      deep: true
     }
   },
   methods: {
-    toggleEditMode() {
-      this.editMode = !this.editMode;
-      //update user info in store and backend
-      if (!this.editMode) {
-        //update user info in backend
+      toggleEditMode() {
+        this.editMode = !this.editMode;
+        //update user info in store and backend
+        if (!this.editMode) {
+          //update user info in backend
 
-        if (this.password == "") {
-          alert("password is required");
-          return;
-        }
+          if (this.password == "") {
+            alert("password is required");
+            return;
+          }
 
-        axios
-          .post(
-            "http://localhost:8090/user/update",
-            {
-              username: this.editUser.username,
-              name: this.editUser.name,
-              email: this.editUser.email,
-              lastname: this.editUser.lastname,
-              age: this.editUser.age,
-              password: this.password,
-            },
-            {
-              headers: {
-                Authorization: "Bearer " + this.$store.getters.token,
+          axios
+            .post(
+              "http://localhost:8090/user/update",
+              {
+                username: this.editUser.username,
+                name: this.editUser.name,
+                email: this.editUser.email,
+                lastname: this.editUser.lastname,
+                age: this.editUser.age,
+                password: this.password,
               },
-            }
-          )
-          .then((response) => {
-            console.log(response);
-            //update user info in store
-            this.$store.commit("setUser", this.user);
-          })
-          .catch((error) => {
-            console.error("error:");
-            alert("error;could not update user info");
-            console.error(error);
-          });
-      }
-    },
-    logout() {
-      this.password = "";
-      console.log("logout");
-      this.$store.dispatch("logout");
-      this.$router.push("/login"); // redirect to the login page
-    },
-  },
+              {
+                headers: {
+                  Authorization: "Bearer " + this.$store.getters.token,
+                },
+              }
+            )
+            .then((response) => {
+              console.log(response);
+              //update user info in store
+              this.$store.commit("setUser", this.user);
+            })
+            .catch((error) => {
+              console.error("error:");
+              alert("error;could not update user info");
+              console.error(error);
+            });
+        }
+      },
+      logout() {
+        this.password = "";
+        console.log("logout");
+        this.$store.dispatch("logout");
+        this.$router.push("/login"); // redirect to the login page
+      },
+
+  }
 };
 </script>
 

@@ -6,8 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="7fe22fb5-593e-41e4-b0f4-612f280e5ae7" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/views/LoginView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/views/LoginView.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/views/RegisterUser.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/views/RegisterUser.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/marketplace/src/main/java/no/ntnu/fullstack/marketplace/controller/ItemController.java" beforeDir="false" afterPath="$PROJECT_DIR$/marketplace/src/main/java/no/ntnu/fullstack/marketplace/controller/ItemController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/marketplace/src/main/java/no/ntnu/fullstack/marketplace/service/ItemService.java" beforeDir="false" afterPath="$PROJECT_DIR$/marketplace/src/main/java/no/ntnu/fullstack/marketplace/service/ItemService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/services/ItemServiceApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/services/ItemServiceApi.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/store/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/views/UserView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/views/UserView.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -20,6 +22,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -49,6 +54,26 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RunManager">
+    <configuration name="MarketplaceApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="no.ntnu.fullstack.marketplace.MarketplaceApplication" />
+      <module name="marketplace" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="no.ntnu.fullstack.marketplace.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.MarketplaceApplication" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -58,7 +83,7 @@
       <option name="presentableId" value="Default" />
       <updated>1679316063787</updated>
       <workItem from="1679316065401" duration="27000" />
-      <workItem from="1679591933058" duration="2109000" />
+      <workItem from="1679591933058" duration="4877000" />
     </task>
     <servers />
   </component>

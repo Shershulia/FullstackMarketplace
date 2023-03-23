@@ -21,6 +21,11 @@ export const getItems = () => {
     return response.data;
   });
 };
+export const getItemsOfCertainUser = (id) => {
+  return apiClient.get(`/user/${id}/items`, {}).then((response) => {
+    return response.data;
+  });
+};
 
 //register
 export const register = (user) => {

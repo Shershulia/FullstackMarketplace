@@ -42,4 +42,13 @@ public class ItemService
     {
         itemRepository.deleteById(id);
     }
+    public List<Item> getAllItemForSpecialUser(Long id) {
+        List<Item> items = new ArrayList<>();
+        itemRepository.findAll().forEach(item -> {
+            if (item.getUserId().equals(id)) {
+                items.add(item);
+            }
+        });
+        return items;
+    }
 }

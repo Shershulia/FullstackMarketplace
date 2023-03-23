@@ -20,10 +20,16 @@ public class ItemController {
         return itemService.getAllItem();
     }
 
+
     @GetMapping("/item/{id}")
     private Item getItem(@PathVariable("id") Long id) {
         Item item = itemService.getItemById(id);
         return item;
+    }
+
+    @GetMapping("/user/{id}/items")
+    private List<Item> getItemsOfSpecialUser(@PathVariable("id") Long id) {
+        return itemService.getAllItemForSpecialUser(id);
     }
 
     @DeleteMapping("/item/{id}")
