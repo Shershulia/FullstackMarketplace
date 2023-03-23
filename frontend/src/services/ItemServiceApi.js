@@ -23,6 +23,13 @@ export const getItems = () => {
   });
 };
 
+export const getItemsCategories = () => {
+  return apiClient.get(`/item/categories`, {}).then((response) => {
+    return response.data;
+  });
+};
+
+
 //register
 export const register = (user) => {
   console.log("creating user");

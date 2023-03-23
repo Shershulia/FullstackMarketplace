@@ -25,6 +25,10 @@
         <option>B</option>
         <option>C</option>
       </select>
+      <select v-model="searchCategory">
+        <option value="">Select category</option>
+        <option v-for="category in this.categories" :key="category">{{ category }}</option>
+      </select>
       <input
           type="text"
           placeholder="Search by location (or Current)"
@@ -38,6 +42,7 @@
 
 <script>
 import ListOfLittleItems from "@/components/ListOfLittleItems.vue";
+import { getItemsCategories } from "@/services/ItemServiceApi";
 
 async function getLatAndLng(location){
   const address = location;
@@ -63,6 +68,7 @@ async function getLatAndLng(location){
       .catch((error) => console.error(error));
 }
   export default {
+    categories: [],
     name: "HomeView",
     props: {
       items: {
@@ -76,6 +82,10 @@ async function getLatAndLng(location){
           item["latitude"] = latAndLng[0];
           item["longitude"] = latAndLng[1];
       }
+
+      this.categories = await getItemsCategories();
+      console.log(this.categories);
+
     },
     components: {
       ListOfLittleItems
