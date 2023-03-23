@@ -7,7 +7,7 @@
       <p><strong>Name:</strong> {{ user.name }}</p>
       <p><strong>Last Name:</strong> {{ user.lastname }}</p>
       <p><strong>Age:</strong> {{ user.age }}</p>
-      <button @click="toggleEditMode">Edit</button>
+      <button @click="toggleEditMode" class="buttonEdit">Edit</button>
     </div>
     <div v-else>
       <p><strong>Username:</strong> {{ user.username }}</p>
@@ -20,25 +20,24 @@
       </p>
       <p><strong>Password:</strong> <input v-model="password" /></p>
 
-      <button @click="toggleEditMode">Save</button>
+      <button @click="toggleEditMode" class="buttonEdit">Save</button>
     </div>
-    <button id="logoutBtn" @click="logout">Logout</button>
+    <button class="goToLoginButton" @click="logout" >Logout</button>
   </div>
-  <div class="itemsIndividual">
+  <div class="itemsIndividual" v-if="items.length>0">
     <p>Your items:</p>
-    <ListOfLittleItems :listOfItems="this.items"></ListOfLittleItems>
+    <ListOfLittleItemsEditableAndDeletable :listOfItems="this.items"></ListOfLittleItemsEditableAndDeletable>
   </div>
-  
 </template>
 
 <script>
 import axios from "axios";
 import {getItemsOfCertainUser} from "@/services/ItemServiceApi";
-import ListOfLittleItems from "@/components/ListOfLittleItems.vue";
+import ListOfLittleItemsEditableAndDeletable from "@/components/editAndDeleteItems/ListOfLittleItemsEditableAndDeletable.vue";
 
 export default {
   components: {
-    ListOfLittleItems
+    ListOfLittleItemsEditableAndDeletable,
   },
   data() {
     return {
@@ -155,8 +154,23 @@ export default {
   border-radius: 5px;
 }
 
-#logoutBtn {
-  margin-top: 20px;
-  background-color: rgb(189, 84, 84);
+.buttonEdit {
+  background-color: #003366;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 20px;
+}
+
+.buttonEdit:hover {
+  background-color: #0052cc;
+  color: white;
+  border: 1px solid #333;
+  padding: 15px;
+
 }
 </style>

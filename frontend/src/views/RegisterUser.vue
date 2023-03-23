@@ -77,7 +77,7 @@
       </div>
       <div class="buttons">
         <input type="submit" value="Register" />
-        <button type="button" @click="goToLogin">Back to login page</button>
+        <button class="goToLoginButton" type="button" @click="goToLogin">Back to login page</button>
       </div>
     </form>
   </div>
@@ -248,7 +248,7 @@ input[type="submit"]:hover {
   justify-content: center;
   flex-direction: column;
 }
-button {
+.goToLoginButton {
   background-color: #e68a00;
   color: black;
   font-size: 18px;
@@ -259,7 +259,7 @@ button {
   cursor: pointer;
   transition: all 0.3s ease;
 }
-button:hover {
+.goToLoginButton:hover {
   background-color: #f89502;
   padding: 15px 20px;
 }

@@ -12,7 +12,7 @@
       </div>
       <button type="submit">Login</button>
     </form>
-    <button @click="registerUser">Register User</button>
+    <button class="goToLoginButton" @click="registerUser">Register User</button>
   </div>
 </template>
 
