@@ -12,7 +12,7 @@
       </div>
       <button type="submit">Login</button>
     </form>
-    <button class="register-button" @click="registerUser">Register User</button>
+    <button @click="registerUser">Register User</button>
   </div>
 </template>
 
@@ -103,8 +103,8 @@ export default {
 }
 
 .login form button[type="submit"] {
-  background-color: #333;
-  color: #fff;
+  background-color: #003366;
+  color: white;
   border: none;
   border-radius: 5px;
   padding: 10px;
@@ -115,27 +115,11 @@ export default {
 }
 
 .login form button[type="submit"]:hover {
-  background-color: #fff;
-  color: #333;
+  background-color: #0052cc;
+  color: white;
   border: 1px solid #333;
-}
+  padding: 15px;
 
-.register-button {
-  background-color: #f2f2f2;
-  color: #333;
-  border: none;
-  border-radius: 5px;
-  padding: 10px;
-  font-size: 1.2rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  margin-top: 20px;
-}
-
-.register-button:hover {
-  background-color: #e0e0e0;
-  color: #333;
-  border: 1px solid #333;
 }
 
 

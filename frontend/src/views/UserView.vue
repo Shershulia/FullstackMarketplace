@@ -24,6 +24,7 @@
     </div>
     <button id="logoutBtn" @click="logout">Logout</button>
   </div>
+  <div class="itemsIndividual"></div>
 </template>
 
 <script>
@@ -33,6 +34,7 @@ export default {
     return {
       editMode: false,
       password: "",
+      items: [],
     };
   },
   computed: {
