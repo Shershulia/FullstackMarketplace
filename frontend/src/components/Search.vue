@@ -1,27 +1,41 @@
 <template>
-  <input
-      type="text"
-      placeholder="Search"
-      class="searchInput"
-      v-model="searchValue"
-  />
-  <select v-model="searchCategory">
-    <option value=""></option>
-    <option>Chair</option>
-    <option>B</option>
-    <option>C</option>
-  </select>
-  <input
-      type="text"
-      placeholder="Search by location (or Current)"
-      class="searchInput"
-      v-model="searchLocation"
-      @keyup.enter="findLocation"
-  />
+  <div class="container">
+    <div class="list-of-items">
+      <ListOfLittleItems v-if="itemsList.length" :listOfItems="itemsList"></ListOfLittleItems>
+      <div v-else class="nothingFound">
+        <div class="onRequest">
+          <p>Nothing was found</p>
+          <p v-if="(this.searchValue.length>0)||(this.searchCategory!=='')">&nbsp;on request:</p>
+        </div>
+      <p v-if="this.searchValue.length>0">Name: {{this.searchValue}}</p>
+      <p v-if="this.searchCategory!==''">Category: {{this.searchCategory}}</p>
+      </div>
+    </div>
 
-  <ListOfLittleItems v-if="itemsList.length" :listOfItems="itemsList"></ListOfLittleItems>
-  <p v-else>Nothing was found on request: {{this.searchValue}} </p>
+    <div class="search-section">
+      <input
+          type="text"
+          placeholder="Enter the name of item"
+          class="searchInput"
+          v-model="searchValue"
+      />
+      <select v-model="searchCategory">
+        <option value="">Select category</option>
+        <option>Chair</option>
+        <option>B</option>
+        <option>C</option>
+      </select>
+      <input
+          type="text"
+          placeholder="Search by location (or Current)"
+          class="searchInput"
+          v-model="searchLocation"
+          @keyup.enter="findLocation"
+      />
+    </div>
+  </div>
 </template>
+
 <script>
 import ListOfLittleItems from "@/components/ListOfLittleItems.vue";
 
@@ -73,6 +87,7 @@ async function getLatAndLng(location){
         searchLocation:"",
         latitude:"",
         longitude:"",
+        searchByLocation:false,
       };
     },
     computed: {
@@ -84,7 +99,7 @@ async function getLatAndLng(location){
          if (this.searchCategory !== "") {
            items = items.filter((item) => item.category.toLowerCase() === this.searchCategory.toLowerCase());
          }
-         if (navigator.geolocation && this.searchLocation.toLowerCase() === "current") {
+         if (navigator.geolocation && this.searchLocation.toLowerCase() === "current" && this.searchByLocation) {
            navigator.geolocation.getCurrentPosition((position) => {
              const userLocation = {
                latitude: position.coords.latitude,
@@ -97,8 +112,7 @@ async function getLatAndLng(location){
              });
            });
          }
-         if (this.searchLocation.length > 0) {
-
+         if (this.searchByLocation) {
            const location = {
              latitude: this.latitude,
              longitude:  this.longitude
@@ -136,15 +150,63 @@ async function getLatAndLng(location){
         const latAndLng = await getLatAndLng(this.searchLocation);
         this.latitude= latAndLng[0];
         this.longitude= latAndLng[1];
+        this.searchByLocation=true;
       }
 
     }
   };
 </script>
 <style>
-.searchInput{
-  height: 100px;
-  width: auto;
-  border-radius: 5px;
+.container {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
 }
+
+.search-section {
+  display: flex;
+  align-items: center;
+}
+
+@media screen and (min-width: 768px) {
+  .search-section {
+    flex-direction: row;
+  }
+}
+@media screen and (max-width: 767px) {
+  .search-section {
+    flex-direction: column;;
+  }
+}
+
+.searchInput {
+  margin: 10px;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid gray;
+  width: 200px;
+}
+
+select {
+  margin: 10px;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid gray;
+  width: 150px;
+}
+.nothingFound{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.onRequest{
+  display: flex;
+  flex-direction: row;
+}
+.list-of-items{
+  margin-left: 10%;
+  margin-right: 10%;
+
+}
+
 </style>
