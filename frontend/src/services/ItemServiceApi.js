@@ -1,6 +1,6 @@
-import axios from 'axios'
+import axios from "axios";
 
-const apiClient=axios.create({
-    baseURL:"http://localhost:8080"
-})
+const apiClient = axios.create({
+  baseURL: "http://localhost:8080",
+});
 export const getItemBy = (id) => apiClient.get(`/item/${id}`);

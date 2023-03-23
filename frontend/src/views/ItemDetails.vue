@@ -52,11 +52,12 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .item-details-container {
   margin-left: 200px;
   margin-right: 200px;
   display: flex;
+  height: 100%;
   flex-wrap: wrap;
   justify-content: space-between;
   padding: 20px;

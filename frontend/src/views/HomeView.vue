@@ -2,6 +2,7 @@
   <div class="home">
 
     <Search :items="items"></Search>
+
   </div>
 </template>
 
@@ -104,3 +105,6 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+</style>
