@@ -26,6 +26,11 @@ export const getItemsOfCertainUser = (id) => {
     return response.data;
   });
 };
+export const deleteItem = (id) => {
+  return apiClient.delete(`/item/${id}`, {}).then((response) => {
+    return response.data;
+  });
+};
 
 //register
 export const register = (user) => {

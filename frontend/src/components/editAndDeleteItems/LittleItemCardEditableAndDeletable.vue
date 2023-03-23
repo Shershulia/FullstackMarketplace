@@ -6,7 +6,7 @@
         </router-link>
 
         <div class="buttons">
-          <button class="delete" @click.stop="deleteItem">Delete</button>
+          <button class="delete" @click="deleteItem">Delete</button>
           <button class="edit" @click.stop="editItem">Edit</button>
         </div>
         <router-link class="linkToDetPage" :to="{ name: 'ItemDetails', params: { id: item.id } }">
@@ -23,6 +23,8 @@
 </template>
 
 <script>
+import { deleteItem} from "@/services/ItemServiceApi";
+
 export default {
   name: "LittleItemCardEditableAndDeletable",
   props: {
@@ -33,8 +35,10 @@ export default {
   },
   methods: {
     deleteItem() {
-      // Add logic to delete the item from the list
-      console.log("Item deleted");
+      deleteItem(this.item.id).then(() => {
+        this.$emit("deletedItem",this.item.id);
+        alert("Item deleted")
+      });
     },
     editItem() {
       // Add logic to edit the item

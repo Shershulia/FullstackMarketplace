@@ -6,9 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="7fe22fb5-593e-41e4-b0f4-612f280e5ae7" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/views/LoginView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/views/LoginView.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/views/RegisterUser.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/views/RegisterUser.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/views/UserView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/views/UserView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/editAndDeleteItems/ListOfLittleItemsEditableAndDeletable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/editAndDeleteItems/ListOfLittleItemsEditableAndDeletable.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/editAndDeleteItems/LittleItemCardEditableAndDeletable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/editAndDeleteItems/LittleItemCardEditableAndDeletable.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/services/ItemServiceApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/services/ItemServiceApi.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,7 +81,7 @@
       <option name="presentableId" value="Default" />
       <updated>1679316063787</updated>
       <workItem from="1679316065401" duration="27000" />
-      <workItem from="1679591933058" duration="5474000" />
+      <workItem from="1679591933058" duration="6747000" />
     </task>
     <servers />
   </component>

@@ -4,7 +4,8 @@
       <Search :items="items"></Search>
     </div>
     <div v-else>
-      <p>Loading...</p>
+      <p>Not available items on marketplace
+      </p>
     </div>
   </div>
 </template>
