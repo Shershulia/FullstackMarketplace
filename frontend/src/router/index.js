@@ -8,12 +8,6 @@ import AboutView from "@/views/AboutView";
 
 const routes = [
   {
-    path: "/",
-    name: "home",
-    props: true,
-    component: HomeView,
-  },
-  {
     path: "/about",
     name: "about",
     component: AboutView,
@@ -33,6 +27,12 @@ const routes = [
     path: "/user",
     name: "UserView",
     component: UserView,
+  },
+  {
+    path: "/shopping",
+    name: "HomeView",
+    props: true,
+    component: HomeView,
   },
   {
     path: "/register-user",
