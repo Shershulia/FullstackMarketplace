@@ -1,10 +1,20 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link>
-    <router-link to="/login">Login</router-link>
-  </nav>
+  <header>
+    <NavigationBar />
+  </header>
   <router-view />
+  <footer><MarketplaceFooter />
+  </footer>
 </template>
+
+<script>
+import NavigationBar from "@/components/NavigationBar";
+import MarketplaceFooter from "@/components/MarketplaceFooter"
+export default {
+  components: {NavigationBar, MarketplaceFooter}
+}
+
+</script>
 
 <style>
 #app {

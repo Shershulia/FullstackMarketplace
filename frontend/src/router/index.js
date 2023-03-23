@@ -4,6 +4,7 @@ import LoginView from "../views/LoginView.vue";
 import UserView from "../views/UserView.vue";
 import ItemDetails from "../views/ItemDetails.vue";
 import RegisterUser from "../views/RegisterUser.vue";
+import AboutView from "@/views/AboutView";
 
 const routes = [
   {
@@ -11,6 +12,11 @@ const routes = [
     name: "home",
     props: true,
     component: HomeView,
+  },
+  {
+    path: "/about",
+    name: "about",
+    component: AboutView,
   },
   {
     path: "/item/:id",
