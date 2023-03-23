@@ -7,12 +7,13 @@ import no.ntnu.fullstack.marketplace.model.User;
 import no.ntnu.fullstack.marketplace.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 
-@RequestMapping(value = "/token")
+@RequestMapping(value = "/user")
 @EnableAutoConfiguration
 @CrossOrigin
 @RestController
@@ -23,9 +24,13 @@ public class UserController {
     @GetMapping("/{id}")
     private User getUser(@PathVariable("id") Long id, @RequestHeader (name="Authorization") String token) {
         String tokenSubject = TokenController.getTokenSubject(token);
-        if (!tokenSubject.equals(id)) {
+        System.out.println("Token subject: " + tokenSubject.toString() + " id: " + id.toString());
+
+        if (!tokenSubject.equals(id.toString())) {
+            System.out.println("Access denied, wrong credentials....");
             return null;
         }
+
         User user = userService.getUserById(id);
         return user;
     }
@@ -55,9 +60,11 @@ public class UserController {
 
     //create new user and return id
     @PostMapping("/register")
-    private Long newUser(@RequestBody String username, @RequestBody String email, @RequestBody String password, @RequestBody String firstName, @RequestBody String lastName, @RequestBody Integer age ){
+    @ResponseStatus(value = HttpStatus.CREATED)
+    @CrossOrigin
+    private Long newUser(@RequestBody User newUser ){
         System.out.println("New user");
-        User user = new User(username, email, password, firstName, lastName, age);
+        User user = new User(newUser.getUsername(), newUser.getEmail() , newUser.getPassword(), newUser.getName(), newUser.getLastname(), newUser.getAge());
 
         User conflictingUser = userService.getUserByUsername(user.getUsername());
 

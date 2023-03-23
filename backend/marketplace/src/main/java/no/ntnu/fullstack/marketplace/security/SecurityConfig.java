@@ -25,16 +25,12 @@ public class SecurityConfig {
                 .cors().and()
                 .authorizeRequests()
                 .requestMatchers("/user/**").permitAll()//add new fully public endpoints here. H2-console is only for developmen
+                .requestMatchers("/user/register/**").permitAll()//add new fully public endpoints here. H2-console is only for developmen
                 .requestMatchers("/token").permitAll()//add new fully public endpoints here. H2-console is only for developmen
                 .requestMatchers(PathRequest.toH2Console()).permitAll()//add new fully public endpoints here. H2-console is only for developmen
-//                .requestMatchers("/h2-console/**").permitAll()//add new fully public endpoints here. H2-console is only for developmen
-//                .requestMatchers("/error/**").permitAll()//add new fully public endpoints here. H2-console is only for developmen
                 .anyRequest().authenticated().and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .addFilterBefore(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
-//                .httpBasic().and()
-//                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-//                .addFilterBefore(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
                 .headers().frameOptions().disable()
 
         ;

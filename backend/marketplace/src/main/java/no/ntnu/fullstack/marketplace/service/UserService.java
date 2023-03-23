@@ -15,6 +15,10 @@ public class UserService
     @Autowired
     UserRepository userRepository;
 
+
+    //salt for bcrypt hashing TODO: move to config file or env variable
+    private static String salt = "";
+
     //getting all user records
     public List<User> getAllUser()
     {

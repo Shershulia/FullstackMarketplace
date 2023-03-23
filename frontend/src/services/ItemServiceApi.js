@@ -26,32 +26,25 @@ export const login = (username, password) => {
 //register
 
 export const register = (username, email, password, name, lastname, age) => {
-  console.log(username, email, password, name, lastname, age);
   console.log("creating user");
-  // return apiClient.post("/user/register", {
-  //   username: username,
-  //   email: email,
-  //   password: password,
-  //   name: name,
-  //   lastname: lastname,
-  //   age: age,
-  // });
+  console.log(username, email, password, name, lastname, age);
 
   let user = {
+    id: 1,
     username: username,
     email: email,
     password: password,
     name: name,
     lastname: lastname,
-    age: age,
+    age: Math.floor(parseInt(age)),
   };
 
-  axios.post("http://localhost:8090/user/register", user).then(
-    (response) => {
-      console.log(response);
-    },
-    (error) => {
-      console.log(error);
-    }
-  );
+  apiClient
+    .post("/user/register", user)
+    .then((response) => {
+      console.log("New user created with ID:", response.data);
+    })
+    .catch((error) => {
+      console.error("Error creating new user:", error);
+    });
 };
