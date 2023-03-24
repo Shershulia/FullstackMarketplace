@@ -4,22 +4,14 @@ package no.ntnu.fullstack.marketplace;
 
 import no.ntnu.fullstack.marketplace.model.Item;
 import no.ntnu.fullstack.marketplace.service.ItemService;
-import no.ntnu.fullstack.marketplace.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
-import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
 import javax.annotation.PostConstruct;
-import javax.persistence.EntityManagerFactory;
-import java.beans.PropertyVetoException;
 import java.util.Arrays;
 
 @Configuration
@@ -42,6 +34,14 @@ public class MarketplaceApplication {
     private void postInit() {
         System.out.println("init");
         System.out.println(itemService.getAllItem());
+        //add 10 items with addItem()
+        for (int i = 0; i < 10; i++) {
+            addItem();
+        }
+        System.out.println(itemService.getAllItem());
+    }
+
+    private void addItem() {
         Item item = new Item();
         item.setName("test");
         item.setDescription("This is a test item");
@@ -52,7 +52,6 @@ public class MarketplaceApplication {
         item.setCategories(Arrays.asList("category1", "category2"));
         item.setMetadata(Arrays.asList("metadata1", "metadata2", "metadata3"));
         itemService.newItem(item);
-        System.out.println(itemService.getAllItem());
     }
 
 

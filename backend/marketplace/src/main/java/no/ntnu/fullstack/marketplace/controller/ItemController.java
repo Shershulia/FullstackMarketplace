@@ -40,6 +40,22 @@ public class ItemController {
         itemService.delete(id);
     }
 
+    /**
+     * Buy item, delete item from database and return item object
+     * @param id item id
+     * @param token jwt token with user id in subject
+     */
+    @DeleteMapping("/item/buy/{id}")
+    private void buyItem(@PathVariable("id") Long id, @RequestHeader (name="Authorization") String token)
+    {
+        String tokenSubject = TokenController.getTokenSubject(token);
+        //get item
+        Item item = itemService.getItemById(id);
+        //delete item from item database
+        itemService.delete(id);
+        //TODO: add item to user bought items in database
+    }
+
     //creating post mapping that post the student detail in the database
     @PostMapping("/item/update")
     private Long saveItem(@RequestBody Item item, @RequestHeader (name="Authorization") String token)
