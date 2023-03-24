@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="7fe22fb5-593e-41e4-b0f4-612f280e5ae7" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/components/editAndDeleteItems/LittleItemCardEditableAndDeletable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/editAndDeleteItems/LittleItemCardEditableAndDeletable.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/marketplace/src/main/java/no/ntnu/fullstack/marketplace/service/ItemService.java" beforeDir="false" afterPath="$PROJECT_DIR$/marketplace/src/main/java/no/ntnu/fullstack/marketplace/service/ItemService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/views/ItemDetails.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/views/ItemDetails.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -82,7 +82,7 @@
       <updated>1679316063787</updated>
       <workItem from="1679316065401" duration="27000" />
       <workItem from="1679591933058" duration="7595000" />
-      <workItem from="1679656595154" duration="861000" />
+      <workItem from="1679656595154" duration="1718000" />
     </task>
     <servers />
   </component>

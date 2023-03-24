@@ -32,6 +32,11 @@ public class ItemService
         itemRepository.save(item);
     }
 
+    public void updateItem(Item item)
+    {
+        itemRepository.save(item);
+    }
+
     public void newItem(Item item)
     {
         itemRepository.save(item);

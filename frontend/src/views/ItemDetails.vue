@@ -32,7 +32,7 @@
     <p><strong>Location:</strong> <input v-model="item.location" /></p>
     <p><strong>Description:</strong> <input v-model="item.description" /></p>
 
-    <button @click="toggleEditMode" class="saveButton">Save</button>
+    <button @click="updateItem" class="saveButton">Save</button>
   </div>
 </template>
 
@@ -40,6 +40,7 @@
 import { useRoute } from "vue-router";
 import GoogleMap from "@/components/GoogleMap.vue";
 import { getItemBy } from "@/services/ItemServiceApi";
+import axios from "axios";
 export default {
   name: "ItemDetails",
   components: {
@@ -66,6 +67,35 @@ export default {
   methods: {
     enterEditMode(){
       this.editMode=true;
+    },
+    updateItem(){
+      console.log({
+        name: this.item.name,
+        price: this.item.name,
+        image: this.item.image,
+        location: this.item.location,
+        description: this.item.description,
+      })
+      axios
+        .post(
+          "http://localhost:8090/item/update",
+          {
+            name: this.item.name,
+            price: this.item.name,
+            image: this.item.image,
+            location: this.item.location,
+            description: this.item.description,
+          },
+          {
+            headers: {
+              Authorization: "Bearer " + this.$store.getters.token,
+            },
+          }
+        ).catch((error) => {
+        console.error("error:");
+        alert("error;could not update item info");
+        console.error(error);
+      });
     }
   },
   mounted() {
