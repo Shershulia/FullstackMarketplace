@@ -1,8 +1,10 @@
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 
+export const url = "http://localhost:8090";
+
 const apiClient = axios.create({
-  baseURL: "http://localhost:8090",
+  baseURL: this.url,
   headers: {
     "Access-Control-Allow-Origin": "*",
   },
@@ -33,7 +35,7 @@ export const register = (user) => {
   console.log("creating user");
   console.log(user);
   axios
-    .post("http://localhost:8090/user/register", user)
+    .post(this.url + "/user/register", user)
     .then((response) => {
       console.log("New user created with ID:", response.data);
       let id = response.data;
@@ -54,7 +56,7 @@ export const register = (user) => {
 //login
 export const login = (username, password) => {
   axios
-    .post("http://localhost:8090/token", {
+    .post(this.url+"/token", {
       username: username,
       password: password,
     })
@@ -71,4 +73,58 @@ export const login = (username, password) => {
       this.$store.commit("setUserId", userId);
       axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     });
+};
+
+//loginUser
+export const loginUser = (username, password) => {
+  new Promise((resolve, reject) => {
+    axios
+      .post(this.url+"/token", {
+        username: username,
+        password: password,
+      })
+      .then((response) => {
+        const token = response.data;
+        localStorage.setItem("token", token);
+        //debug
+        console.log("token-store: " + localStorage.getItem("token"));
+
+        axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+        const decodedToken = jwt_decode(token);
+
+        console.log(decodedToken);
+        console.log(decodedToken.sub);
+
+        this.store.commit("setUsername", decodedToken.sub);
+        this.store.commit("setToken", token);
+
+        //get user info from server
+        axios
+          .get(this.url+"/user/" + decodedToken.sub, {
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          })
+          .then((response) => {
+            console.log("response:");
+            console.log(response);
+            // this.$store.commit("setUserInfo", response.data);
+            let user = {
+              username: response.data.username,
+              email: response.data.email,
+              name: response.data.name,
+              lastname: response.data.lastname,
+              age: response.data.age,
+            };
+            //update store
+            this.commit("setUser", user);
+            return user;
+          });
+
+        resolve(response);
+      })
+      .catch((error) => {
+        reject(error);
+      });
+  });
 };

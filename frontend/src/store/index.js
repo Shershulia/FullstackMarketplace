@@ -1,6 +1,7 @@
 import { createStore } from "vuex";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
+import { url } from "@/services/ItemServiceApi";
 
 export default createStore({
   state: {
@@ -40,7 +41,7 @@ export default createStore({
     login({ commit }, { username, password }) {
       return new Promise((resolve, reject) => {
         axios
-          .post("http://localhost:8090/token", {
+          .post(url +"/token", {
             username: username,
             password: password,
           })
@@ -61,7 +62,7 @@ export default createStore({
 
             //get user info from server
             axios
-              .get("http://localhost:8090/user/" + decodedToken.sub, {
+              .get(url + "/user/" + decodedToken.sub, {
                 headers: {
                   Authorization: "Bearer " + token,
                 },
@@ -89,27 +90,10 @@ export default createStore({
           });
       });
     },
-    validateToken({ commit, state }) {
-      return new Promise((resolve, reject) => {
-        axios
-          .post("http://localhost:8090/verify", {
-            token: state.token,
-          })
-          .then((response) => {
-            console.log(response);
-            resolve(response);
-          })
-          .catch((error) => {
-            console.log(error);
-            commit("clearAuthData");
-            localStorage.removeItem("token");
-            reject(error);
-          });
-      });
-    },
     logout({ commit }) {
       commit("clearAuthData");
       localStorage.removeItem("token");
+      delete axios.defaults.headers.common["Authorization"];
     },
     autoLogin({ commit }) {
       const token = localStorage.getItem("token");
