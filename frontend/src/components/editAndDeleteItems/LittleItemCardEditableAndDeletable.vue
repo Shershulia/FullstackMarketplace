@@ -5,9 +5,11 @@
         <img class="image" :src="item.image" />
         </router-link>
 
-        <div class="buttons">
+        <div class="buttonsLittleCard">
           <button class="delete" @click="deleteItem">Delete</button>
-          <button class="edit" @click.stop="editItem">Edit</button>
+          <router-link class="linkToDetPage" :to="{ name: 'ItemDetails', params: { id: item.id } }">
+          <button class="edit">Edit</button>
+          </router-link>
         </div>
         <router-link class="linkToDetPage" :to="{ name: 'ItemDetails', params: { id: item.id } }">
         <p class="price">{{ item.price }} kr,-</p>
@@ -40,10 +42,6 @@ export default {
         alert("Item deleted")
       });
     },
-    editItem() {
-      // Add logic to edit the item
-      console.log("Item edited");
-    },
   },
 };
 </script>
@@ -67,7 +65,7 @@ export default {
   border-radius: 10px;
   object-fit: cover;
 }
-.buttons {
+.buttonsLittleCard {
   position: absolute;
   top: 4px;
   right: 4px;
