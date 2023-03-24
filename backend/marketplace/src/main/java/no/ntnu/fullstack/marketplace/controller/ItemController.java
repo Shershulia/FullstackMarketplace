@@ -45,7 +45,7 @@ public class ItemController {
 
         String tokenSubject = TokenController.getTokenSubject(token);
 
-        if (!tokenSubject.equals(item.getId().toString())) {
+        if (!tokenSubject.equals(item.getUserId().toString())) {
             return 0L;
         }
 
@@ -62,7 +62,7 @@ public class ItemController {
     {
         String tokenSubject = TokenController.getTokenSubject(token);
 
-        if (!tokenSubject.equals(item.getId().toString())) {
+        if (!tokenSubject.equals(item.getUserId().toString())) {
             return 0L;
         }
         System.out.println("New item");
