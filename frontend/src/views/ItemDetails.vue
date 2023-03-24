@@ -17,6 +17,9 @@
         <p class="item-description">{{ item.description }}</p>
         <GoogleMap class="map" :address="item.location" />
       </div>
+      <li v-for="category in this.item.categories">
+        <p>{{category}}</p>
+      </li>
       <div class="item-actions">
         <button class="add-to-cart-button">Add to cart</button>
         <button class="buy-now-button">Buy now</button>
@@ -111,8 +114,8 @@ export default {
 @media screen and (max-width: 768px) {
   .item-details-container {
     flex-direction: column;
-    margin-left: 10px;
-    margin-right: 10px;
+    margin: 10px 10px 10px 10px;
+
     padding: 10px;
   }
 
@@ -132,6 +135,7 @@ export default {
 
   .item-price {
     font-size: 16px;
+    margin-bottom: 10px;
   }
 
   .locationWithImage {
@@ -160,9 +164,6 @@ export default {
     margin-top: 10px;
   }
 
-  .image-navigation {
-    flex-wrap: wrap;
-  }
 
   .image-navigation button {
     margin-top: 10px;
@@ -173,8 +174,8 @@ export default {
 /* For medium devices */
 @media screen and (min-width: 768px) and (max-width: 1024px) {
   .item-details-container {
-    margin-left: 50px;
-    margin-right: 50px;
+    margin: 50px 50px 50px 50px;
+  ;
   }
 
   .item-image {
@@ -199,8 +200,7 @@ export default {
 /* For large devices */
 @media screen and (min-width: 1024px) {
   .item-details-container {
-    margin-left: 200px;
-    margin-right: 200px;
+    margin: 100px 100px 100px 100px;
   }
 
   .item-image {
@@ -214,10 +214,6 @@ export default {
 
   .item-description {
     font-size: 30px;
-  }
-
-  .locationWithImage {
-    justify-content: space-evenly;
   }
 
   .locationWithMap {
@@ -236,22 +232,26 @@ export default {
   border-radius: 5px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
+.locationWithImage {
+  justify-content: center;
+}
+.item-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 .item-image img {
   display: block;
-  width: 100%;
-  height: auto;
+  width: 75%;
+  height: 75%;
   border-radius: 5px;
+  margin: auto;
 }
 
-.image-navigation {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 10px;
-}
 
 .item-name {
+  padding: 20px;
   font-size: 36px;
   font-weight: bold;
   margin: 0 0 10px 0;
@@ -260,7 +260,7 @@ export default {
 .item-price {
   font-size: 20px;
   font-weight: bold;
-  margin: 0 0 10px 0;
+  margin-bottom: 50px;
 }
 
 .locationWithImage {
@@ -283,7 +283,7 @@ export default {
 }
 
 .map {
-  grid-column: 2 / 4;
+  grid-column: 3 / 4;
 }
 
 .item-actions {
@@ -371,7 +371,7 @@ export default {
 
 .item-location,
 .item-price {
-  margin: 0;
+  margin-bottom: 10px;
 }
 .editItemContainer {
   background-color: #f8f8f8;
