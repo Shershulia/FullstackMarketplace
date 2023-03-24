@@ -5,6 +5,7 @@ import UserView from "../views/UserView.vue";
 import ItemDetails from "../views/ItemDetails.vue";
 import RegisterUser from "../views/RegisterUser.vue";
 import AboutView from "@/views/AboutView";
+import CreateItem from "@/views/CreateItem.vue";
 
 const routes = [
   {
@@ -17,6 +18,11 @@ const routes = [
     name: "ItemDetails",
     props: true,
     component: ItemDetails,
+  },
+  {
+    path: "/item/create",
+    name: "CreateItem",
+    component: CreateItem,
   },
   {
     path: "/login",

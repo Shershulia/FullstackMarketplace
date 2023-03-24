@@ -280,6 +280,7 @@ export default {
   font-size: 24px;
   grid-column: 1 / 3;
   margin-bottom: 30px;
+  margin-right: 10px;
 }
 
 .map {
