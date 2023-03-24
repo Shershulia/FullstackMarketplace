@@ -27,8 +27,16 @@ public class ItemController {
     }
 
     @DeleteMapping("/item/{id}")
-    private void deleteItem(@PathVariable("id") Long id)
+    private void deleteItem(@PathVariable("id") Long id, @RequestHeader (name="Authorization") String token)
     {
+        String tokenSubject = TokenController.getTokenSubject(token);
+        //check if token subject is the same as the id of the userid in the item
+        Item item = itemService.getItemById(id);
+        if (!tokenSubject.equals(item.getUserid().toString())) {
+            System.out.println("Access denied to delete item , wrong credentials....");
+            return;
+        }
+
         itemService.delete(id);
     }
 

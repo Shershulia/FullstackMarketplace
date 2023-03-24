@@ -1,41 +1,58 @@
 package no.ntnu.fullstack.marketplace.controller;
 
-import com.auth0.jwt.JWT;
-import com.auth0.jwt.JWTVerifier;
-import com.auth0.jwt.algorithms.Algorithm;
 import no.ntnu.fullstack.marketplace.model.User;
 import no.ntnu.fullstack.marketplace.model.UserRequest;
 import no.ntnu.fullstack.marketplace.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
-
-@RequestMapping(value = "/user")
+//@RequestMapping(value = "/user")
 @EnableAutoConfiguration
-@CrossOrigin
 @RestController
+@CrossOrigin
 public class UserController {
     @Autowired
     UserService userService;
 
-    @GetMapping("/{id}")
+    @GetMapping("/user/{id}")
     private User getUser(@PathVariable("id") Long id, @RequestHeader (name="Authorization") String token) {
         String tokenSubject = TokenController.getTokenSubject(token);
         System.out.println("Token subject: " + tokenSubject.toString() + " id: " + id.toString());
 
         if (!tokenSubject.equals(id.toString())) {
-            System.out.println("Access denied, wrong credentials....");
-            return null;
+            //not acces to all the user data if not the same user
+            User user = userService.getUserById(id);
+            User copy = new User();
+            copy.setId(id);
+            copy.setUsername(user.getUsername());
+            copy.setName(user.getName());
+
+            return copy;
         }
 
         User user = userService.getUserById(id);
         return user;
     }
-    @DeleteMapping("/delete/{id}")
+
+    /**
+     * Get user by id without token check, used for public info like username first name and email address
+     * @param id user id
+     * @return user object with only public info like username first name and email address
+     */
+    @GetMapping("/user/pub/{id}")
+    private User getUser(@PathVariable("id") Long id) {
+        User user = userService.getUserById(id);
+        //only return public info
+        User copy = new User();
+        copy.setId(id);
+        copy.setEmail(user.getEmail());
+        copy.setUsername(user.getUsername());
+        copy.setName(user.getName());
+        return copy;
+    }
+    @DeleteMapping("/user/delete/{id}")
     private void deleteUser(@RequestBody User user, @RequestHeader (name="Authorization") String token)
     {
         String tokenSubject = TokenController.getTokenSubject(token);
@@ -50,11 +67,10 @@ public class UserController {
     }
 
     //creating post mapping that post the student detail in the database
-    @PostMapping("/update")
+    @PostMapping("/user/update")
     private Long saveUser(@RequestBody User user, @RequestHeader (name="Authorization") String token)
     {
-        //TODO: get userid from token in header and check if it matches the id in the new user object
-
+        //forces user to update the profile with the same id as the token
         String tokenSubject = TokenController.getTokenSubject(token);
         user.setId(Long.parseLong(tokenSubject));
 
@@ -65,7 +81,7 @@ public class UserController {
     }
 
     //create new user and return id
-    @PostMapping("/register")
+    @PostMapping("/user/register")
     @CrossOrigin
     private Long newUser(@RequestBody UserRequest userRequest)
     {

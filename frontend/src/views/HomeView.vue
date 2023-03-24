@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <!-- <ListOfLittleItems :listOfItems="items"></ListOfLittleItems> -->
-    <div v-if="items.length">
+    <div v-if="items.length > 0">
       <Search :items="items"></Search>
     </div>
     <div v-else>

@@ -1,14 +1,14 @@
 package no.ntnu.fullstack.marketplace.service;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import no.ntnu.fullstack.marketplace.model.User;
 import no.ntnu.fullstack.marketplace.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.util.ArrayList;
+import java.util.List;
 @Service
 public class UserService
 {
@@ -17,7 +17,7 @@ public class UserService
 
 
     //salt for bcrypt hashing TODO: move to config file or env variable
-    private static String salt = "";
+    private static String salt = ""; //TODO: implement salt
 
     //getting all user records
     public List<User> getAllUser()
@@ -63,15 +63,21 @@ public class UserService
         userRepository.deleteById(id);
     }
 
-
-    public static String hashPassword(String password) {
-//        System.out.println("Hashing password");
-//        return BCrypt.hashpw(password, BCrypt.gensalt());
-        return password; //TODO: remove this
+    public static String hashPassword(String password){
+        try{
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            byte[] hashedPassword = md.digest(password.getBytes(StandardCharsets.UTF_8));
+            StringBuilder hexString = new StringBuilder();
+            for (byte b : hashedPassword) {
+                String hex = Integer.toHexString(0xff & b);
+                if (hex.length() == 1) hexString.append('0');
+                hexString.append(hex);
+            }
+            return hexString.toString();
+        } catch (Exception e){
+            System.out.println("Error hashing password");
+            return null;
+        }
     }
-//    public Long getNewId() {
-//        //get post with highest id and add
-//        List<User> users = new ArrayList<User>();
-//
-//    }
 }
+

@@ -11,6 +11,7 @@
     <div class="item-details">
       <h2 class="item-name">{{ item.name }}</h2>
       <p class="item-price">{{ item.price }} kr,-</p>
+      <a :href="'mailto:?to=' + encodeURIComponent(this.user.email) + '&subject=' + encodeURIComponent('Marketplace - Regarding your ' + item.name + '') + '&body=' + encodeURIComponent('I have some questions regarding - ' + item.name + ': \n ')"  class="item-seller">Contact seller</a>
       <div class="locationWithImage">
         <img class="gpsIcon" :src="require(`@/assets/locationLogo.png`)" />
         <p class="item-location">{{ item.location }}</p>
@@ -29,7 +30,7 @@
 
 <script>
 import { useRoute } from "vue-router";
-import { getItemById } from "@/services/ItemServiceApi";
+import { getItemById, getUserPubById } from "@/services/ItemServiceApi";
 import GoogleMap from "@/components/GoogleMap.vue";
 
 export default {
@@ -39,6 +40,7 @@ export default {
   },
   data() {
     return {
+      user: {},
       item: {},
       imgIndex: 0,
       imgNum: 0,
@@ -52,6 +54,7 @@ export default {
   mounted() {},
   created() {
     this.fetchItem();
+    this.fetchUserDetails();
   },
   methods: {
     fetchItem() {
@@ -65,27 +68,147 @@ export default {
         this.item = item;
       });
     },
+    fetchUserDetails() {
+        getUserPubById(useRoute().params.id).then(response => {
+          let user = response.data;
+          console.log("user");
+          console.log(user);
+          this.user = user;
+        })
+    },
   },
 };
 </script>
 
 <style scoped>
+/* For small devices */
+@media screen and (max-width: 768px) {
+  .item-details-container {
+    flex-direction: column;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 10px;
+  }
+
+  .item-image {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  .item-details {
+    width: 100%;
+  }
+
+  .item-name {
+    font-size: 24px;
+  }
+
+  .item-price {
+    font-size: 16px;
+  }
+
+  .locationWithImage {
+    margin-left: 0;
+    margin-right: 0;
+    justify-content: center;
+  }
+
+  .locationWithMap {
+    grid-template-columns: auto;
+    padding: 0;
+  }
+
+  .item-description {
+    font-size: 24px;
+    grid-column: auto;
+    margin-bottom: 10px;
+  }
+
+  .map {
+    grid-column: auto;
+  }
+
+  .item-actions {
+    grid-column: auto;
+    margin-top: 10px;
+  }
+
+  .image-navigation {
+    flex-wrap: wrap;
+  }
+
+  .image-navigation button {
+    margin-top: 10px;
+    margin-right: 5px;
+  }
+}
+
+/* For medium devices */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .item-details-container {
+    margin-left: 50px;
+    margin-right: 50px;
+  }
+
+  .item-image {
+    width: 40%;
+    margin-right: 10%;
+    margin-bottom: 0;
+  }
+
+  .item-details {
+    width: 50%;
+  }
+
+  .item-description {
+    font-size: 28px;
+  }
+
+  .item-actions {
+    margin-top: 30px;
+  }
+}
+
+/* For large devices */
+@media screen and (min-width: 1024px) {
+  .item-details-container {
+    margin-left: 200px;
+    margin-right: 200px;
+  }
+
+  .item-image {
+    width: 45%;
+    margin-right: 5%;
+  }
+
+  .item-details {
+    width: 50%;
+  }
+
+  .item-description {
+    font-size: 30px;
+  }
+
+  .locationWithImage {
+    justify-content: space-evenly;
+  }
+
+  .locationWithMap {
+    grid-template-columns: auto auto auto;
+    padding: 10px;
+  }
+}
+
+/* Common Styles */
 .item-details-container {
-  margin-left: 200px;
-  margin-right: 200px;
   display: flex;
   height: 100%;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-}
-
-.item-image {
-  width: 45%;
-  margin-right: 5%;
 }
 
 .item-image img {
@@ -102,10 +225,6 @@ export default {
   margin-top: 10px;
 }
 
-.item-details {
-  width: 50%;
-}
-
 .item-name {
   font-size: 36px;
   font-weight: bold;
@@ -118,66 +237,115 @@ export default {
   margin: 0 0 10px 0;
 }
 
-.item-location {
-  font-size: 16px;
-  margin: 0 0 10px 0;
-}
-
-.item-location i {
-  margin-right: 5px;
-}
-.add-to-cart-button,
-.buy-now-button {
-  background-color: #008cba;
-  color: #fff;
-  border-radius: 5px;
-  padding: 10px 20px;
-  font-size: 18px;
-  cursor: pointer;
+.locationWithImage {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
   margin-right: 10px;
 }
 
-.add-to-cart-button:hover,
-.buy-now-button:hover {
-  background-color: #005f6b;
-}
-
-.buy-now-button {
-  background-color: #4caf50;
-}
-
-.buy-now-button:hover {
-  background-color: #26773c;
-}
-.gpsIcon {
-  max-width: 15px;
-  max-height: 15px;
-}
-.locationWithImage {
-  margin-left: 200px;
-  margin-right: 200px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-}
 .locationWithMap {
   display: grid;
-  grid-template-columns: auto auto auto;
-  grid-gap: 10px;
-  padding: 10px;
+  grid-template-columns: auto auto;
+  padding: 30px;
 }
 
 .item-description {
-  font-size: 30px;
-  grid-column: 1/3;
+  font-size: 24px;
+  grid-column: 1 / 3;
+  margin-bottom: 30px;
 }
 
 .map {
-  grid-column: 3/4;
+  grid-column: 2 / 4;
 }
 
 .item-actions {
-  grid-column: 1/3;
-  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  grid-column: 1 / 3;
+  margin-top: 30px;
 }
+
+.add-to-cart-button,
+.buy-now-button {
+  width: 100%;
+  padding: 10px 30px;
+  border: none;
+  border-radius: 5px;
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+}
+
+.add-to-cart-button {
+  background-color: #f0c040;
+}
+
+.buy-now-button {
+  background-color: #f08030;
+}
+
+.gpsIcon {
+  width: 25px;
+  height: 25px;
+  margin-right: 10px;
+}
+
+.item-location {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.item-location,
+.item-price {
+  margin: 0;
+}
+
+.item-actions {
+  display: flex;
+  justify-content: space-between;
+  grid-column: 1 / 3;
+  margin-top: 30px;
+}
+
+.add-to-cart-button,
+.buy-now-button {
+  width: 100%;
+  padding: 10px 30px;
+  border: none;
+  border-radius: 5px;
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+}
+
+.add-to-cart-button {
+  background-color: #f0c040;
+}
+
+.buy-now-button {
+  background-color: #f08030;
+}
+
+.gpsIcon {
+  width: 25px;
+  height: 25px;
+  margin-right: 10px;
+}
+
+.item-location {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.item-location,
+.item-price {
+  margin: 0;
+}
+
 </style>

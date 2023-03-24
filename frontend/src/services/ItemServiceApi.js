@@ -23,6 +23,11 @@ export const getItems = () => {
   });
 };
 
+export const getUserPubById = (id) => {
+  console.log("getUserById: " + id);
+  return apiClient.get(`/user/pub/${id}`, {})
+};
+
 //register
 export const register = (user) => {
   console.log("creating user");

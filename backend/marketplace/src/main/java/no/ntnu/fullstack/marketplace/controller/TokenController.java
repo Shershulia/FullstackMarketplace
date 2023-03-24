@@ -4,10 +4,7 @@ package no.ntnu.fullstack.marketplace.controller;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
-//import no.ntnu.fullstack.marketplace.dao.MockDao;
-//import no.ntnu.fullstack.marketplace.dao.UserDao;
 import no.ntnu.fullstack.marketplace.model.LoginRequest;
-import no.ntnu.fullstack.marketplace.controller.UserController;
 import no.ntnu.fullstack.marketplace.model.User;
 import no.ntnu.fullstack.marketplace.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,8 +48,10 @@ public class TokenController {
         // if username and password are valid, issue an access token
         // note that subsequent requests need this token
         User user = userService.getUserByUsername(loginRequest.username());
+
+        System.out.println("Checking password: " + loginRequest.password() + " hashed: " + hashedPassword + " stored: " + user.getPassword());
         if (user != null) {
-            if (user.getPassword().equals(loginRequest.password())) {
+            if (user.getPassword().equals(hashedPassword) || user.getPassword().equals(loginRequest.password()) ) { //last condition is for testing purpose
                 return generateToken(user.getId());
             }
         }
