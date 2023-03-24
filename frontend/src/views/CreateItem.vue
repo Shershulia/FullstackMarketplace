@@ -31,7 +31,7 @@
 
 
     <p><strong>Select category:</strong></p>
-    <select multiple>
+    <select multiple v-model="item.categories">
       <option>Electronics</option>
       <option>Clothing and Accessories</option>
       <option>Home and Garden</option>
@@ -111,6 +111,27 @@ export default {
       this.item.userid=this.$store.getters.user.id;
       this.v$.$validate();
       console.log(this.item)
+      if (!this.v$.$error){
+        axios
+          .post(
+            "http://localhost:8090/item/new",
+            this.item,
+            {
+              headers: {
+                Authorization: "Bearer " + this.$store.getters.token,
+              },
+            }
+          )
+          .then(() => {
+            this.editMode=false;
+          })
+          .catch((error) => {
+            console.error("error:");
+            alert("error;could not update item info");
+            console.error(error);
+          });
+
+      }
     },
     goToLoginPage(){
       this.$router.push("/login");

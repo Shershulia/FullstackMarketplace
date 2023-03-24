@@ -58,8 +58,13 @@ public class ItemController {
 
     //create new item and return id
     @PostMapping("/item/new")
-    private Long newItem(@RequestBody Item item)
+    private Long newItem(@RequestBody Item item,@RequestHeader (name="Authorization") String token)
     {
+        String tokenSubject = TokenController.getTokenSubject(token);
+
+        if (!tokenSubject.equals(item.getId().toString())) {
+            return 0L;
+        }
         System.out.println("New item");
         System.out.println(item);
         itemService.newItem(item);
