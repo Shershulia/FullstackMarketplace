@@ -46,7 +46,7 @@ public class ItemController {
 
         String tokenSubject = TokenController.getTokenSubject(token);
 
-        if (!tokenSubject.equals(item.getId())) {
+        if (!tokenSubject.equals(item.getId().toString())) {
             return 0L;
         }
 
