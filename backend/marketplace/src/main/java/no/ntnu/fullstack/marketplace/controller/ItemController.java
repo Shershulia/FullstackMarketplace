@@ -42,7 +42,6 @@ public class ItemController {
     @PostMapping("/item/update")
     private Long saveItem(@RequestBody Item item, @RequestHeader (name="Authorization") String token)
     {
-        //TODO: get itemid from token in header and check if it matches the id in the new item object
 
         String tokenSubject = TokenController.getTokenSubject(token);
 

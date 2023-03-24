@@ -26,6 +26,7 @@
   </div>
   <div class="itemsIndividual" v-if="items.length>0">
     <p>Your items:</p>
+    <button @click="goToSaveItemPage" class="saveButton">Create item</button>
     <ListOfLittleItemsEditableAndDeletable :listOfItems="this.items"></ListOfLittleItemsEditableAndDeletable>
   </div>
 </template>
@@ -140,12 +141,15 @@ export default {
         this.$store.dispatch("logout");
         this.$router.push("/login"); // redirect to the login page
       },
+      goToSaveItemPage(){
+        this.$router.push("/item/create");
+      },
 
   }
 };
 </script>
 
-<style>
+<style scoped>
 .user-info {
   max-width: 400px;
   margin: 0 auto;
@@ -172,5 +176,15 @@ export default {
   border: 1px solid #333;
   padding: 15px;
 
+}
+.saveButton{
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
 }
 </style>
