@@ -54,12 +54,10 @@ export default {
         name: "",
         description:
           "",
-        image:
+        price:
           "",
         location: "",
-        category: "",
-        price: "",
-        userid: "",
+        image: "",
       },
       editMode: false,
     };
@@ -68,34 +66,26 @@ export default {
     enterEditMode(){
       this.editMode=true;
     },
-    updateItem(){
-      console.log({
-        name: this.item.name,
-        price: this.item.name,
-        image: this.item.image,
-        location: this.item.location,
-        description: this.item.description,
-      })
+    updateItem() {
+      console.log(this.item)
       axios
         .post(
           "http://localhost:8090/item/update",
-          {
-            name: this.item.name,
-            price: this.item.name,
-            image: this.item.image,
-            location: this.item.location,
-            description: this.item.description,
-          },
+          this.item,
           {
             headers: {
               Authorization: "Bearer " + this.$store.getters.token,
             },
           }
-        ).catch((error) => {
-        console.error("error:");
-        alert("error;could not update item info");
-        console.error(error);
-      });
+        )
+        .then(() => {
+          this.editMode=false;
+        })
+        .catch((error) => {
+          console.error("error:");
+          alert("error;could not update item info");
+          console.error(error);
+        });
     }
   },
   mounted() {
