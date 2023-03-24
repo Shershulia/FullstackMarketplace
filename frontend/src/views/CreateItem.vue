@@ -13,9 +13,9 @@
       {{ v$.item.price.$errors[0].$message }}
     </p>
 
-    <p><strong>Image:</strong> <input v-model="item.image" :class="{ 'invalid-input': v$.$error && v$.item.image.$error }" /></p>
-    <p class="errorMessage" v-if="v$.item.image.$error">
-      {{ v$.item.image.$errors[0].$message }}
+    <p><strong>Image:</strong> <input v-model="inputImage" :class="{ 'invalid-input': v$.$error && v$.inputImage.$error }" /></p>
+    <p class="errorMessage" v-if="v$.inputImage.$error">
+      {{ v$.inputImage.$errors[0].$message }}
     </p>
 
 
@@ -67,6 +67,7 @@ export default {
   },
   data() {
     return {
+      inputImage: "",
       item: {
         name: "",
         description:
@@ -75,7 +76,7 @@ export default {
         price:
           "",
         location: "",
-        image: "",
+        image: [],
         categories:[],
         metadata:[]
       },
@@ -83,6 +84,10 @@ export default {
   },
   validations() {
     return {
+      inputImage:{
+        required,
+        onlyLinks: helpers.withMessage("Here is only links supported", onlyLinks),
+      },
       item: {
         name: {
           required,
@@ -91,10 +96,6 @@ export default {
         description: {
           required,
           maxLength: maxLength(224)
-        },
-        image: {
-          required,
-          onlyLinks: helpers.withMessage("Here is only links supported", onlyLinks),
         },
         price: {
           required,
@@ -109,12 +110,13 @@ export default {
   methods: {
     updateItem() {
       this.item.userid=this.$store.getters.user.id;
+      this.item.image.push(this.inputImage);
       this.v$.$validate();
       console.log(this.item)
       if (!this.v$.$error){
         axios
           .post(
-            "http://localhost:8090/item/new",
+            "http://localhost:8090/item/update",
             this.item,
             {
               headers: {
@@ -122,13 +124,15 @@ export default {
               },
             }
           )
+          .then(() => {
+            this.editMode=false;
+          })
           .catch((error) => {
             console.error("error:");
             alert("error;could not create item");
             console.error(error);
           });
         this.$router.push("/");
-
 
       }
     },

@@ -5,134 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7fe22fb5-593e-41e4-b0f4-612f280e5ae7" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/allclasses-index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/allpackages-index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/constant-values.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/element-list" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/help-doc.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/index-files/index-1.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/index-files/index-10.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/index-files/index-11.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/index-files/index-12.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/index-files/index-13.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/index-files/index-14.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/index-files/index-15.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/index-files/index-16.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/index-files/index-17.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/index-files/index-18.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/index-files/index-19.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/index-files/index-2.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/index-files/index-3.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/index-files/index-4.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/index-files/index-5.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/index-files/index-6.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/index-files/index-7.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/index-files/index-8.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/index-files/index-9.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/jquery-ui.overrides.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/legal/ADDITIONAL_LICENSE_INFO" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/legal/ASSEMBLY_EXCEPTION" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/legal/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/legal/jquery.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/legal/jqueryUI.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/member-search-index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/module-search-index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/no/ntnu/fullstack/marketplace/MarketplaceApplication.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/no/ntnu/fullstack/marketplace/class-use/MarketplaceApplication.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/no/ntnu/fullstack/marketplace/controller/ItemController.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/no/ntnu/fullstack/marketplace/controller/TokenController.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/no/ntnu/fullstack/marketplace/controller/UserController.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/no/ntnu/fullstack/marketplace/controller/class-use/ItemController.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/no/ntnu/fullstack/marketplace/controller/class-use/TokenController.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/no/ntnu/fullstack/marketplace/controller/class-use/UserController.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/no/ntnu/fullstack/marketplace/controller/package-summary.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/no/ntnu/fullstack/marketplace/controller/package-tree.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/no/ntnu/fullstack/marketplace/controller/package-use.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/no/ntnu/fullstack/marketplace/model/Item.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/no/ntnu/fullstack/marketplace/model/LoginRequest.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/no/ntnu/fullstack/marketplace/model/User.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/no/ntnu/fullstack/marketplace/model/UserRequest.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/no/ntnu/fullstack/marketplace/model/class-use/Item.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/no/ntnu/fullstack/marketplace/model/class-use/LoginRequest.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/no/ntnu/fullstack/marketplace/model/class-use/User.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/no/ntnu/fullstack/marketplace/model/class-use/UserRequest.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/no/ntnu/fullstack/marketplace/model/package-summary.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/no/ntnu/fullstack/marketplace/model/package-tree.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/no/ntnu/fullstack/marketplace/model/package-use.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/no/ntnu/fullstack/marketplace/package-summary.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/no/ntnu/fullstack/marketplace/package-tree.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/no/ntnu/fullstack/marketplace/package-use.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/no/ntnu/fullstack/marketplace/repository/ItemRepository.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/no/ntnu/fullstack/marketplace/repository/UserRepository.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/no/ntnu/fullstack/marketplace/repository/class-use/ItemRepository.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/no/ntnu/fullstack/marketplace/repository/class-use/UserRepository.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/no/ntnu/fullstack/marketplace/repository/package-summary.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/no/ntnu/fullstack/marketplace/repository/package-tree.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/no/ntnu/fullstack/marketplace/repository/package-use.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/no/ntnu/fullstack/marketplace/security/JWTAuthorizationFilter.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/no/ntnu/fullstack/marketplace/security/SecurityConfig.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/no/ntnu/fullstack/marketplace/security/class-use/JWTAuthorizationFilter.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/no/ntnu/fullstack/marketplace/security/class-use/SecurityConfig.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/no/ntnu/fullstack/marketplace/security/package-summary.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/no/ntnu/fullstack/marketplace/security/package-tree.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/no/ntnu/fullstack/marketplace/security/package-use.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/no/ntnu/fullstack/marketplace/service/ItemService.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/no/ntnu/fullstack/marketplace/service/UserService.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/no/ntnu/fullstack/marketplace/service/class-use/ItemService.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/no/ntnu/fullstack/marketplace/service/class-use/UserService.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/no/ntnu/fullstack/marketplace/service/package-summary.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/no/ntnu/fullstack/marketplace/service/package-tree.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/no/ntnu/fullstack/marketplace/service/package-use.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/overview-summary.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/overview-tree.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/package-search-index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/resources/glass.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/resources/x.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/script-dir/jquery-3.6.0.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/script-dir/jquery-ui.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/script-dir/jquery-ui.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/script.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/search.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/stylesheet.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/tag-search-index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marketplace/javadoc/type-search-index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/src/views/ItemCreationView.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/marketplace/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/marketplace/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/marketplace/src/main/java/no/ntnu/fullstack/marketplace/MarketplaceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/marketplace/src/main/java/no/ntnu/fullstack/marketplace/MarketplaceApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/marketplace/src/main/java/no/ntnu/fullstack/marketplace/controller/ItemController.java" beforeDir="false" afterPath="$PROJECT_DIR$/marketplace/src/main/java/no/ntnu/fullstack/marketplace/controller/ItemController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/marketplace/src/main/java/no/ntnu/fullstack/marketplace/controller/TokenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/marketplace/src/main/java/no/ntnu/fullstack/marketplace/controller/TokenController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/marketplace/src/main/java/no/ntnu/fullstack/marketplace/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/marketplace/src/main/java/no/ntnu/fullstack/marketplace/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/marketplace/src/main/java/no/ntnu/fullstack/marketplace/dao/MockDao.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/marketplace/src/main/java/no/ntnu/fullstack/marketplace/dao/UserDao.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/marketplace/src/main/java/no/ntnu/fullstack/marketplace/model/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/marketplace/src/main/java/no/ntnu/fullstack/marketplace/model/Item.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/marketplace/src/main/java/no/ntnu/fullstack/marketplace/model/LoginRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/marketplace/src/main/java/no/ntnu/fullstack/marketplace/model/LoginRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/marketplace/src/main/java/no/ntnu/fullstack/marketplace/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/marketplace/src/main/java/no/ntnu/fullstack/marketplace/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/marketplace/src/main/java/no/ntnu/fullstack/marketplace/model/UserInfoResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/marketplace/src/main/java/no/ntnu/fullstack/marketplace/model/UserRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/marketplace/src/main/java/no/ntnu/fullstack/marketplace/model/UserRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/marketplace/src/main/java/no/ntnu/fullstack/marketplace/repository/ItemRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/marketplace/src/main/java/no/ntnu/fullstack/marketplace/repository/ItemRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/marketplace/src/main/java/no/ntnu/fullstack/marketplace/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/marketplace/src/main/java/no/ntnu/fullstack/marketplace/repository/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/marketplace/src/main/java/no/ntnu/fullstack/marketplace/security/JWTAuthorizationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/marketplace/src/main/java/no/ntnu/fullstack/marketplace/security/JWTAuthorizationFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/marketplace/src/main/java/no/ntnu/fullstack/marketplace/security/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/marketplace/src/main/java/no/ntnu/fullstack/marketplace/security/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/marketplace/src/main/java/no/ntnu/fullstack/marketplace/service/ItemService.java" beforeDir="false" afterPath="$PROJECT_DIR$/marketplace/src/main/java/no/ntnu/fullstack/marketplace/service/ItemService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/marketplace/src/main/java/no/ntnu/fullstack/marketplace/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/marketplace/src/main/java/no/ntnu/fullstack/marketplace/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/marketplace/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/marketplace/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/marketplace/src/main/resources/data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/marketplace/src/main/resources/data.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/marketplace/src/test/java/no/ntnu/fullstack/marketplace/controller/TokenControllerTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/marketplace/src/test/java/no/ntnu/fullstack/marketplace/dao/AccountDaoTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/marketplace/src/test/java/ntnu/fullstack/marketplace/MarketplaceApplicationTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/components/LittleItemCard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/LittleItemCard.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/components/NavigationBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/NavigationBar.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/components/Search.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/Search.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/locales/en.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/locales/en.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/locales/nb.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/locales/nb.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/router/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/services/ItemServiceApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/services/ItemServiceApi.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/views/CreateItem.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/views/CreateItem.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/views/HomeView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/views/HomeView.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/views/ItemDetails.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/views/ItemDetails.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -166,6 +39,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
