@@ -1,11 +1,35 @@
 <template>
   <div v-if="loggedUserId!=null" class="editItemContainer">
     <h2>Create item</h2>
-    <p><strong>Name:</strong> <input v-model="item.name" /></p>
-    <p><strong>Price:</strong> <input v-model="item.price" /></p>
-    <p><strong>Image:</strong> <input v-model="item.image" /></p>
-    <p><strong>Location:</strong> <input v-model="item.location" /></p>
-    <p><strong>Description:</strong> <input v-model="item.description" /></p>
+    <p><strong>Name:</strong> <input v-model="item.name"
+                                     :class="{ 'invalid-input': v$.$error && v$.item.name.$error }"
+    /></p>
+    <p class="errorMessage" v-if="v$.item.name.$error">
+      {{ v$.item.name.$errors[0].$message }}
+    </p>
+    <p><strong>Price:</strong> <input v-model="item.price" type="number" min="0" oninput="validity.valid||(value='');"
+                                      :class="{ 'invalid-input': v$.$error && v$.item.price.$error }"/></p>
+    <p class="errorMessage" v-if="v$.item.price.$error">
+      {{ v$.item.price.$errors[0].$message }}
+    </p>
+
+    <p><strong>Image:</strong> <input v-model="item.image" :class="{ 'invalid-input': v$.$error && v$.item.image.$error }" /></p>
+    <p class="errorMessage" v-if="v$.item.image.$error">
+      {{ v$.item.image.$errors[0].$message }}
+    </p>
+
+
+    <p><strong>Location:</strong> <input v-model="item.location" :class="{ 'invalid-input': v$.$error && v$.item.location.$error }" /></p>
+    <p class="errorMessage" v-if="v$.item.location.$error">
+      {{ v$.item.location.$errors[0].$message }}
+    </p>
+
+    <p><strong>Description:</strong> <input v-model="item.description" :class="{ 'invalid-input': v$.$error && v$.item.description.$error }" /></p>
+    <p class="errorMessage" v-if="v$.item.description.$error">
+      {{ v$.item.description.$errors[0].$message }}
+    </p>
+
+
     <p><strong>Select category:</strong></p>
     <select multiple>
       <option>Electronics</option>
@@ -30,11 +54,19 @@
 
 <script>
 import axios from "axios";
+import useValidate from "@vuelidate/core";
+import { helpers, maxLength, minLength, required } from "@vuelidate/validators";
+const onlyLinks = (value) => value.match(/[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi);
+
+
+
 export default {
   name: "CreateItem",
+  setup() {
+    return { v$: useValidate() };
+  },
   data() {
     return {
-      id:0,
       item: {
         name: "",
         description:
@@ -49,9 +81,35 @@ export default {
       },
     };
   },
+  validations() {
+    return {
+      item: {
+        name: {
+          required,
+          minLength: minLength(4)
+        },
+        description: {
+          required,
+          maxLength: maxLength(224)
+        },
+        image: {
+          required,
+          onlyLinks: helpers.withMessage("Here is only links supported", onlyLinks),
+        },
+        price: {
+          required,
+        },
+        location: {
+          required,
+        },
+      },
+    };
+  },
+
   methods: {
     updateItem() {
-      this.item.userid=this.loggedUserId();
+      this.item.userid=this.$store.getters.user.id;
+      this.v$.$validate();
       console.log(this.item)
     },
     goToLoginPage(){
@@ -151,6 +209,12 @@ export default {
   border: 1px solid #333;
   padding: 15px;
 
+}
+.errorMessage {
+  color: red;
+}
+input.invalid-input {
+  border: 2px solid red;
 }
 
 </style>
