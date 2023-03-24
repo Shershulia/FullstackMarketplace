@@ -37,7 +37,6 @@
 
 <script>
 import {useI18n} from "vue-i18n";
-import axios from "axios";
 
 export default {
   name: 'NavigationBar',

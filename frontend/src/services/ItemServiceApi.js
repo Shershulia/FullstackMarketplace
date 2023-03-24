@@ -8,7 +8,8 @@ const apiClient = axios.create({
   },
 });
 
-export const getItemBy = (id) => {
+export const getItemById = (id) => {
+  console.log("getItemById: " + id);
   return apiClient.get(`/item/${id}`, {});
 };
 
@@ -32,11 +33,17 @@ export const deleteItem = (id) => {
   });
 };
 
+export const getItemsCategories = () => {
+  return apiClient.get(`/item/categories`, {}).then((response) => {
+    return response.data;
+  });
+};
+
+
 //register
 export const register = (user) => {
   console.log("creating user");
   console.log(user);
-
   axios
     .post("http://localhost:8090/user/register", user)
     .then((response) => {

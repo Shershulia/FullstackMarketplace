@@ -1,7 +1,12 @@
 <template>
   <div v-if="!editMode" class="item-details-container">
     <div class="item-image">
-      <img :src="item.image" />
+      <img :src="currentImageSrc" />
+      <div class="image-navigation">
+        <button :disabled="imgIndex === 0" @click="imgIndex--">Previous</button>
+        <p>{{ imgIndex + 1 }} / {{ imgNum }}</p>
+        <button :disabled="imgIndex === imgNum - 1" @click="imgIndex++">Next</button>
+      </div>
     </div>
     <div class="item-details">
 
@@ -41,9 +46,10 @@
 
 <script>
 import { useRoute } from "vue-router";
+import { getItemById } from "@/services/ItemServiceApi";
 import GoogleMap from "@/components/GoogleMap.vue";
-import { getItemBy } from "@/services/ItemServiceApi";
 import axios from "axios";
+
 export default {
   name: "ItemDetails",
   components: {
@@ -51,21 +57,34 @@ export default {
   },
   data() {
     return {
-      id: 0,
-      item: {
-        id: this.id,
-        name: "",
-        description:
-          "",
-        price:
-          "",
-        location: "",
-        image: "",
-      },
+      item: {},
+      imgIndex: 0,
+      imgNum: 0,
       editMode: false,
     };
   },
+  computed: {
+    currentImageSrc() {
+      return this.item.image[this.imgIndex];
+    },
+    itemBelongsTo() {
+      return this.$store.getters.user.id;
+    },
+  },
+  created() {
+    this.fetchItem();
+  },
   methods: {
+    fetchItem() {
+      const route = useRoute();
+      let id = route.params.id;
+      getItemById(id).then((response) => {
+        let item = response.data;
+        console.log(item);
+        this.imgNum = item.image.length;
+        this.item = item;
+      });
+    },
     enterEditMode(){
       this.editMode=true;
     },
@@ -91,21 +110,6 @@ export default {
         });
     }
   },
-  mounted() {
-    const route = useRoute();
-    this.id = route.params.id;
-    if(!this.editMode) {
-      getItemBy(this.id).then((item) => {
-        console.log(item.data);
-        this.item = item.data;
-      });
-    }
-  },
-  computed: {
-    itemBelongsTo() {
-      return this.$store.getters.user.id;
-    },
-  }
 };
 </script>
 
@@ -247,6 +251,17 @@ export default {
   height: 75%;
   border-radius: 5px;
   margin: auto;
+}
+
+.image-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.item-details {
+  width: 50%;
 }
 
 

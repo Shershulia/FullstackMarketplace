@@ -124,7 +124,7 @@ export default {
           )
           .catch((error) => {
             console.error("error:");
-            alert("error;could not update item info");
+            alert("error;could not create item");
             console.error(error);
           });
         this.$router.push("/");
