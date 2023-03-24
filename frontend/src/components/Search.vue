@@ -21,9 +21,12 @@
       />
       <select v-model="searchCategory">
         <option value="">Select category</option>
-        <option>Chair</option>
-        <option>B</option>
-        <option>C</option>
+        <option>Electronics</option>
+        <option>Clothing and Accessories</option>
+        <option>Home and Garden</option>
+        <option>Health and Beauty</option>
+        <option>Sports and Outdoors</option>
+
       </select>
       <input
           type="text"
@@ -97,7 +100,9 @@ async function getLatAndLng(location){
            items = items.filter((item) => item.name.toLowerCase().includes(this.searchValue.trim().toLowerCase()));
          }
          if (this.searchCategory !== "") {
-           items = items.filter((item) => item.category.toLowerCase() === this.searchCategory.toLowerCase());
+           console.log(items);
+           items = items.filter((item) => item.categories.
+             some((category)=> category.toLowerCase()===this.searchCategory.toLowerCase()));
          }
          if (navigator.geolocation && this.searchLocation.toLowerCase() === "current" && this.searchByLocation) {
            navigator.geolocation.getCurrentPosition((position) => {
