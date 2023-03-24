@@ -122,14 +122,13 @@ export default {
               },
             }
           )
-          .then(() => {
-            this.editMode=false;
-          })
           .catch((error) => {
             console.error("error:");
             alert("error;could not update item info");
             console.error(error);
           });
+        this.$router.push("/");
+
 
       }
     },
