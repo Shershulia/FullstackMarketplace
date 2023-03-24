@@ -13,15 +13,29 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
+/**
+ * Controller for user related requests
+ * Contains methods for creating, updating, deleting and getting users
+ * Handles requests to /user and /user/{id} endpoints and handles user requests
+ */
 @RequestMapping(value = "/user")
 @EnableAutoConfiguration
 @CrossOrigin
 @RestController
 public class UserController {
+    /**
+     * Service for user related requests
+     * Contains methods for creating, updating, deleting and getting users
+     */
     @Autowired
     UserService userService;
 
+    /**
+     * Get user by id from database and return user object as json
+     * @param id id of user to get from database
+     * @param token token from header to verify user credentials so that only the user can get their own personal data
+     * @return user object
+     */
     @GetMapping("/{id}")
     private User getUser(@PathVariable("id") Long id, @RequestHeader (name="Authorization") String token) {
         String tokenSubject = TokenController.getTokenSubject(token);
@@ -35,6 +49,12 @@ public class UserController {
         User user = userService.getUserById(id);
         return user;
     }
+
+    /**
+     * Delete user from database
+     * @param user user object to delete from database
+     * @param token token from header to verify user credentials so that only the user can delete their own personal data
+     */
     @DeleteMapping("/delete/{id}")
     private void deleteUser(@RequestBody User user, @RequestHeader (name="Authorization") String token)
     {
@@ -49,6 +69,13 @@ public class UserController {
         userService.delete(user.getId());
     }
 
+    /**
+     * Update user in database with new user object
+     * @param user new data to update user with
+     * @param token token from header to verify user credentials so that only the user can update their own personal data
+     *              user id is extracted from token and updates user with that id
+     * @return id of updated user
+     */
     //creating post mapping that post the student detail in the database
     @PostMapping("/update")
     private Long saveUser(@RequestBody User user, @RequestHeader (name="Authorization") String token)
@@ -64,6 +91,11 @@ public class UserController {
         return user.getId();
     }
 
+    /**
+     * Create new user in database
+     * @param userRequest user object to create in database, user id is generated automatically by database
+     * @return id of created user
+     */
     //create new user and return id
     @PostMapping("/register")
     @CrossOrigin

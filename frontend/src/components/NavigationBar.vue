@@ -24,8 +24,8 @@
           {{ t('account') }}
         </a>
         <div class="dropdown-menu" v-if="showAccountDropdown" @click="hideAccountDropdown">
-          <a class="dropdown-item" href="#">{{ t('sign-up') }}</a>
-          <a class="dropdown-item" href="#">{{ t('log-in') }}</a>
+          <router-link to="/user" class="dropdown-item">{{ t('account/login') }}</router-link>
+          <router-link to="/register-user" class="dropdown-item">{{ t('sign-up') }}</router-link>
         </div>
       </li>
     </ul>

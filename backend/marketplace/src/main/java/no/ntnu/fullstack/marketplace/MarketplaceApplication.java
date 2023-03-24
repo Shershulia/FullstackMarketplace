@@ -22,6 +22,10 @@ import javax.persistence.EntityManagerFactory;
 import java.beans.PropertyVetoException;
 import java.util.Arrays;
 
+/**
+ * Main class for the marketplace application that starts the Spring Boot application.
+ * This class is also responsible for initializing the database with some test data.
+ */
 @Configuration
 @EnableJpaRepositories("no.ntnu.fullstack.marketplace.repository")
 @ComponentScan("no.ntnu.fullstack.marketplace.*")
@@ -30,14 +34,27 @@ import java.util.Arrays;
 public class MarketplaceApplication {
 //    @Autowired
 //    private UserDataRepository userDataRepository;
+
+    /**
+     * The item service that is used to initialize the database with some test data.
+     */
     @Autowired
     ItemService itemService;
+
+    /**
+     * Create a new Spring Boot application.
+     * @param args Command line arguments
+     */
     public static void main(String[] args) {
         SpringApplication.run(MarketplaceApplication.class, args);
 
 
     }
 
+    /**
+     * Initialize the database with some test data.
+     * This method is called after the Spring Boot application has started.
+     */
     @PostConstruct
     private void postInit() {
         System.out.println("init");
