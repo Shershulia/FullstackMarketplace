@@ -1,5 +1,5 @@
 <template>
-  <div class="editItemContainer">
+  <div v-if="loggedUserId!=null" class="editItemContainer">
     <h2>Create item</h2>
     <p><strong>Name:</strong> <input v-model="item.name" /></p>
     <p><strong>Price:</strong> <input v-model="item.price" /></p>
@@ -19,6 +19,13 @@
       <button @click="updateItem" class="saveButton">Create Item</button>
     </div>
   </div>
+  <div class="elseCreate" v-else>
+    <h2>You should be authenticated to create a item</h2>
+    <div class="buttonsCreatePage">
+      <button type="submit" class="goToLoginButton" @click="goToRegisterPage"> Register</button>
+      <button class="loginButtonOnCreateItem" type="button" @click="goToLoginPage">Login page</button>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -32,7 +39,7 @@ export default {
         name: "",
         description:
           "",
-        userid: this.id,
+        userid: "",
         price:
           "",
         location: "",
@@ -44,11 +51,20 @@ export default {
   },
   methods: {
     updateItem() {
+      this.item.userid=this.loggedUserId();
       console.log(this.item)
+    },
+    goToLoginPage(){
+      this.$router.push("/login");
+
+    },
+    goToRegisterPage(){
+      this.$router.push("/register-user");
+
     }
   },
   computed: {
-    itemBelongsTo() {
+    loggedUserId() {
       return this.$store.getters.user.id;
     },
   }
@@ -103,7 +119,39 @@ export default {
   display: flex;
   justify-content: center;
 }
+.elseCreate{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.buttonsCreatePage{
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
+.buttonsCreatePage .goToLoginButton{
+  margin: 10px;
+  width: 40%;
+}
+.loginButtonOnCreateItem{
+  margin: 10px;
+  width: 40%;
+  background-color: #003366;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.loginButtonOnCreateItem:hover {
+  background-color: #0052cc;
+  color: white;
+  border: 1px solid #333;
+  padding: 15px;
 
+}
 
 </style>
 
