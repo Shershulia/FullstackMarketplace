@@ -158,6 +158,7 @@ export default {
           name: this.firstName,
           lastname: this.lastName,
           age: this.age,
+          permission:"normal",
         };
         console.log(request);
         //use ItemServiceApi to send request to backend

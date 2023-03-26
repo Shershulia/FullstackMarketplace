@@ -65,6 +65,8 @@ export default {
           alert("error;could not create category");
           console.error(error);
         });
+      this.$router.push("/user");
+
     },
   },
   computed:{
