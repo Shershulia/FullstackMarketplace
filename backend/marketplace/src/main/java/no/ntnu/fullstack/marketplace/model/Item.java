@@ -267,4 +267,19 @@ public class Item {
     public void setImage(List<String> image) {
         this.image = image;
     }
+
+    @Override
+    public String toString() {
+        return "Item{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", userid=" + userid +
+                ", price=" + price +
+                ", location='" + location + '\'' +
+                ", image=" + image +
+                ", categories=" + categories +
+                ", metadata=" + metadata +
+                '}';
+    }
 }

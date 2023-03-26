@@ -78,6 +78,15 @@ public class ItemService
      */
     public void modify(String categoryModifyed,String newCategory)
     {
+        itemRepository.findAll().forEach(item -> {
+            if (item.getCategories().contains(categoryModifyed)){
+                List<String> nowCategories = item.getCategories();
+                nowCategories.remove(categoryModifyed);
+                nowCategories.add(newCategory);
+                item.setCategories(nowCategories);
+                itemRepository.save(item);
+            }
+        });
         basicCategories.remove(categoryModifyed);
         basicCategories.add(newCategory);
     }
