@@ -52,7 +52,8 @@ public class ItemController {
     }
 
     /**
-     * GET request to get available for creation categories in the database
+     * Post request to add category to database
+     * @param requestBody request body which contains new category
      * @param token JWT token containing the id of the user, needed in header to verify that the user is allowed to add category
      */
     @PostMapping("/item/creation-categories")
@@ -63,6 +64,20 @@ public class ItemController {
         String newCategory = requestBody.get("category");
         itemService.addCategory(newCategory);
         System.out.println("Category added");
+
+    }
+    /**
+     * Delete request to delete category from a database
+     * @param categoryDelete category that should be deleted
+     * @param token JWT token containing the id of the user, needed in header to verify that the user is allowed to add category
+     */
+    @DeleteMapping("/item/creation-categories/{categoryDelete}")
+    private void removeCategory(@PathVariable String categoryDelete,@RequestHeader (name="Authorization") String token) {
+        //  if (!TokenController.verifyToken(token)) {
+        //      throw new RuntimeException("Invalid token");
+        // }
+        itemService.delete(categoryDelete);
+        System.out.println("Category deleted");
 
     }
     /**

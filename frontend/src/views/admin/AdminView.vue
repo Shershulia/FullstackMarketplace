@@ -17,9 +17,11 @@
       <input v-model="modifyTo">
       <button class="modifyCategory" @click="modifyCategory">Modify category</button>
 
-      <p><strong>Delete category</strong></p>
-      <input v-model="newCategory">
-      <button class="deleteCategory" @click="addCategory">Delete category</button>
+      <p><strong>Choose category to delete</strong></p>
+      <select v-model="deleteCategory">
+        <option v-for="category in categories" >{{ category }}</option>
+      </select>
+      <button class="deleteCategory" @click="delCategory">Delete category</button>
     </div>
     <div v-else>
       <p>You should have admin permission level to use this page
@@ -45,12 +47,33 @@ export default {
       newCategory: "",
       modifiedCategory:"",
       modifyTo:"",
+      deleteCategory:"",
 
     };
   },
   methods: {
     setSame(){
       this.modifyTo=this.modifiedCategory;
+    },
+    delCategory(){
+      if (this.deleteCategory!==""){
+        axios
+          .delete(
+            `http://localhost:8090/item/creation-categories/${this.deleteCategory}`,
+            {
+              headers: {
+                Authorization: "Bearer " + this.$store.getters.token,
+              },
+            }
+          ).then(()=>{
+          alert("Category was deleted");
+        })
+          .catch((error) => {
+            console.error("error:");
+            alert("error;could not delete category");
+            console.error(error);
+          });
+      }else alert("could not delete category");
     },
     modifyCategory(){
       if(this.modifiedCategory!==""&&this.modifyTo!==""&&this.modifiedCategory!==this.modifyTo){

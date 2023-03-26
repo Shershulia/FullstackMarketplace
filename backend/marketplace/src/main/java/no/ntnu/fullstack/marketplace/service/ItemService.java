@@ -74,7 +74,7 @@ public class ItemService
     /**
      * Modify category
      * @param  categoryModifyed category should be modifyed from basic categories
-     * @param  categoryModifyed category should be modifyed to basic categories
+     * @param  newCategory category will be set instead of modified
      */
     public void modify(String categoryModifyed,String newCategory)
     {
@@ -89,6 +89,20 @@ public class ItemService
         });
         basicCategories.remove(categoryModifyed);
         basicCategories.add(newCategory);
+    }
+    /**
+     * Delete category
+     * @param  deletedCategory category should be deleted from basic categories
+     */
+    public void delete(String deletedCategory)
+    {
+        itemRepository.findAll().forEach(item -> {
+            if (item.getCategories().contains(deletedCategory)){
+                item.getCategories().remove(deletedCategory);
+                itemRepository.save(item);
+            }
+        });
+        basicCategories.remove(deletedCategory);
     }
 
     /**

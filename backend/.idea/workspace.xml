@@ -5,9 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7fe22fb5-593e-41e4-b0f4-612f280e5ae7" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/marketplace/src/main/java/no/ntnu/fullstack/marketplace/controller/ItemController.java" beforeDir="false" afterPath="$PROJECT_DIR$/marketplace/src/main/java/no/ntnu/fullstack/marketplace/controller/ItemController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/marketplace/src/main/java/no/ntnu/fullstack/marketplace/service/ItemService.java" beforeDir="false" afterPath="$PROJECT_DIR$/marketplace/src/main/java/no/ntnu/fullstack/marketplace/service/ItemService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/views/HomeView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/views/HomeView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/views/admin/AdminView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/views/admin/AdminView.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,7 +86,7 @@
       <workItem from="1679316065401" duration="27000" />
       <workItem from="1679591933058" duration="7595000" />
       <workItem from="1679656595154" duration="5146000" />
-      <workItem from="1679852410402" duration="16181000" />
+      <workItem from="1679852410402" duration="17826000" />
     </task>
     <servers />
   </component>
