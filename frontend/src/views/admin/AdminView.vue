@@ -1,8 +1,7 @@
 <template>
   <div class="home">
-    <!-- <ListOfLittleItems :listOfItems="items"></ListOfLittleItems> -->
     <div v-if="userForAdmin.permission==='admin'">
-      <Search :items="items"></Search>
+
     </div>
     <div v-else>
       <p>You should have admin permission level to use this page
@@ -21,7 +20,7 @@ export default {
   name: "AdminView",
   components: {
     // ListOfLittleItems,
-    Search
+
   },
   data() {
     return {

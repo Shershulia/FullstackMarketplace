@@ -11,7 +11,9 @@
     <div class="item-details">
 
       <h2 class="item-name">{{ item.name }}</h2>
-      <button v-if="item.userid===this.itemBelongsTo" class="goToLoginButton" @click="enterEditMode">Edit</button>
+      <button v-if="item.userid===this.itemBelongsTo.id" class="goToLoginButton" @click="enterEditMode">Edit</button>
+      <button v-if="this.itemBelongsTo.permission ==='admin'" class="goToLoginButton" @click="deleteItem">Delete by admin</button>
+
 
       <p class="item-price">{{ item.price }} kr,-</p>
       <div class="locationWithImage">
@@ -46,7 +48,7 @@
 
 <script>
 import { useRoute } from "vue-router";
-import { getItemById } from "@/services/ItemServiceApi";
+import { deleteItem, getItemById } from "@/services/ItemServiceApi";
 import GoogleMap from "@/components/GoogleMap.vue";
 import axios from "axios";
 
@@ -68,7 +70,7 @@ export default {
       return this.item.image[this.imgIndex];
     },
     itemBelongsTo() {
-      return this.$store.getters.user.id;
+      return this.$store.getters.user;
     },
   },
   created() {
@@ -87,6 +89,13 @@ export default {
     },
     enterEditMode(){
       this.editMode=true;
+    },
+    deleteItem() {
+      deleteItem(this.item.id).then(() => {
+        this.$emit("deletedItem",this.item.id);
+        alert("Item deleted");
+        this.$router.push("/shopping");
+      });
     },
     updateItem() {
       console.log(this.item)

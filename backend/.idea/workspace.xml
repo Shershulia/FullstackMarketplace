@@ -5,12 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7fe22fb5-593e-41e4-b0f4-612f280e5ae7" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/marketplace/src/main/java/no/ntnu/fullstack/marketplace/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/marketplace/src/main/java/no/ntnu/fullstack/marketplace/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/marketplace/src/main/java/no/ntnu/fullstack/marketplace/model/UserRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/marketplace/src/main/java/no/ntnu/fullstack/marketplace/model/UserRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/marketplace/src/main/resources/data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/marketplace/src/main/resources/data.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/store/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/views/UserView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/views/UserView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/views/ItemDetails.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/views/ItemDetails.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/views/admin/AdminView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/views/admin/AdminView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/views/admin/SearchAdmin.vue" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,7 +86,7 @@
       <workItem from="1679316065401" duration="27000" />
       <workItem from="1679591933058" duration="7595000" />
       <workItem from="1679656595154" duration="5146000" />
-      <workItem from="1679852410402" duration="3000000" />
+      <workItem from="1679852410402" duration="5394000" />
     </task>
     <servers />
   </component>
