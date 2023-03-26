@@ -4,23 +4,41 @@ import jwt_decode from "jwt-decode";
 
 export default createStore({
   state: {
-    username: null,
+    // username: null,
+    user: {
+      id:null,
+      username: null,
+      name: null,
+      email: null,
+      phone: null,
+    },
     token: null,
   },
   getters: {
     isLoggedIn: (state) => !!state.username && !!state.token,
-    username: (state) => state.username,
+    username: (state) => state.user.username,
+    user: (state) => state.user,
     token: (state) => state.token,
   },
   mutations: {
-    setUser(state, username) {
-      state.username = username;
+    setUsername(state, username) {
+      state.user.username = username;
+    },
+    setUser(state, user) {
+      //TODO: update server with new user info
+
+      state.user = user;
     },
     setToken(state, token) {
       state.token = token;
     },
     clearAuthData(state) {
-      state.username = null;
+      state.user.id=null;
+      state.user.username = null;
+      state.user.name = null;
+      state.user.email = null;
+      state.user.phone = null;
+
       state.token = null;
     },
   },
@@ -44,8 +62,33 @@ export default createStore({
             console.log(decodedToken);
             console.log(decodedToken.sub);
 
-            commit("setUser", decodedToken.sub);
+            commit("setUsername", decodedToken.sub);
             commit("setToken", token);
+
+            //get user info from server
+            axios
+              .get("http://localhost:8090/user/" + decodedToken.sub, {
+                headers: {
+                  Authorization: "Bearer " + token,
+                },
+              })
+              .then((response) => {
+                console.log("response:");
+                console.log(response);
+                // this.$store.commit("setUserInfo", response.data);
+                let user = {
+                  id: response.data.id,
+                  username: response.data.username,
+                  email: response.data.email,
+                  name: response.data.name,
+                  lastname: response.data.lastname,
+                  age: response.data.age,
+                };
+                //update store
+                this.commit("setUser", user);
+                return user;
+              });
+
             resolve(response);
           })
           .catch((error) => {

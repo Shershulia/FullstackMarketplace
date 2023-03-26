@@ -1,0 +1,6 @@
+no.ntnu.fullstack.marketplace
+no.ntnu.fullstack.marketplace.controller
+no.ntnu.fullstack.marketplace.model
+no.ntnu.fullstack.marketplace.repository
+no.ntnu.fullstack.marketplace.security
+no.ntnu.fullstack.marketplace.service

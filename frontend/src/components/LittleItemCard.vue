@@ -3,7 +3,7 @@
     <div class="littleCard">
       <div class="imageWithPrice">
         <p class="price">{{ item.price }} kr,-</p>
-        <img class="image" :src="item.image" />
+        <img class="image" :src="item.image[0]" />
       </div>
 
       <p class="name">{{ item.name }}</p>

@@ -1,6 +1,6 @@
 <template>
   <ul class="listOfCards">
-    <li v-for="exampleItem in listOfItems" :key="exampleItem.name">
+    <li v-for="exampleItem in listOfItems" :key="exampleItem.id">
       <LittleItemCard :item="exampleItem"></LittleItemCard>
     </li>
   </ul>
