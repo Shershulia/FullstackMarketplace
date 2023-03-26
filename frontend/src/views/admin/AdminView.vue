@@ -3,11 +3,23 @@
     <div class="adminPanel" v-if="userForAdmin.permission==='admin'">
       <p><strong>Categories in database:</strong></p>
       <select>
-        <option disabled v-for="category in categories" :key="category">{{ category }}</option>
+        <option v-for="category in categories" :key="category">{{ category }}</option>
       </select>
       <p><strong>Enter a new category</strong></p>
       <input v-model="newCategory">
       <button class="addCategory" @click="addCategory">Add category</button>
+
+      <p><strong>Modify already existed category</strong></p>
+      <p><strong>Choose category:</strong></p>
+      <select v-model="modifiedCategory" @change="setSame">
+        <option v-for="category in categories" :key="category">{{ category }}</option>
+      </select>
+      <input v-model="modifyTo">
+      <button class="modifyCategory" @click="modifyCategory">Modify category</button>
+
+      <p><strong>Delete category</strong></p>
+      <input v-model="newCategory">
+      <button class="deleteCategory" @click="addCategory">Delete category</button>
     </div>
     <div v-else>
       <p>You should have admin permission level to use this page
@@ -18,15 +30,11 @@
 
 <script>
 
-import { getCreationCategories, getItems } from "@/services/ItemServiceApi";
+import { getCreationCategories } from "@/services/ItemServiceApi";
 import axios from "axios";
 
 export default {
   name: "AdminView",
-  components: {
-    // ListOfLittleItems,
-
-  },
   async mounted() {
     this.categories=await getCreationCategories();
     console.log(this.categories);
@@ -35,26 +43,34 @@ export default {
     return {
       categories: [],
       newCategory: "",
+      modifiedCategory:"",
+      modifyTo:"",
+
     };
   },
-  created() {
-    this.fetchItems();
-
-  },
   methods: {
-    fetchItems() {
-      getItems().then((items) => {
-        console.log("items");
-        console.log(items);
-        this.items = items;
-      });
+    setSame(){
+      this.modifyTo=this.modifiedCategory;
+    },
+    modifyCategory(){
+      if(this.modifiedCategory!==""&&this.modifyTo!==""&&this.modifiedCategory!==this.modifyTo){
+        axios.put(`http://localhost:8090/item/creation-categories/${this.modifiedCategory}`, { category: this.modifyTo }, {
+          headers: { Authorization: "Bearer " + this.$store.getters.token, },
+        })
+          .then(( ) => {
+            alert("Category was modified");
+          })
+          .catch(error => {
+            alert(error);
+            console.log(error);
+          });
+      }else alert("Modification is not chosen");
     },
     addCategory(){
-      let newCategory= this.newCategory;
       axios
         .post(
           "http://localhost:8090/item/creation-categories",
-           newCategory ,
+          { category: this.newCategory } ,
           {
             headers: {
               Authorization: "Bearer " + this.$store.getters.token,
@@ -102,6 +118,26 @@ input{
 }
 .addCategory{
   background-color: #4CAF50;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+}
+.deleteCategory{
+  background-color: #910000;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+}
+.modifyCategory{
+  background-color: #003366;
   color: white;
   padding: 10px;
   border-radius: 5px;

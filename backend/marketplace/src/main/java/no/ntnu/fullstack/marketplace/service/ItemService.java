@@ -71,6 +71,16 @@ public class ItemService
     {
         basicCategories.add(category);
     }
+    /**
+     * Modify category
+     * @param  categoryModifyed category should be modifyed from basic categories
+     * @param  categoryModifyed category should be modifyed to basic categories
+     */
+    public void modify(String categoryModifyed,String newCategory)
+    {
+        basicCategories.remove(categoryModifyed);
+        basicCategories.add(newCategory);
+    }
 
     /**
      * Get all item from the database

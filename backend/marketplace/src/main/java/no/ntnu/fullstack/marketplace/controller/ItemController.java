@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Controller for Item objects in the database
@@ -55,14 +56,31 @@ public class ItemController {
      * @param token JWT token containing the id of the user, needed in header to verify that the user is allowed to add category
      */
     @PostMapping("/item/creation-categories")
-    private void addCategory(@RequestBody String category,@RequestHeader (name="Authorization") String token) {
+    private void addCategory(@RequestBody Map<String, String> requestBody,@RequestHeader (name="Authorization") String token) {
         //  if (!TokenController.verifyToken(token)) {
         //      throw new RuntimeException("Invalid token");
         // }
-         itemService.addCategory(category);
+        String newCategory = requestBody.get("category");
+        itemService.addCategory(newCategory);
         System.out.println("Category added");
 
     }
+    /**
+     * Put request to modify category
+     * @param categoryModified category to be deleted from db
+     * @param requestBody body with a new category
+     * @param token JWT token containing the id of the user, needed in header to verify that the user is allowed to add category
+     */
+    @PutMapping("/item/creation-categories/{categoryModified}")
+    private void modifyCategory(@PathVariable String categoryModified, @RequestBody Map<String, String> requestBody, @RequestHeader (name="Authorization") String token) {
+        //  if (!TokenController.verifyToken(token)) {
+        //      throw new RuntimeException("Invalid token");
+        // }
+        String newCategory = requestBody.get("category");
+        itemService.modify(categoryModified, newCategory);
+        System.out.println("Category modified");
+    }
+
 
 
 
