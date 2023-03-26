@@ -84,13 +84,15 @@ export default {
 }
 .addToCartButton{
   position: absolute;
+  width: 25%;
   bottom: 4px;
   right: 0;
   margin: 0;
   padding: 10px;
   border-radius: 10px;
   color: white;
-  background-color: rgb(126, 126, 126, 0.7);}
+  background-color: rgba(126, 126, 126, 0.7);}
+
 .addToCartButton:hover{
   transform: rotate(360deg);
 }
