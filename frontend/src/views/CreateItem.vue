@@ -31,9 +31,9 @@
 
 
     <p><strong>Select category:</strong></p>
-    <select v-model="item.categories">
+    <select v-model="item.categories" multiple>
       <option value="">Select category</option>
-      <option v-for="category in categories" :key="category">{{ category }}</option>    </select>
+      <option v-for="category in  showedCategories" :key="category">{{ category }}</option>    </select>
     <div class="saveButtonContainer">
       <button @click="updateItem" class="saveButton">Create Item</button>
     </div>
@@ -61,12 +61,11 @@ export default {
     return { v$: useValidate() };
   },
   async mounted() {
-    this.categories=await getCreationCategories();
-    console.log(this.categories);
+    this.showedCategories=await getCreationCategories();
   },
   data() {
     return {
-      categories: [],
+      showedCategories:[],
       inputImage: "",
       item: {
         name: "",

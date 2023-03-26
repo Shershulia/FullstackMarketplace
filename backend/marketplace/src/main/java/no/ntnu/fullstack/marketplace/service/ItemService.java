@@ -23,6 +23,12 @@ public class ItemService
     @Autowired
     ItemRepository itemRepository;
     //getting all item records
+    /**
+     * All basic categories for item that user can set during item creation
+     *
+     */
+    private List<String> basicCategories = new ArrayList<>(Arrays.asList("Electronics","Clothing and Accessories",
+            "Home and Garden", "Health and Beauty", "Sports and Outdoors"));
 
     /**
      * Get all items from the database and return them as a list
@@ -55,9 +61,15 @@ public class ItemService
      */
     public List<String> getAvailableCategory()
     {
-        List<String> categoriesList = new ArrayList<>(Arrays.asList("Electronics","Clothing and Accessories",
-                "Home and Garden", "Health and Beauty", "Sports and Outdoors"));
-        return categoriesList;
+        return basicCategories;
+    }
+    /**
+     * Add category
+     * @param  category category added to basic categories
+     */
+    public void addCategory(String category)
+    {
+        basicCategories.add(category);
     }
 
     /**

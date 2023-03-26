@@ -1,10 +1,12 @@
 <template>
   <div class="home">
     <div v-if="userForAdmin.permission==='admin'">
-      <select v-model="searchCategory">
-        <option value="">Select category</option>
-        <option v-for="category in this.categories" :key="category">{{ category }}</option>
+      <p><strong>Categories in database:</strong></p>
+      <select>
+        <option disabled v-for="category in categories" :key="category">{{ category }}</option>
       </select>
+      <input v-model="newCategory">
+      <button @click="addCategory">Add category</button>
     </div>
     <div v-else>
       <p>You should have admin permission level to use this page
@@ -15,7 +17,8 @@
 
 <script>
 
-import { getItems } from "@/services/ItemServiceApi";
+import { getCreationCategories, getItems } from "@/services/ItemServiceApi";
+import axios from "axios";
 
 export default {
   name: "AdminView",
@@ -23,9 +26,14 @@ export default {
     // ListOfLittleItems,
 
   },
+  async mounted() {
+    this.categories=await getCreationCategories();
+    console.log(this.categories);
+  },
   data() {
     return {
       categories: [],
+      newCategory: "",
     };
   },
   created() {
@@ -39,6 +47,24 @@ export default {
         console.log(items);
         this.items = items;
       });
+    },
+    addCategory(){
+      let newCategory= this.newCategory;
+      axios
+        .post(
+          "http://localhost:8090/item/creation-categories",
+           newCategory ,
+          {
+            headers: {
+              Authorization: "Bearer " + this.$store.getters.token,
+            },
+          }
+        )
+        .catch((error) => {
+          console.error("error:");
+          alert("error;could not create category");
+          console.error(error);
+        });
     },
   },
   computed:{

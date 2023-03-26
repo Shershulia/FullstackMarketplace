@@ -47,8 +47,21 @@ public class ItemController {
      */
     @GetMapping("/item/creation-categories")
     private List<String> getAvailableCategories() {
-        System.out.println("Bbb");
         return itemService.getAvailableCategory();
+    }
+
+    /**
+     * GET request to get available for creation categories in the database
+     * @param token JWT token containing the id of the user, needed in header to verify that the user is allowed to add category
+     */
+    @PostMapping("/item/creation-categories")
+    private void addCategory(@RequestBody String category,@RequestHeader (name="Authorization") String token) {
+        //  if (!TokenController.verifyToken(token)) {
+        //      throw new RuntimeException("Invalid token");
+        // }
+         itemService.addCategory(category);
+        System.out.println("Category added");
+
     }
 
 
