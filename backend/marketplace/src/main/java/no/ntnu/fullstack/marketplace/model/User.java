@@ -76,6 +76,12 @@ public class User {
     @Column (name = "age")
     private Integer age;
 
+    /**
+     * User status that defines his status
+     */
+    @Column (name = "permission")
+    private String permission;
+
 
     /**
      * The constructor creates a User object with a username and password. The other fields are set to null.
@@ -89,6 +95,7 @@ public class User {
         this.name = null;
         this.lastname = null;
         this.age = null;
+        this.permission=null;
     }
 
     /**
@@ -99,14 +106,16 @@ public class User {
      * @param name The name of the user.
      * @param lastname The lastname of the user.
      * @param age The age of the user.
+     * @param permission The permission level of the user.
      */
-    public User(String username,String email,String password,String name,String lastname,Integer age){
+    public User(String username,String email,String password,String name,String lastname,Integer age,String permission){
         this.username = username;
         this.password = password;
         this.email = email;
         this.name = name;
         this.lastname = lastname;
         this.age = age;
+        this.permission = permission;
     }
 
     /**
@@ -230,6 +239,21 @@ public class User {
     }
 
     /**
+     * The getPermission method returns the permission level of the user.
+     * @return The permission level of the user.
+     */
+    public String getPermission() {
+        return permission;
+    }
+    /**
+     * The setPermission method sets the permission level of the user.
+     * @param permission The permission level of the user.
+     */
+    public void setPermission(String permission) {
+        this.permission = permission;
+    }
+
+    /**
      * The toString method returns a string representation of the user.
      * @return A string representation of the user.
      */
@@ -242,7 +266,9 @@ public class User {
                 ", email='" + email + '\'' +
                 ", name='" + name + '\'' +
                 ", lastname='" + lastname + '\'' +
-                ", age=" + age +
+                ", age=" + age + '\'' +
+                ", permission=" + permission +
+
                 '}';
     }
 }

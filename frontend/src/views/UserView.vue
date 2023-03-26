@@ -7,6 +7,7 @@
       <p><strong>Name:</strong> {{ user.name }}</p>
       <p><strong>Last Name:</strong> {{ user.lastname }}</p>
       <p><strong>Age:</strong> {{ user.age }}</p>
+      <p><strong>Type:</strong> {{ user.permission }}</p>
       <button @click="toggleEditMode" class="buttonEdit">Edit</button>
     </div>
     <div v-else>
@@ -56,6 +57,7 @@ export default {
         return this.$store.getters.user;
       },
       editUser() {
+        console.log(this.user.permission);
         let euser = {
           username: this.user.username,
           password: this.user.password,
@@ -63,6 +65,7 @@ export default {
           name: this.user.name,
           lastname: this.user.lastname,
           age: this.user.age,
+          permission:this.user.permission,
         };
         return euser;
       },
@@ -116,6 +119,8 @@ export default {
                 lastname: this.editUser.lastname,
                 age: this.editUser.age,
                 password: this.password,
+                permission: this.editUser.permission,
+
               },
               {
                 headers: {

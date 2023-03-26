@@ -14,6 +14,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * @param name  Name of the user.
  * @param lastname Lastname of the user.
  * @param age Age of the user.
+ * @param permission Permission level of the user.
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -48,7 +49,13 @@ public record UserRequest(
         /**
          * age of the user. Integer age
          */
-        @JsonProperty("age") Integer age
+        @JsonProperty("age") Integer age,
+
+        /**
+         * permission level of the user. String permission
+         */
+        @JsonProperty("permission") String permission
+
 ) {
 
     @JsonCreator
@@ -59,7 +66,9 @@ public record UserRequest(
             @JsonProperty("password") String password,
             @JsonProperty("name") String name,
             @JsonProperty("lastname") String lastname,
-            @JsonProperty("age") Integer age
+            @JsonProperty("age") Integer age,
+            @JsonProperty("permission") String permission
+
     ) {
 //        this.id = id;
         this.username = username;
@@ -68,6 +77,7 @@ public record UserRequest(
         this.name = name;
         this.lastname = lastname;
         this.age = age;
+        this.permission=permission;
     }
 
 //    @JsonProperty("id")
@@ -127,5 +137,13 @@ public record UserRequest(
     @JsonProperty("age")
     public Integer age() {
         return age;
+    }
+    /**
+     * Getter for the permission level of the user.
+     * @return Permission level of the user. is String.
+     */
+    @JsonProperty("permission")
+    public String permission() {
+        return permission;
     }
 }

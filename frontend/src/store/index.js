@@ -11,6 +11,7 @@ export default createStore({
       name: null,
       email: null,
       phone: null,
+      permission:null
     },
     token: null,
   },
@@ -38,6 +39,7 @@ export default createStore({
       state.user.name = null;
       state.user.email = null;
       state.user.phone = null;
+      state.user.permission=null
 
       state.token = null;
     },
@@ -83,6 +85,7 @@ export default createStore({
                   name: response.data.name,
                   lastname: response.data.lastname,
                   age: response.data.age,
+                  permission: response.data.permission,
                 };
                 //update store
                 this.commit("setUser", user);
