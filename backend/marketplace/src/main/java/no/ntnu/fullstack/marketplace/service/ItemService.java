@@ -68,6 +68,7 @@ public class ItemService
         itemRepository.save(item);
     }
 
+
     /**
      * create a new item in the database
      * @param item The item to save
@@ -85,5 +86,14 @@ public class ItemService
     public void delete(Long id)
     {
         itemRepository.deleteById(id);
+    }
+    public List<Item> getAllItemForSpecialUser(Long id) {
+        List<Item> items = new ArrayList<>();
+        itemRepository.findAll().forEach(item -> {
+            if (item.getUserId().equals(id)) {
+                items.add(item);
+            }
+        });
+        return items;
     }
 }

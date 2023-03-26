@@ -42,7 +42,7 @@ public class TokenController {
     /**
      * This is the validity time  of the JWT token.
      */
-    private static final Duration JWT_TOKEN_VALIDITY = Duration.ofSeconds(150); //really short validity for testing purpose
+    private static final Duration JWT_TOKEN_VALIDITY = Duration.ofMinutes(5); //really short validity for testing purpose
 
     /**
      * This method is used to create a JWT token and return it to the client.

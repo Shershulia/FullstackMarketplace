@@ -22,6 +22,16 @@ export const getItems = () => {
     return response.data;
   });
 };
+export const getItemsOfCertainUser = (id) => {
+  return apiClient.get(`/user/${id}/items`, {}).then((response) => {
+    return response.data;
+  });
+};
+export const deleteItem = (id) => {
+  return apiClient.delete(`/item/${id}`, {}).then((response) => {
+    return response.data;
+  });
+};
 
 export const getItemsCategories = () => {
   return apiClient.get(`/item/categories`, {}).then((response) => {

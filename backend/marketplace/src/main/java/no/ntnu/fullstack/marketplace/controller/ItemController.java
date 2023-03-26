@@ -46,10 +46,16 @@ public class ItemController {
      * @param id id of the item to get
      * @return Item object with the specified id
      */
+
     @GetMapping("/item/{id}")
     private Item getItem(@PathVariable("id") Long id) {
         Item item = itemService.getItemById(id);
         return item;
+    }
+
+    @GetMapping("/user/{id}/items")
+    private List<Item> getItemsOfSpecialUser(@PathVariable("id") Long id) {
+        return itemService.getAllItemForSpecialUser(id);
     }
 
     /**
@@ -72,12 +78,11 @@ public class ItemController {
     @PostMapping("/item/update")
     private Long saveItem(@RequestBody Item item, @RequestHeader (name="Authorization") String token)
     {
-        //TODO: get itemid from token in header and check if it matches the id in the new item object
 
         String tokenSubject = TokenController.getTokenSubject(token);
 
-        if (!tokenSubject.equals(item.getId())) {
-            return null;
+        if (!tokenSubject.equals(item.getUserId().toString())) {
+            return 0L;
         }
 
         System.out.println("Update item");

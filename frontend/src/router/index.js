@@ -5,6 +5,7 @@ import UserView from "../views/UserView.vue";
 import ItemDetails from "../views/ItemDetails.vue";
 import RegisterUser from "../views/RegisterUser.vue";
 import AboutView from "@/views/AboutView";
+import CreateItem from "@/views/CreateItem.vue";
 
 const routes = [
   {
@@ -24,6 +25,11 @@ const routes = [
     component: ItemDetails,
   },
   {
+    path: "/item/create",
+    name: "CreateItem",
+    component: CreateItem,
+  },
+  {
     path: "/login",
     name: "LoginView",
     component: LoginView,
@@ -36,6 +42,12 @@ const routes = [
   {
     path: "/shopping",
     name: "HomeView",
+    props: true,
+    component: HomeView,
+  },
+  {
+    path: "/",
+    name: "homepage",
     props: true,
     component: HomeView,
   },

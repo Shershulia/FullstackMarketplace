@@ -6,6 +6,7 @@ export default createStore({
   state: {
     // username: null,
     user: {
+      id:null,
       username: null,
       name: null,
       email: null,
@@ -32,7 +33,12 @@ export default createStore({
       state.token = token;
     },
     clearAuthData(state) {
-      state.username = null;
+      state.user.id=null;
+      state.user.username = null;
+      state.user.name = null;
+      state.user.email = null;
+      state.user.phone = null;
+
       state.token = null;
     },
   },
@@ -71,6 +77,7 @@ export default createStore({
                 console.log(response);
                 // this.$store.commit("setUserInfo", response.data);
                 let user = {
+                  id: response.data.id,
                   username: response.data.username,
                   email: response.data.email,
                   name: response.data.name,

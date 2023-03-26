@@ -24,8 +24,11 @@
           {{ t('account') }}
         </a>
         <div class="dropdown-menu" v-if="showAccountDropdown" @click="hideAccountDropdown">
-          <router-link to="/user" class="dropdown-item">{{ t('account/login') }}</router-link>
-          <router-link to="/register-user" class="dropdown-item">{{ t('sign-up') }}</router-link>
+            <button @click="logout" v-if="this.userOnPage.username!==null" to="/register-user" class="logoutButtonForHeader" >Logout</button>
+            <router-link v-else to="/register-user" class="dropdown-item" >{{ t('sign-up') }}</router-link>
+
+            <router-link v-if="this.userOnPage.username!==null" to="/login" class="dropdown-item" >My account</router-link>
+            <router-link v-else to="/login" class="dropdown-item" >{{ t('log-in') }}</router-link>
         </div>
       </li>
     </ul>
@@ -74,7 +77,12 @@ export default {
       else {
         this.$i18n.locale = 'en'
       }
-    }
+    },
+    logout() {
+      console.log("logout");
+      this.$store.dispatch("logout");
+      this.$router.push("/login"); // redirect to the login page
+    },
   },
   mounted() {
     const availableLocales = this.$i18n.availableLocales
@@ -84,8 +92,14 @@ export default {
     } else {
       this.$i18n.locale = 'en';
     }
-  }
-}
+  },
+  computed: {
+    userOnPage() {
+      return this.$store.getters.user;
+    },
+  },
+
+};
 </script>
 
 <style>
@@ -130,6 +144,16 @@ body {
   color: #333;
   cursor: pointer;
   white-space: normal;
+}
+.logoutButtonForHeader {
+  background: none;
+  border: none;
+  padding: 0;
+  color: #333;
+  cursor: pointer;
+  font-size: inherit;
+  font-family: inherit;
+  text-decoration: underline;
 }
 
 @media (max-width: 450px) {
