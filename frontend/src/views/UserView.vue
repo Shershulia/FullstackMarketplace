@@ -30,7 +30,7 @@
       <button @click="goToSaveItemPage" class="saveButton">Create item</button>
     </div>
     <div>
-      <button v-if="user.permission==='admin'" @click="goToAdminPage">Go to admin panel</button>
+      <button v-if="user.permission==='admin'" @click="goToAdminPage" class="adminButton">Go to admin panel</button>
     </div>
   </div>
   <div class="itemsIndividual" v-if="items.length>0">
@@ -194,6 +194,16 @@ export default {
 }
 .saveButton{
   background-color: #4CAF50;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+}
+.adminButton{
+  background-color: #910000;
   color: white;
   padding: 10px;
   border-radius: 5px;
