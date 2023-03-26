@@ -1,7 +1,10 @@
 <template>
   <div class="home">
     <div v-if="userForAdmin.permission==='admin'">
-
+      <select v-model="searchCategory">
+        <option value="">Select category</option>
+        <option v-for="category in this.categories" :key="category">{{ category }}</option>
+      </select>
     </div>
     <div v-else>
       <p>You should have admin permission level to use this page
@@ -11,8 +14,6 @@
 </template>
 
 <script>
-// import ListOfLittleItems from "@/components/ListOfLittleItems.vue";
-import Search from "@/components/Search.vue"
 
 import { getItems } from "@/services/ItemServiceApi";
 
@@ -24,19 +25,12 @@ export default {
   },
   data() {
     return {
-      exampleItem: {
-        id: 1,
-        name: "Gaming chair for beginner",
-        image:
-            "https://i.pinimg.com/736x/bd/c9/83/bdc9832e5f32ee6168f10536549551bc--kids-bedroom-ideas-girls-bedroom.jpg",
-        location: "Falkenborgvegen 1, 7044 Trondheim",
-        price: 100,
-      },
-      items: [],
+      categories: [],
     };
   },
   created() {
     this.fetchItems();
+
   },
   methods: {
     fetchItems() {

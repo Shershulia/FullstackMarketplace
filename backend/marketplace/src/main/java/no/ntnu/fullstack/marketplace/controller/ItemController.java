@@ -42,6 +42,19 @@ public class ItemController {
     }
 
     /**
+     * GET request to get available for creation categories in the database
+     * @return List of all categories in the database (no duplicates)
+     */
+    @GetMapping("/item/creation-categories")
+    private List<String> getAvailableCategories() {
+        System.out.println("Bbb");
+        return itemService.getAvailableCategory();
+    }
+
+
+
+
+    /**
      * GET request to get a specific item in the database
      * @param id id of the item to get
      * @return Item object with the specified id

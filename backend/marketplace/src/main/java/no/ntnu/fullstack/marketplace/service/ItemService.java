@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 
@@ -45,6 +46,17 @@ public class ItemService
         itemRepository.findAll().forEach(item -> categories.addAll(item.getCategories()));
         //convert the hashset to a list
         List<String> categoriesList = new ArrayList<String>(categories);
+        return categoriesList;
+    }
+
+    /**
+     * Get all available categories from the database for item creation
+     * @return List of all categories in the database
+     */
+    public List<String> getAvailableCategory()
+    {
+        List<String> categoriesList = new ArrayList<>(Arrays.asList("Electronics","Clothing and Accessories",
+                "Home and Garden", "Health and Beauty", "Sports and Outdoors"));
         return categoriesList;
     }
 

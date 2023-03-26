@@ -31,14 +31,9 @@
 
 
     <p><strong>Select category:</strong></p>
-    <select multiple v-model="item.categories">
-      <option>Electronics</option>
-      <option>Clothing and Accessories</option>
-      <option>Home and Garden</option>
-      <option>Health and Beauty</option>
-      <option>Sports and Outdoors</option>
-
-    </select>
+    <select v-model="item.categories">
+      <option value="">Select category</option>
+      <option v-for="category in categories" :key="category">{{ category }}</option>    </select>
     <div class="saveButtonContainer">
       <button @click="updateItem" class="saveButton">Create Item</button>
     </div>
@@ -56,8 +51,8 @@
 import axios from "axios";
 import useValidate from "@vuelidate/core";
 import { helpers, maxLength, minLength, required } from "@vuelidate/validators";
+import { getCreationCategories } from "@/services/ItemServiceApi";
 const onlyLinks = (value) => value.match(/[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi);
-
 
 
 export default {
@@ -65,8 +60,13 @@ export default {
   setup() {
     return { v$: useValidate() };
   },
+  async mounted() {
+    this.categories=await getCreationCategories();
+    console.log(this.categories);
+  },
   data() {
     return {
+      categories: [],
       inputImage: "",
       item: {
         name: "",
@@ -142,7 +142,6 @@ export default {
     },
     goToRegisterPage(){
       this.$router.push("/register-user");
-
     }
   },
   computed: {
