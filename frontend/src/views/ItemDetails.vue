@@ -11,8 +11,12 @@
     <div class="item-details">
 
       <h2 class="item-name">{{ item.name }}</h2>
-      <button v-if="item.userid===this.itemBelongsTo.id" class="goToLoginButton" @click="enterEditMode">Edit</button>
-      <button v-if="this.itemBelongsTo.permission ==='admin'" class="goToLoginButton" @click="deleteItem">Delete by admin</button>
+      <div>
+        <button v-if="item.userid===this.itemBelongsTo.id" class="goToLoginButton" @click="enterEditMode">Edit</button>
+      </div>
+      <div>
+        <button v-if="this.itemBelongsTo.permission ==='admin'" class="adminButton" @click="deleteItem">Delete by admin</button>
+      </div>
 
 
       <p class="item-price">{{ item.price }} kr,-</p>
@@ -427,7 +431,16 @@ export default {
   font-size: 16px;
   margin-top: 10px;
 }
-
+.adminButton{
+  background-color: #910000;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 5%;
+}
 
 </style>
 
