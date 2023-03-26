@@ -6,8 +6,8 @@
           {{ t('language') }}
         </a>
         <div class="dropdown-menu" v-if="showLanguageDropdown" @click="hideLanguageDropdown">
-          <a class="dropdown-item" href="#" @click.prevent="setLanguage('English')">{{ t('english') }}</a>
-          <a class="dropdown-item" href="#" @click.prevent="setLanguage('Norwegian')">{{ t('norwegian') }}</a>
+          <a class="dropdown-item" href="#" @click.prevent="setLanguage('English')" id="eng">{{ t('english') }}</a>
+          <a class="dropdown-item" href="#" @click.prevent="setLanguage('Norwegian')" id="nor">{{ t('norwegian') }}</a>
         </div>
       </li>
       <li class="nav-item">
