@@ -6,11 +6,15 @@ export default createStore({
   state: {
     username: null,
     token: null,
+    cart: [],
+    price: 0,
   },
   getters: {
     isLoggedIn: (state) => !!state.username && !!state.token,
     username: (state) => state.username,
     token: (state) => state.token,
+    cart: (state) => state.cart,
+    price: (state) => state.price,
   },
   mutations: {
     setUser(state, username) {
@@ -23,6 +27,9 @@ export default createStore({
       state.username = null;
       state.token = null;
     },
+    setPrice(state, price) {
+      state.price = price;
+    }
   },
   actions: {
     login({ commit }, { username, password }) {

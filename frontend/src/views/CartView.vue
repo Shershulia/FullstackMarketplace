@@ -16,8 +16,8 @@
       </div>
     </div>
     <div class="checkout">
-      <p><strong>Total: ${{ totalPrice }}</strong></p>
-      <button class="checkout-button">Proceed to checkout</button>
+      <p><strong>Total: {{ totalPrice }} kr</strong></p>
+      <button class="checkout-button" @click="$router.push('/checkout'); changePrice();">Proceed to checkout</button>
     </div>
   </div>
 </template>
@@ -31,19 +31,19 @@ export default {
           id: "1",
           name: "Product 1",
           image: "https://i.pinimg.com/736x/bd/c9/83/bdc9832e5f32ee6168f10536549551bc--kids-bedroom-ideas-girls-bedroom.jpg",
-          price: "$19.99",
+          price: "19.99 kr",
         },
         {
           id: "2",
           name: "Gaming chair for beginnerrrrrrrrrrrrrrrrrrrrrr",
           image: "https://i.pinimg.com/736x/bd/c9/83/bdc9832e5f32ee6168f10536549551bc--kids-bedroom-ideas-girls-bedroom.jpg",
-          price: "$29.99",
+          price: "29.99 kr",
         },
         {
           id: "3",
           name: "Product 3333333333333 33333333333",
           image: "https://i.redd.it/ksqjj3d3ikp51.jpg",
-          price: "$39.99",
+          price: "39.99 kr",
         },
       ],
     };
@@ -51,6 +51,10 @@ export default {
   methods: {
     removeFromCart(index) {
       this.cartItems.splice(index, 1);
+    },
+    changePrice() {
+      this.$store.commit("setPrice", this.cartItems.reduce((total, item) => total + parseFloat(item.price.replace('$', '')), 0).toFixed(2))
+      console.log(this.$store.state.price)
     },
   },
   computed: {
@@ -151,7 +155,9 @@ img {
     position: absolute;
     bottom: 5px;
     left: 42.5%;
-    margin: 0 0 0 -25px; /* negative margin of half the button's width */
+    width: 40%;
+    height: 40px;
+    margin: 0 0 0 -45px; /* negative margin of half the button's width */
   }
 }
 

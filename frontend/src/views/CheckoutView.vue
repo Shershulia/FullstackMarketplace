@@ -1,6 +1,8 @@
 <template>
   <div class="checkout-container">
     <h2>Checkout</h2>
+    <label><strong>Total cost: {{ price }} kr</strong></label>
+    <br /> <br />
     <form class="checkout-form">
       <label for="card-number">Card Number</label>
       <input type="text" id="card-number" placeholder="1234 5678 9012 3456" required>
@@ -30,7 +32,8 @@ export default defineComponent({
   components: { Datepicker },
   data() {
     return {
-      selectedDate: new Date()
+      selectedDate: new Date(),
+      price: this.$store.state.price,
     }
   },
   computed: {
