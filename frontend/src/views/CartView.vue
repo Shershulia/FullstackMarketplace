@@ -133,12 +133,21 @@ img {
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
+  width: 30%;
+}
+
+.checkout-button:hover {
+  background-color: #3c763d;
 }
 
 .remove-button {
   text-align: center;
-
 }
+
+.remove-button:hover {
+  background-color: darkgray;
+}
+
 
 @media (max-width: 468px) {
   .cart-item {
