@@ -23,11 +23,18 @@
 
       <button @click="toggleEditMode" class="buttonEdit">Save</button>
     </div>
-    <button class="goToLoginButton" @click="logout" >Logout</button>
+    <div>
+      <button class="goToLoginButton" @click="logout" >Logout</button>
+    </div>
+    <div>
+      <button @click="goToSaveItemPage" class="saveButton">Create item</button>
+    </div>
+    <div>
+      <button v-if="user.permission==='admin'" @click="goToAdminPage">Go to admin panel</button>
+    </div>
   </div>
   <div class="itemsIndividual" v-if="items.length>0">
     <p>Your items:</p>
-    <button @click="goToSaveItemPage" class="saveButton">Create item</button>
     <ListOfLittleItemsEditableAndDeletable :listOfItems="this.items"></ListOfLittleItemsEditableAndDeletable>
   </div>
 </template>
@@ -148,6 +155,9 @@ export default {
       },
       goToSaveItemPage(){
         this.$router.push("/item/create");
+      },
+      goToAdminPage(){
+        this.$router.push("/admin");
       },
 
   }
