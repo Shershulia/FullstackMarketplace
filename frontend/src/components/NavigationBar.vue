@@ -6,8 +6,8 @@
           {{ t('language') }}
         </a>
         <div class="dropdown-menu" v-if="showLanguageDropdown" @click="hideLanguageDropdown">
-          <a class="dropdown-item" href="#" @click.prevent="setLanguage('English')">{{ t('english') }}</a>
-          <a class="dropdown-item" href="#" @click.prevent="setLanguage('Norwegian')">{{ t('norwegian') }}</a>
+          <a class="dropdown-item" href="#" @click.prevent="setLanguage('English')" id="eng">{{ t('english') }}</a>
+          <a class="dropdown-item" href="#" @click.prevent="setLanguage('Norwegian')" id="nor">{{ t('norwegian') }}</a>
         </div>
       </li>
       <li class="nav-item">
@@ -156,17 +156,47 @@ body {
   text-decoration: underline;
 }
 
-@media (max-width: 450px) {
-  .footer .row {
-    display: flex;
+@media (max-width: 912px) {
+  .navbar-nav {
     flex-wrap: wrap;
   }
 
-  .footer .col-md-6 {
+  .nav-item {
     width: 50%;
+    box-sizing: border-box;
+  }
+
+  .nav-item:nth-child(odd) {
+    padding-right: 0;
+  }
+
+  .nav-item:nth-child(even) {
+    padding-left: 0;
+  }
+
+  .nav-link {
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+
+  .nav-item.dropdown .dropdown-menu {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .dropdown-item {
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+  }
+
+  .nav-item:nth-child(5) {
+    width: 100%;
+    padding-left: 8px;
+    padding-right: 8px;
+    box-sizing: border-box;
   }
 }
-
-
-
 </style>

@@ -30,7 +30,7 @@ import java.util.Arrays;
 @EnableJpaRepositories("no.ntnu.fullstack.marketplace.repository")
 @ComponentScan("no.ntnu.fullstack.marketplace.*")
 @EntityScan("no.ntnu.fullstack.marketplace.model")
-//@SpringBootApplication
+@SpringBootApplication
 public class MarketplaceApplication {
 //    @Autowired
 //    private UserDataRepository userDataRepository;
