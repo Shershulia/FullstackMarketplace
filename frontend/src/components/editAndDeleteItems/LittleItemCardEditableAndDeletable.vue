@@ -2,7 +2,7 @@
     <div class="littleCard">
       <div class="imageWithPrice">
         <router-link class="linkToDetPage" :to="{ name: 'ItemDetails', params: { id: item.id } }">
-        <img class="image" :src="item.image" />
+        <img class="image" :src="item.image[0]" />
         </router-link>
 
         <div class="buttonsLittleCard">

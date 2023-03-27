@@ -108,7 +108,15 @@ export default {
   methods: {
     updateItem() {
       this.item.userid=this.$store.getters.user.id;
-      this.item.image.push(this.inputImage);
+      //convert inputImage to array
+      let imgList = []
+      if (this.inputImage.includes(",")){
+        imgList = this.inputImage.split(",");
+      }else{
+        imgList.push(this.inputImage);
+      }
+      this.item.image=imgList;
+      console.log(this.item.image)
       this.v$.$validate();
       console.log(this.item)
       if (!this.v$.$error){

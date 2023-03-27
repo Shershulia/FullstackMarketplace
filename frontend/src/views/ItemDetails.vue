@@ -123,6 +123,7 @@ export default {
       });
     },
     updateItem() {
+      this.item.image = this.item.image.split(",");
       console.log(this.item)
       axios
         .post(
