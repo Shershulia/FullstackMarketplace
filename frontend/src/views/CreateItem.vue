@@ -118,7 +118,6 @@ export default {
       this.item.image=imgList;
       console.log(this.item.image);
       this.v$.$validate();
-      console.log(this.item)
       if (!this.v$.$error){
         axios
           .post(

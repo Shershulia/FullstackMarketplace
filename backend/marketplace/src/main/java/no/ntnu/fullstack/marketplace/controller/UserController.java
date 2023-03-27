@@ -139,6 +139,7 @@ public class UserController {
         User user = new User(userRequest.username(), userRequest.email(), userRequest.password(),
                 userRequest.name(), userRequest.lastname(), userRequest.age(), "normal");
 
+
         LOGGER.debug("New user: {}", user);
         System.out.println("New user: " + user.toString());
         userService.saveOrUpdate(user);

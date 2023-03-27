@@ -34,8 +34,6 @@ export default {
   methods: {
     fetchItems() {
       getItems().then((items) => {
-        console.log("items");
-        console.log(items);
         this.items = items;
       });
     },

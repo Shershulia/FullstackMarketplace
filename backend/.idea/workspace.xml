@@ -5,13 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7fe22fb5-593e-41e4-b0f4-612f280e5ae7" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/store/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/views/CartView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/views/CartView.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/views/CheckoutView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/views/CheckoutView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/marketplace/src/main/java/no/ntnu/fullstack/marketplace/MarketplaceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/marketplace/src/main/java/no/ntnu/fullstack/marketplace/MarketplaceApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/marketplace/src/main/java/no/ntnu/fullstack/marketplace/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/marketplace/src/main/java/no/ntnu/fullstack/marketplace/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/marketplace/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/marketplace/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/marketplace/src/main/resources/data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/marketplace/src/main/resources/data.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/marketplace/src/test/java/no/ntnu/fullstack/marketplace/controller/TokenControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/marketplace/src/test/java/no/ntnu/fullstack/marketplace/controller/TokenControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/marketplace/src/test/java/no/ntnu/fullstack/marketplace/controller/UserControllerTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/marketplace/src/test/java/no/ntnu/fullstack/marketplace/model/UserInfoResponseTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/marketplace/src/test/java/no/ntnu/fullstack/marketplace/model/UserRequestTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/marketplace/src/test/java/no/ntnu/fullstack/marketplace/model/UserRequestTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/marketplace/src/test/java/no/ntnu/fullstack/marketplace/model/UserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/marketplace/src/test/java/no/ntnu/fullstack/marketplace/model/UserTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/editAndDeleteItems/LittleItemCardEditableAndDeletable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/editAndDeleteItems/LittleItemCardEditableAndDeletable.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/views/CreateItem.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/views/CreateItem.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/views/ItemDetails.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/views/ItemDetails.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/views/RegisterUser.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/views/RegisterUser.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/views/admin/AdminView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/views/admin/AdminView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/views/UserView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/views/UserView.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

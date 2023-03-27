@@ -57,14 +57,12 @@ export default {
   },
   computed: {
       username() {
-        console.log(this.$store.getters.username);
         return this.$store.getters.username;
       },
       user() {
         return this.$store.getters.user;
       },
       editUser() {
-        console.log(this.user.permission);
         let euser = {
           username: this.user.username,
           password: this.user.password,
@@ -83,8 +81,6 @@ export default {
     } else {
       if (this.user.id !== null) {
         getItemsOfCertainUser(this.user.id).then((items) => {
-          console.log("items");
-          console.log(items);
           this.items = items;
         });
       }
@@ -95,8 +91,6 @@ export default {
       handler() {
         if (this.user.id !== null) {
           getItemsOfCertainUser(this.user.id).then((items) => {
-            console.log("items");
-            console.log(items);
             this.items = items;
           });
         }

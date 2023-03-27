@@ -13,9 +13,6 @@ function getToken(username, password) {
       .then((response) => {
         const token = response.data;
         localStorage.setItem("token", token);
-        //debug
-        console.log("token-store: " + localStorage.getItem("token"));
-
         axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
         const decodedToken = jwt_decode(token);
 

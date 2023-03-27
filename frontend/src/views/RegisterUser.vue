@@ -160,10 +160,8 @@ export default {
           age: this.age,
           permission:"normal",
         };
-        console.log(request);
         //use ItemServiceApi to send request to backend
         const response = await register(request);
-        console.log(response);
       }
     },
   },

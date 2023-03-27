@@ -9,6 +9,7 @@ import CreateItem from "@/views/CreateItem.vue";
 import AdminView from "@/views/admin/AdminView.vue";
 import CartView from "@/views/CartView";
 import CheckoutView from "@/views/CheckoutView";
+import FaqView from "@/views/FaqView";
 
 
 const routes = [
@@ -74,6 +75,11 @@ const routes = [
     path: "/checkout",
     name: "Checkout",
     component: CheckoutView,
+  },
+  {
+    path: "/faq",
+    name: "FaqView",
+    component: FaqView,
   }
 ];
 

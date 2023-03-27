@@ -39,10 +39,15 @@
       <li v-for="category in this.item.categories">
         <p>{{category}}</p>
       </li>
+      <p v-if="item.userid===this.itemBelongsTo.id"> <strong> It is your item, you cannot add it to your cart </strong></p>
       <div class="item-actions">
-        <button class="add-to-cart-button" @click="addToCart(); itemAdded()">Add to cart</button>
-        <button class="buy-now-button" @click="$router.push('/cart'); addToCart()">Buy now</button>
+        <button class="add-to-cart-button" @click="addToCart(); itemAdded()" v-if="item.userid!==this.itemBelongsTo.id">Add to cart</button>
+        <button class="buy-now-button" @click="$router.push('/cart'); addToCart()" v-if="item.userid!==this.itemBelongsTo.id">Buy now</button>
       </div>
+    </div>
+    <div class="relatedItems">
+      <p class="relatedPitems">Related items</p>
+      <ListOfLittleItems :list-of-items="outPutIntems"></ListOfLittleItems>
     </div>
   </div>
   <div v-else class="editItemContainer">
@@ -60,14 +65,19 @@
 
 <script>
 import { useRoute } from "vue-router";
-import { deleteItem, getItemById, getUserPubById } from "@/services/ItemServiceApi";
+import { deleteItem, getItemById, getUserPubById , getItems} from "@/services/ItemServiceApi";
 import GoogleMap from "@/components/GoogleMap.vue";
 import axios from "axios";
+import ListOfLittleItems from "@/components/ListOfLittleItems.vue";
 
 export default {
   name: "ItemDetails",
   components: {
     GoogleMap,
+    ListOfLittleItems,
+  },
+  mounted() {
+    this.fetchItems();
   },
   data() {
     return {
@@ -76,6 +86,8 @@ export default {
       imgIndex: 0,
       imgNum: 0,
       editMode: false,
+      relatedItems:[],
+      outPutIntems:[]
     };
   },
   computed: {
@@ -89,6 +101,14 @@ export default {
   created() {
     this.fetchItem();
   },
+  watch:{
+    relatedItems(){
+      this.findRelatedItems();
+    },
+    item(){
+      this.fetchItem();
+    },
+  },
   methods: {
     fetchItem() {
       const route = useRoute();
@@ -96,21 +116,36 @@ export default {
 
       getItemById(id).then((response) => {
         let item = response.data;
-        console.log(item);
         this.imgNum = item.image.length;
         this.item = item;
         this.item.userId = item.userId;
         this.fetchUserDetails();
       });
     },
+    fetchItems() {
+      getItems().then((items) => {
+        this.relatedItems = items;
+      });
+    },
+    findRelatedItems() {
+      this.relatedItems.forEach(related => {
+        if (this.item.categories.some(r => related.categories.includes(r)) && this.item.id !== related.id && this.outPutIntems.length < 10) {
+          this.outPutIntems.push(related);
+        }
+        if (this.outPutIntems.length < 10) {
+          if (this.item.description.toLowerCase().indexOf(related.name.toLowerCase()) >= 0 && !this.outPutIntems.includes(related) && this.item.id !== related.id) {
+            this.outPutIntems.push(related);
+          }
+        }
+      })
+    },
     fetchUserDetails() {
         console.log("fetchUserDetails");
         getUserPubById(this.item.userId).then(response => {
           let user = response.data;
-          console.log("user");
-          console.log(user);
           this.user = user;
         })
+
     },
     enterEditMode(){
       this.editMode=true;
@@ -123,8 +158,8 @@ export default {
       });
     },
     updateItem() {
+
       this.item.image = this.item.image.split(",");
-      console.log(this.item)
       axios
         .post(
           "http://localhost:8090/item/update",
@@ -288,6 +323,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
 .item-image img {
@@ -308,7 +344,6 @@ export default {
 .item-details {
   width: 50%;
 }
-
 
 .item-name {
   padding: 20px;
