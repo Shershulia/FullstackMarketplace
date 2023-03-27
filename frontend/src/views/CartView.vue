@@ -3,11 +3,11 @@
     <h1 class="title">Shopping Cart</h1>
     <p><strong>Your favorite items are just a few clicks away from you.</strong></p>
     <div class="cart">
-      <div v-for="(item, index) in cartItems" :key="index" class="cart-item">
+      <div v-for="(item, index) in createdCart" :key="index" class="cart-item">
         <img :src="item.image" alt="product image" class="product-image" />
         <div class="product-info">
           <h2 class="product-name">{{ item.name }}</h2>
-          <p class="product-price">{{ item.price }}</p>
+          <p class="product-price">{{ item.productPrice }} kr</p>
         </div>
         <button @click="removeFromCart(index)" class="remove-button">Remove</button>
       </div>
@@ -28,19 +28,16 @@ export default {
     return {
       cartItems: [
         {
-          id: "1",
           name: "Product 1",
           image: "https://i.pinimg.com/736x/bd/c9/83/bdc9832e5f32ee6168f10536549551bc--kids-bedroom-ideas-girls-bedroom.jpg",
           price: "19.99 kr",
         },
         {
-          id: "2",
           name: "Gaming chair for beginnerrrrrrrrrrrrrrrrrrrrrr",
           image: "https://i.pinimg.com/736x/bd/c9/83/bdc9832e5f32ee6168f10536549551bc--kids-bedroom-ideas-girls-bedroom.jpg",
           price: "29.99 kr",
         },
         {
-          id: "3",
           name: "Product 3333333333333 33333333333",
           image: "https://i.redd.it/ksqjj3d3ikp51.jpg",
           price: "39.99 kr",
@@ -50,17 +47,20 @@ export default {
   },
   methods: {
     removeFromCart(index) {
-      this.cartItems.splice(index, 1);
+      this.$store.state.cart.splice(index, 1);
     },
     changePrice() {
-      this.$store.commit("setPrice", this.cartItems.reduce((total, item) => total + parseFloat(item.price.replace('$', '')), 0).toFixed(2))
+      this.$store.commit("setPrice", this.$store.state.cart.reduce((total, item) => total + parseFloat(item.productPrice), 0).toFixed(2))
       console.log(this.$store.state.price)
     },
   },
   computed: {
     totalPrice() {
-      return this.cartItems.reduce((total, item) => total + parseFloat(item.price.replace('$', '')), 0).toFixed(2);
+      return this.$store.state.cart.reduce((total, item) => total + parseFloat(item.productPrice), 0).toFixed(2);
     },
+    createdCart() {
+      return this.$store.state.cart;
+    }
   },
 };
 </script>

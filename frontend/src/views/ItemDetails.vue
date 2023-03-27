@@ -26,8 +26,8 @@
         <p>{{category}}</p>
       </li>
       <div class="item-actions">
-        <button class="add-to-cart-button">Add to cart</button>
-        <button class="buy-now-button">Buy now</button>
+        <button class="add-to-cart-button" @click="addToCart(); itemAdded()">Add to cart</button>
+        <button class="buy-now-button" @click="$router.push('/cart'); addToCart()">Buy now</button>
       </div>
     </div>
   </div>
@@ -108,6 +108,16 @@ export default {
           alert("error;could not update item info");
           console.error(error);
         });
+    },
+    addToCart() {
+      this.$store.commit('addToCart', {
+        name: this.item.name,
+        image: this.item.image[this.imgIndex],
+        productPrice: this.item.price,
+      })
+    },
+    itemAdded() {
+      document.getElementsByClassName('add-to-cart-button')[0].innerHTML = "Product added";
     }
   },
 };

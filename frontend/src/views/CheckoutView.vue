@@ -33,7 +33,7 @@ export default defineComponent({
   data() {
     return {
       selectedDate: new Date(),
-      price: this.$store.state.price,
+      price: this.$store.state.totalPrice,
       confirmation: false,
       cardNumber: '',
       cardholderName: '',
