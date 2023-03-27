@@ -98,7 +98,7 @@ export default {
       return this.$store.getters.user;
     },
   },
-  created() {
+  created(){
     this.fetchItem();
   },
   watch:{
