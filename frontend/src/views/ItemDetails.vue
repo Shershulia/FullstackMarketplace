@@ -20,6 +20,14 @@
 
 
       <p class="item-price">{{ item.price }} kr,-</p>
+      <a v-if="user.email"
+        :href="'mailto:?to=' + encodeURIComponent(user.email) + '&subject=' + encodeURIComponent('Marketplace - Regarding your ' + item.name + '') + '&body=' + encodeURIComponent('I have some questions regarding - ' + item.name + ': \n ')"
+        class="item-seller"
+        v-tooltip="{ content: user.email, placement: 'bottom' }"
+      >
+        Contact seller
+      </a>
+      <p v-else class="item-seller">Contact seller</p>
       <div class="locationWithImage">
         <img class="gpsIcon" :src="require(`@/assets/locationLogo.png`)" />
         <p class="item-location">{{ item.location }}</p>
@@ -42,9 +50,9 @@
 
     <p><strong>Name:</strong> <input v-model="item.name" /></p>
     <p><strong>Price:</strong> <input v-model="item.price" /></p>
-    <p><strong>Image:</strong> <input v-model="item.image" /></p>
-    <p><strong>Location:</strong> <input v-model="item.location" /></p>
-    <p><strong>Description:</strong> <input v-model="item.description" /></p>
+    <p><strong title='url to image hosted on diffrent page (multiple seperated by "," with no spacing between)'>Image:</strong> <input v-model="item.image" /></p>
+    <p><strong title="the adress of the item">Location:</strong> <input v-model="item.location" /></p>
+    <p><strong title="short description of the item">Description:</strong> <input v-model="item.description" /></p>
 
     <button @click="updateItem" class="saveButton">Save</button>
   </div>
@@ -52,7 +60,7 @@
 
 <script>
 import { useRoute } from "vue-router";
-import { deleteItem, getItemById } from "@/services/ItemServiceApi";
+import { deleteItem, getItemById, getUserPubById } from "@/services/ItemServiceApi";
 import GoogleMap from "@/components/GoogleMap.vue";
 import axios from "axios";
 
@@ -63,6 +71,7 @@ export default {
   },
   data() {
     return {
+      user: {},
       item: {},
       imgIndex: 0,
       imgNum: 0,
@@ -79,17 +88,27 @@ export default {
   },
   created() {
     this.fetchItem();
+    this.fetchUserDetails();
   },
   methods: {
     fetchItem() {
       const route = useRoute();
       let id = route.params.id;
-      getItemById(id).then((response) => {
+    getItemById(id).then((response) => {
         let item = response.data;
         console.log(item);
         this.imgNum = item.image.length;
         this.item = item;
       });
+    },
+    fetchUserDetails() {
+        console.log("fetchUserDetails");
+        getUserPubById(useRoute().params.id).then(response => {
+          let user = response.data;
+          console.log("user");
+          console.log(user);
+          this.user = user;
+        })
     },
     enterEditMode(){
       this.editMode=true;

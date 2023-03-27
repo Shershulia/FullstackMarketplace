@@ -10,9 +10,6 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-//@RequestMapping(value = "/user")
-import java.util.List;
-
 /**
  * Controller for user related requests
  * Contains methods for creating, updating, deleting and getting users
@@ -63,7 +60,8 @@ public class UserController {
      * @param id user id
      * @return user object with only public info like username first name and email address
      */
-    @GetMapping("/user/pub/{id}")
+    @GetMapping("/pub/{id}")
+    @CrossOrigin
     private User getUser(@PathVariable("id") Long id) {
         User user = userService.getUserById(id);
         //only return public info

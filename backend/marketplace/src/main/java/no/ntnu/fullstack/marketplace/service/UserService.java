@@ -100,9 +100,6 @@ public class UserService
         userRepository.deleteById(id);
     }
 
-
-
-
     /**
      * Method for hashing a password with bcrypt and returning the hashed password
      * @param password password to hash
