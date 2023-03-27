@@ -90,3 +90,8 @@ export const login = (username, password) => {
       axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     });
 };
+
+export const getUserPubById = (id) => {
+  console.log("getUserById: " + id);
+  return axios.get(`http://localhost:8090/user/pub/${id}`, {});
+};
