@@ -100,7 +100,6 @@ export default {
   },
   created() {
     this.fetchItem();
-    this.fetchUserDetails();
   },
   watch:{
     relatedItems(){
@@ -114,10 +113,13 @@ export default {
     fetchItem() {
       const route = useRoute();
       let id = route.params.id;
-    getItemById(id).then((response) => {
+
+      getItemById(id).then((response) => {
         let item = response.data;
         this.imgNum = item.image.length;
         this.item = item;
+        this.item.userId = item.userId;
+        this.fetchUserDetails();
       });
     },
     fetchItems() {
@@ -138,7 +140,8 @@ export default {
       })
     },
     fetchUserDetails() {
-        getUserPubById(useRoute().params.id).then(response => {
+        console.log("fetchUserDetails");
+        getUserPubById(this.item.userId).then(response => {
           let user = response.data;
           this.user = user;
         })
@@ -155,6 +158,8 @@ export default {
       });
     },
     updateItem() {
+
+      this.item.image = this.item.image.split(",");
       axios
         .post(
           "http://localhost:8090/item/update",

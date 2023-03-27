@@ -110,6 +110,10 @@ export default {
             return;
           }
 
+          //update user info in store
+          this.$store.commit("setUser", this.editUser);
+          this.user = this.editUser;
+
           axios
             .post(
               "http://localhost:8090/user/update",

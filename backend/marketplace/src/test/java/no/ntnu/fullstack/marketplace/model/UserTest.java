@@ -10,7 +10,7 @@ class UserTest {
 
     @BeforeEach
     void setUp() {
-        user = new User("testuser", "testemail@test.com", "testpassword", "Test", "User", 25);
+        user = new User("testuser", "testemail@test.com", "testpassword", "Test", "User", 25 ,"normal");
     }
 
     @Test

@@ -12,7 +12,7 @@ class UserRequestTest {
     @Test
     void testJsonSerialization() throws Exception {
         UserRequest userRequest = new UserRequest("john123", "john@example.com",
-                "password123", "John", "Doe", 25);
+                "password123", "John", "Doe", 25, "normal");
 
         String json = objectMapper.writeValueAsString(userRequest);
 
