@@ -159,10 +159,8 @@
             lastname: this.lastName,
             age: this.age,
           };
-          console.log(request);
           //use ItemServiceApi to send request to backend
           const response = await register(request);
-          console.log(response);
         }
       },
     },

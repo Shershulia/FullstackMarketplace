@@ -82,8 +82,6 @@ async function getLatAndLng(location){
           item["longitude"] = latAndLng[1];
       }
 
-      console.log(this.categories);
-
     },
     components: {
       ListOfLittleItems
@@ -106,7 +104,6 @@ async function getLatAndLng(location){
            items = items.filter((item) => item.name.toLowerCase().includes(this.searchValue.trim().toLowerCase()));
          }
          if (this.searchCategory !== "") {
-           console.log(items);
            items = items.filter((item) => item.categories.
              some((category)=> category.toLowerCase()===this.searchCategory.toLowerCase()));
          }

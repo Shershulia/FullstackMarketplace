@@ -116,17 +116,13 @@ export default {
       let id = route.params.id;
     getItemById(id).then((response) => {
         let item = response.data;
-        console.log(item);
         this.imgNum = item.image.length;
         this.item = item;
       });
     },
     fetchItems() {
       getItems().then((items) => {
-        console.log("items");
-        console.log(items);
         this.relatedItems = items;
-        console.log(this.relatedItems);
       });
     },
     findRelatedItems() {
@@ -142,11 +138,8 @@ export default {
       })
     },
     fetchUserDetails() {
-        console.log("fetchUserDetails");
         getUserPubById(useRoute().params.id).then(response => {
           let user = response.data;
-          console.log("user");
-          console.log(user);
           this.user = user;
         })
 
@@ -162,7 +155,6 @@ export default {
       });
     },
     updateItem() {
-      console.log(this.item)
       axios
         .post(
           "http://localhost:8090/item/update",

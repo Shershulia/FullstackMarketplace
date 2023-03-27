@@ -110,7 +110,6 @@ export default {
       this.item.userid=this.$store.getters.user.id;
       this.item.image.push(this.inputImage);
       this.v$.$validate();
-      console.log(this.item)
       if (!this.v$.$error){
         axios
           .post(
