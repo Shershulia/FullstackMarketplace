@@ -105,7 +105,7 @@ export default {
     relatedItems(){
       this.findRelatedItems();
     },
-    '$route' () {
+    '$route'(){
       this.fetchItem();
     }
   },
