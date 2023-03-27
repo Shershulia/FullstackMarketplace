@@ -44,9 +44,10 @@ Users can create an account and log in to save their favorite products, create l
 
 ## Functionality
 
-Basic users and guests are able to use the following functionality:
+Basic users are able to use the following functionality:
 - Browse catalogue
 - Select items
+- View item location on a map
 - Add items to cart
 - Buy items
 - Confirm purchase at checkout
@@ -54,6 +55,8 @@ Basic users and guests are able to use the following functionality:
 - Log in
 - Change language
 - Create items
+- Edit items
+- Contact sellers by email
 
 Admins are specialized users who have access to the following:
 - Add new categories
