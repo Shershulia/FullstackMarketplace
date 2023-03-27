@@ -1,12 +1,12 @@
-name: Merge Conflict Checker
+name: Frontend Serve Checker
 
 on:
-  pull_request:
+  push:
     branches:
       - main
 
 jobs:
-  merge-conflict-check:
+  frontend-serve-check:
     runs-on: ubuntu-latest
 
     steps:
@@ -18,13 +18,11 @@ jobs:
         cd frontend
         npm install
 
-    - name: Check for merge conflicts
+    - name: Run frontend serve
       run: |
         cd frontend
-        git fetch origin
-        git checkout main
-        git merge --no-commit --no-ff "origin/${{ github.event.pull_request.head.ref }}"
-        if [ -n "$(git status --porcelain)" ]; then
-          echo "ERROR: Merge conflicts detected. Please resolve conflicts before merging."
-          exit 1
-        fi
+        npm run serve
+
+    - name: Check frontend serve status
+      run: |
+        curl -IsS http://localhost:8080/health || exit 1
