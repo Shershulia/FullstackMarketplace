@@ -32,7 +32,6 @@
 
     <p><strong>Select category:</strong></p>
     <select v-model="item.categories" multiple>
-      <option value="">Select category</option>
       <option v-for="category in  showedCategories" :key="category">{{ category }}</option>    </select>
     <div class="saveButtonContainer">
       <button @click="updateItem" class="saveButton">Create Item</button>

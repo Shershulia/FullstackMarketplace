@@ -7,7 +7,7 @@
       <p><strong>Name:</strong> {{ user.name }}</p>
       <p><strong>Last Name:</strong> {{ user.lastname }}</p>
       <p><strong>Age:</strong> {{ user.age }}</p>
-      <p><strong>Type:</strong> {{ user.permission }}</p>
+      <p v-if="user.permission==='admin'"><strong>Permission level:</strong> {{ user.permission }}</p>
       <button @click="toggleEditMode" class="buttonEdit">Edit</button>
     </div>
     <div v-else>
