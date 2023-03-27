@@ -98,15 +98,12 @@ export default {
       return this.$store.getters.user;
     },
   },
-  created() {
+  created(){
     this.fetchItem();
   },
   watch:{
     relatedItems(){
       this.findRelatedItems();
-    },
-    item(){
-      this.fetchItem();
     },
   },
   methods: {
@@ -158,8 +155,9 @@ export default {
       });
     },
     updateItem() {
-
-      this.item.image = this.item.image.split(",");
+      if(this.item.image.includes(",")){
+        this.item.image = this.item.image.split(",");
+      }
       axios
         .post(
           "http://localhost:8090/item/update",
