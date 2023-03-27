@@ -87,7 +87,7 @@ export default {
       imgNum: 0,
       editMode: false,
       relatedItems:[],
-      outPutIntems:[]
+      outPutIntems:[],
     };
   },
   computed: {
@@ -105,6 +105,9 @@ export default {
     relatedItems(){
       this.findRelatedItems();
     },
+    '$route'(){
+      this.fetchItem();
+    }
   },
   methods: {
     fetchItem() {
