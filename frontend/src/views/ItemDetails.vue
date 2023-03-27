@@ -39,9 +39,10 @@
       <li v-for="category in this.item.categories">
         <p>{{category}}</p>
       </li>
+      <p v-if="item.userid===this.itemBelongsTo.id"> <strong> It is your item, you cannot add it to your cart </strong></p>
       <div class="item-actions">
-        <button class="add-to-cart-button" @click="addToCart(); itemAdded()">Add to cart</button>
-        <button class="buy-now-button" @click="$router.push('/cart'); addToCart()">Buy now</button>
+        <button class="add-to-cart-button" @click="addToCart(); itemAdded()" v-if="item.userid!==this.itemBelongsTo.id">Add to cart</button>
+        <button class="buy-now-button" @click="$router.push('/cart'); addToCart()" v-if="item.userid!==this.itemBelongsTo.id">Buy now</button>
       </div>
     </div>
     <div class="relatedItems">
@@ -325,6 +326,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
 .item-image img {
