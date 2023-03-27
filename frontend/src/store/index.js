@@ -6,18 +6,29 @@ export default createStore({
   state: {
     // username: null,
     user: {
+      id:null,
       username: null,
       name: null,
       email: null,
       phone: null,
+      permission:null
+    },
+    item: {
+      name: null,
+      image: null,
+      productPrice: null,
     },
     token: null,
+    cart: [],
+    totalPrice: 0,
   },
   getters: {
     isLoggedIn: (state) => !!state.username && !!state.token,
     username: (state) => state.user.username,
     user: (state) => state.user,
     token: (state) => state.token,
+    cart: (state) => state.cart,
+    price: (state) => state.totalPrice,
   },
   mutations: {
     setUsername(state, username) {
@@ -32,9 +43,21 @@ export default createStore({
       state.token = token;
     },
     clearAuthData(state) {
-      state.username = null;
+      state.user.id=null;
+      state.user.username = null;
+      state.user.name = null;
+      state.user.email = null;
+      state.user.phone = null;
+      state.user.permission=null
+
       state.token = null;
     },
+    setPrice(state, price) {
+      state.totalPrice = price;
+    },
+    addToCart(state, item) {
+      state.cart.push(item);
+    }
   },
   actions: {
     login({ commit }, { username, password }) {
@@ -71,11 +94,13 @@ export default createStore({
                 console.log(response);
                 // this.$store.commit("setUserInfo", response.data);
                 let user = {
+                  id: response.data.id,
                   username: response.data.username,
                   email: response.data.email,
                   name: response.data.name,
                   lastname: response.data.lastname,
                   age: response.data.age,
+                  permission: response.data.permission,
                 };
                 //update store
                 this.commit("setUser", user);

@@ -46,6 +46,23 @@ public record LoginRequest(String username, String password) {
     public String password() {
         return password;
     }
+
+    /**
+     * like username() but with prepended get for closer java naming convention
+     * @return
+     */
+    public String getUsername() {
+        return this.username();
+    }
+
+    /**
+     * like password() but with prepended get for closer java naming convention
+     * @return
+     */
+    public String getPassword() {
+        return this.password();
+    }
+
 }
 
 

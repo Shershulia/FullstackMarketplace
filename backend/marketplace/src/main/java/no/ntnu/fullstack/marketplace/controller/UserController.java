@@ -1,17 +1,14 @@
 package no.ntnu.fullstack.marketplace.controller;
 
-import com.auth0.jwt.JWT;
-import com.auth0.jwt.JWTVerifier;
-import com.auth0.jwt.algorithms.Algorithm;
 import no.ntnu.fullstack.marketplace.model.User;
 import no.ntnu.fullstack.marketplace.model.UserRequest;
 import no.ntnu.fullstack.marketplace.service.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 /**
  * Controller for user related requests
@@ -20,9 +17,11 @@ import java.util.List;
  */
 @RequestMapping(value = "/user")
 @EnableAutoConfiguration
-@CrossOrigin
 @RestController
+@CrossOrigin
 public class UserController {
+    private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
+
     /**
      * Service for user related requests
      * Contains methods for creating, updating, deleting and getting users
@@ -38,33 +37,62 @@ public class UserController {
      */
     @GetMapping("/{id}")
     private User getUser(@PathVariable("id") Long id, @RequestHeader (name="Authorization") String token) {
-        String tokenSubject = TokenController.getTokenSubject(token);
-        System.out.println("Token subject: " + tokenSubject.toString() + " id: " + id.toString());
+        try {
+            String tokenSubject = TokenController.getTokenSubject(token);
+            LOGGER.debug("Token subject: {} id: {}", tokenSubject, id);
+            if (!tokenSubject.equals(id.toString()) && !tokenSubject.equals("admin") ){
+                //not access to all the user data if not the same user
+                User user = userService.getUserById(id);
+                User copy = new User();
+                copy.setId(user.getId());
+                copy.setUsername(user.getUsername());
+    //            copy.setName(user.getName());
+                copy.setEmail(user.getEmail());
+                return copy;
+            }
 
-        if (!tokenSubject.equals(id.toString())) {
-            System.out.println("Access denied, wrong credentials....");
+            User user = userService.getUserById(id);
+            return user;
+        }catch (Exception e){
+            System.out.println("Error getting user");
+            LOGGER.error("Error getting user:", e.getMessage());
             return null;
         }
-
-        User user = userService.getUserById(id);
-        return user;
     }
 
     /**
-     * Delete user from database
-     * @param user user object to delete from database
-     * @param token token from header to verify user credentials so that only the user can delete their own personal data
+     * Get user by id without token check, used for public info like username first name and email address
+     * @param id user id
+     * @return user object with only public info like username first name and email address
      */
+    @GetMapping("/pub/{id}")
+    @CrossOrigin
+    private User getUser(@PathVariable("id") Long id) {
+        User user = userService.getUserById(id);
+        //only return public info
+        User copy = new User();
+        copy.setId(user.getId());
+        copy.setUsername(user.getUsername());
+//        copy.setName(user.getName());
+        copy.setEmail(user.getEmail());
+
+        LOGGER.debug("User: {}", copy);
+
+        return copy;
+    }
+
     @DeleteMapping("/delete/{id}")
-    private void deleteUser(@RequestBody User user, @RequestHeader (name="Authorization") String token)
-    {
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    private void deleteUser(@RequestBody User user, @RequestHeader(name="Authorization") String token) {
         String tokenSubject = TokenController.getTokenSubject(token);
-        System.out.println("Token subject: " + tokenSubject.toString() + " id: " + user.getId().toString());
+        LOGGER.debug("Token subject: {} id: {}", tokenSubject, user.getId());
 
         if (!tokenSubject.equals(user.getId().toString())) {
-            System.out.println("Access denied, wrong credentials....");
-            return;
+            LOGGER.warn("Access denied, wrong credentials....");
+            throw new IllegalArgumentException("Access denied, wrong credentials....");
         }
+
+        LOGGER.debug("Delete user: {}", user);
 
         userService.delete(user.getId());
     }
@@ -78,16 +106,15 @@ public class UserController {
      */
     //creating post mapping that post the student detail in the database
     @PostMapping("/update")
-    private Long saveUser(@RequestBody User user, @RequestHeader (name="Authorization") String token)
-    {
-        //TODO: get userid from token in header and check if it matches the id in the new user object
-
+    private Long saveUser(@RequestBody User user, @RequestHeader(name="Authorization") String token) {
+        //forces user to update the profile with the same id as the token
         String tokenSubject = TokenController.getTokenSubject(token);
         user.setId(Long.parseLong(tokenSubject));
 
-        System.out.println("Update user");
-        System.out.println(user);
+        LOGGER.debug("Update user: {}", user);
         userService.saveOrUpdate(user);
+
+        LOGGER.debug("User updated: {}", user);
         return user.getId();
     }
 
@@ -99,31 +126,25 @@ public class UserController {
     //create new user and return id
     @PostMapping("/register")
     @CrossOrigin
-    private Long newUser(@RequestBody UserRequest userRequest)
-    {
-        //TODO: check if username already exists
-        System.out.println("Register new user");
+    private Long newUser(@RequestBody UserRequest userRequest) {
+        LOGGER.debug("Register new user: {}", userRequest);
+        System.out.println("Register new user: " + userRequest.toString());
 
         if (userService.getUserByUsername(userRequest.username()) != null) {
+            LOGGER.warn("Username already exists");
             System.out.println("Username already exists");
-            return null;
+            throw new IllegalArgumentException("Username already exists");
         }
 
-        User user = new User();
-        user.setUsername(userRequest.username());
-        user.setEmail(userRequest.email());
-        user.setPassword(userRequest.password());
-        user.setName(userRequest.name());
-        user.setLastname(userRequest.lastname());
-        user.setAge(userRequest.age());
+        User user = new User(userRequest.username(), userRequest.email(), userRequest.password(),
+                userRequest.name(), userRequest.lastname(), userRequest.age(), "normal");
 
-        System.out.println(user);
+
+        LOGGER.debug("New user: {}", user);
+        System.out.println("New user: " + user.toString());
         userService.saveOrUpdate(user);
         Long id = userService.getUserByUsername(user.getUsername()).getId();
-        System.out.println("New user id: " + id);
+        LOGGER.debug("New user id: {}", id);
         return id;
     }
-
-
-
 }

@@ -5,13 +5,13 @@
         <div class="col-md-6 col-lg-6">
           <h4>FAQ</h4>
           <ul class="list-unstyled">
-            <li><router-link to="/faq">{{ $t('footer-faq') }}</router-link></li>
+            <li id="to-faq"><router-link to="/faq">{{ $t('footer-faq') }}</router-link></li>
           </ul>
         </div>
         <div class="col-md-6 col-lg-6">
           <h4>{{ $t('footer-about-us1') }}</h4>
           <ul class="list-unstyled">
-            <li><router-link to="/about">{{ $t('footer-about-us2') }}</router-link></li>
+            <li id="to-about-us"><router-link to="/about">{{ $t('footer-about-us2') }}</router-link></li>
           </ul>
         </div>
       </div>
@@ -26,7 +26,7 @@ export default {
 </script>
 
 
-<style>
+<style scoped>
 .footer {
   margin: 0;
   background-color: whitesmoke;

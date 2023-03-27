@@ -6,26 +6,29 @@
           {{ t('language') }}
         </a>
         <div class="dropdown-menu" v-if="showLanguageDropdown" @click="hideLanguageDropdown">
-          <a class="dropdown-item" href="#" @click.prevent="setLanguage('English')">{{ t('english') }}</a>
-          <a class="dropdown-item" href="#" @click.prevent="setLanguage('Norwegian')">{{ t('norwegian') }}</a>
+          <a class="dropdown-item" href="#" @click.prevent="setLanguage('English')" id="eng">{{ t('english') }}</a>
+          <a class="dropdown-item" href="#" @click.prevent="setLanguage('Norwegian')" id="nor">{{ t('norwegian') }}</a>
         </div>
       </li>
       <li class="nav-item">
-        <router-link to="/shopping" class="nav-link" id="shopping">{{ t('shopping') }}</router-link>
+        <router-link to="/shopping" class="nav-link" id="shopping" exact-active-class="active">{{ t('shopping') }}</router-link>
       </li>
       <li class="nav-item">
-        <router-link to="/favorites" class="nav-link" id="favorites">{{ t('favorites') }}</router-link>
+        <router-link to="/about" class="nav-link" id="favorites" exact-active-class="active">{{ $t('footer-about-us2') }}</router-link>
       </li>
       <li class="nav-item">
-        <router-link to="/cart" class="nav-link" id="cart">{{ t('cart') }}</router-link>
+        <router-link to="/cart" class="nav-link" id="cart" exact-active-class="active">{{ t('cart') }}</router-link>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" role="button" aria-haspopup="true" aria-expanded="false" @click="toggleAccountDropdown" id="account">
           {{ t('account') }}
         </a>
         <div class="dropdown-menu" v-if="showAccountDropdown" @click="hideAccountDropdown">
-          <router-link to="/user" class="dropdown-item">{{ t('account/login') }}</router-link>
-          <router-link to="/register-user" class="dropdown-item">{{ t('sign-up') }}</router-link>
+            <button @click="logout" v-if="this.userOnPage.username!==null" to="/register-user" class="logoutButtonForHeader"  >Logout</button>
+            <router-link v-else to="/register-user" class="dropdown-item" exact-active-class="active">{{ t('sign-up') }}</router-link>
+
+            <router-link v-if="this.userOnPage.username!==null" to="/login" class="dropdown-item" >My account</router-link>
+            <router-link v-else to="/login" class="dropdown-item" >{{ t('log-in') }}</router-link>
         </div>
       </li>
     </ul>
@@ -74,7 +77,12 @@ export default {
       else {
         this.$i18n.locale = 'en'
       }
-    }
+    },
+    logout() {
+      console.log("logout");
+      this.$store.dispatch("logout");
+      this.$router.push("/login"); // redirect to the login page
+    },
   },
   mounted() {
     const availableLocales = this.$i18n.availableLocales
@@ -84,11 +92,17 @@ export default {
     } else {
       this.$i18n.locale = 'en';
     }
-  }
-}
+  },
+  computed: {
+    userOnPage() {
+      return this.$store.getters.user;
+    },
+  },
+
+};
 </script>
 
-<style>
+<style scoped>
 body {
   margin: 0;
   padding: 0;
@@ -101,6 +115,7 @@ body {
   border-bottom: 1px solid #ccc;
   border-radius: 5px;
 }
+
 .navbar-nav {
   display: flex;
   justify-content: space-between;
@@ -113,10 +128,19 @@ body {
   padding: 8px;
 }
 
+
 .nav-link {
   color: #333;
   text-decoration: none;
   cursor: pointer;
+}
+.nav-link:hover {
+  background-color: lightgray;
+}
+
+.nav-link.active {
+  background-color: darkgray;
+  color: #1c1b1b;
 }
 
 .dropdown-menu {
@@ -131,18 +155,58 @@ body {
   cursor: pointer;
   white-space: normal;
 }
+.logoutButtonForHeader {
+  background: none;
+  border: none;
+  padding: 0;
+  color: #333;
+  cursor: pointer;
+  font-size: inherit;
+  font-family: inherit;
+  text-decoration: underline;
+}
 
-@media (max-width: 450px) {
-  .footer .row {
-    display: flex;
+@media (max-width: 912px) {
+  .navbar-nav {
     flex-wrap: wrap;
   }
 
-  .footer .col-md-6 {
+  .nav-item {
     width: 50%;
+    box-sizing: border-box;
+  }
+
+  .nav-item:nth-child(odd) {
+    padding-right: 0;
+  }
+
+  .nav-item:nth-child(even) {
+    padding-left: 0;
+  }
+
+  .nav-link {
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+
+  .nav-item.dropdown .dropdown-menu {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .dropdown-item {
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+  }
+
+  .nav-item:nth-child(5) {
+    width: 100%;
+    padding-left: 8px;
+    padding-right: 8px;
+    box-sizing: border-box;
   }
 }
-
-
-
 </style>

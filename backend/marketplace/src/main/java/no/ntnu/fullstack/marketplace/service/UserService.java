@@ -1,14 +1,14 @@
 package no.ntnu.fullstack.marketplace.service;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import no.ntnu.fullstack.marketplace.model.User;
 import no.ntnu.fullstack.marketplace.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.util.ArrayList;
+import java.util.List;
 /**
  * UserService class for handling user data from the database
  */
@@ -26,7 +26,7 @@ public class UserService
      * Salt for bcrypt hashing should be moved to config file or env variable in production
      */
     //salt for bcrypt hashing TODO: move to config file or env variable
-    private static String salt = "";
+    private static String salt = ""; //TODO: implement salt
 
     /**
      * Method for getting all users from the database and returning them as a list
@@ -100,15 +100,25 @@ public class UserService
         userRepository.deleteById(id);
     }
 
-
     /**
      * Method for hashing a password with bcrypt and returning the hashed password
      * @param password password to hash
      * @return hashed password
      */
     public static String hashPassword(String password) {
-//        System.out.println("Hashing password");
-//        return BCrypt.hashpw(password, BCrypt.gensalt());
-        return password; //TODO: remove this line and uncomment the above line when ready to use bcrypt
+        try{
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            byte[] hashedPassword = md.digest(password.getBytes(StandardCharsets.UTF_8));
+            StringBuilder hexString = new StringBuilder();
+            for (byte b : hashedPassword) {
+                String hex = Integer.toHexString(0xff & b);
+                if (hex.length() == 1) hexString.append('0');
+                hexString.append(hex);
+            }
+            return hexString.toString();
+        } catch (Exception e){
+            System.out.println("Error hashing password");
+            return null;
+        }
     }
 }

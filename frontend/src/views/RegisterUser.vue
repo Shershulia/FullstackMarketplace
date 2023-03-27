@@ -77,7 +77,7 @@
       </div>
       <div class="buttons">
         <input type="submit" value="Register" />
-        <button type="button" @click="goToLogin">Back to login page</button>
+        <button class="goToLoginButton" type="button" @click="goToLogin">Back to login page</button>
       </div>
     </form>
   </div>
@@ -158,11 +158,10 @@ export default {
           name: this.firstName,
           lastname: this.lastName,
           age: this.age,
+          permission:"normal",
         };
-        console.log(request);
         //use ItemServiceApi to send request to backend
         const response = await register(request);
-        console.log(response);
       }
     },
   },
@@ -224,7 +223,7 @@ input:focus {
 }
 
 input[type="submit"] {
-  background-color: #0066ff;
+  background-color: #003366;
   color: white;
   font-size: 18px;
   font-weight: bold;
@@ -233,10 +232,12 @@ input[type="submit"] {
   padding: 10px 20px;
   cursor: pointer;
   transition: all 0.3s ease;
+
 }
 
 input[type="submit"]:hover {
   background-color: #0052cc;
+  padding: 15px;
 }
 .buttons {
   margin-left: 15%;
@@ -246,8 +247,8 @@ input[type="submit"]:hover {
   justify-content: center;
   flex-direction: column;
 }
-button {
-  background-color: #ff9900;
+.goToLoginButton {
+  background-color: #c97900;
   color: black;
   font-size: 18px;
   font-weight: bold;
@@ -256,6 +257,10 @@ button {
   padding: 10px 20px;
   cursor: pointer;
   transition: all 0.3s ease;
+}
+.goToLoginButton:hover {
+  background-color: #f69200;
+  padding: 15px 20px;
 }
 .showPassword {
   position: relative;

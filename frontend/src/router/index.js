@@ -5,6 +5,12 @@ import UserView from "../views/UserView.vue";
 import ItemDetails from "../views/ItemDetails.vue";
 import RegisterUser from "../views/RegisterUser.vue";
 import AboutView from "@/views/AboutView";
+import CreateItem from "@/views/CreateItem.vue";
+import AdminView from "@/views/admin/AdminView.vue";
+import CartView from "@/views/CartView";
+import CheckoutView from "@/views/CheckoutView";
+import FaqView from "@/views/FaqView";
+
 
 const routes = [
   {
@@ -24,9 +30,19 @@ const routes = [
     component: ItemDetails,
   },
   {
+    path: "/item/create",
+    name: "CreateItem",
+    component: CreateItem,
+  },
+  {
     path: "/login",
     name: "LoginView",
     component: LoginView,
+  },
+  {
+    path: "/admin",
+    name: "AdminView",
+    component: AdminView ,
   },
   {
     path: "/user",
@@ -40,10 +56,31 @@ const routes = [
     component: HomeView,
   },
   {
+    path: "/",
+    name: "homepage",
+    props: true,
+    component: HomeView,
+  },
+  {
     path: "/register-user",
     name: "RegisterUser",
     component: RegisterUser,
   },
+  {
+    path: "/cart",
+    name: "Cart",
+    component: CartView,
+  },
+  {
+    path: "/checkout",
+    name: "Checkout",
+    component: CheckoutView,
+  },
+  {
+    path: "/faq",
+    name: "FaqView",
+    component: FaqView,
+  }
 ];
 
 const router = createRouter({

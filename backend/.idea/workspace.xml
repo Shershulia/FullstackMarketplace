@@ -4,7 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7fe22fb5-593e-41e4-b0f4-612f280e5ae7" name="Changes" comment="" />
+    <list default="true" id="7fe22fb5-593e-41e4-b0f4-612f280e5ae7" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/marketplace/src/main/java/no/ntnu/fullstack/marketplace/MarketplaceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/marketplace/src/main/java/no/ntnu/fullstack/marketplace/MarketplaceApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/marketplace/src/main/java/no/ntnu/fullstack/marketplace/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/marketplace/src/main/java/no/ntnu/fullstack/marketplace/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/marketplace/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/marketplace/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/marketplace/src/main/resources/data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/marketplace/src/main/resources/data.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/marketplace/src/test/java/no/ntnu/fullstack/marketplace/controller/TokenControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/marketplace/src/test/java/no/ntnu/fullstack/marketplace/controller/TokenControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/marketplace/src/test/java/no/ntnu/fullstack/marketplace/controller/UserControllerTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/marketplace/src/test/java/no/ntnu/fullstack/marketplace/model/UserInfoResponseTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/marketplace/src/test/java/no/ntnu/fullstack/marketplace/model/UserRequestTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/marketplace/src/test/java/no/ntnu/fullstack/marketplace/model/UserRequestTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/marketplace/src/test/java/no/ntnu/fullstack/marketplace/model/UserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/marketplace/src/test/java/no/ntnu/fullstack/marketplace/model/UserTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/editAndDeleteItems/LittleItemCardEditableAndDeletable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/editAndDeleteItems/LittleItemCardEditableAndDeletable.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/views/CreateItem.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/views/CreateItem.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/views/ItemDetails.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/views/ItemDetails.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/views/UserView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/views/UserView.vue" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -15,6 +31,10 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="RESET_MODE" value="HARD" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -33,10 +53,17 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/krol3/Desktop/FullstackMarketplace/backend&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Bruker/Desktop/marketplaceFullstack/backend&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;bc5986ebbf4dde661f229fd527ad82f4&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -69,6 +96,10 @@
       <option name="presentableId" value="Default" />
       <updated>1679316063787</updated>
       <workItem from="1679316065401" duration="27000" />
+      <workItem from="1679591933058" duration="7595000" />
+      <workItem from="1679656595154" duration="5146000" />
+      <workItem from="1679852410402" duration="18614000" />
+      <workItem from="1679920456893" duration="1546000" />
     </task>
     <servers />
   </component>
