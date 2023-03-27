@@ -63,43 +63,17 @@ public class ItemController {
      * @param id id of the item to delete
      */
     @DeleteMapping("/item/{id}")
-    private void deleteItem(@PathVariable("id") Long id, @RequestHeader (name="Authorization") String token)
+    private void deleteItem(@PathVariable("id") Long id)
     {
-        String tokenSubject = TokenController.getTokenSubject(token);
-        //check if token subject is the same as the id of the userid in the item
-        Item item = itemService.getItemById(id);
-        if (!tokenSubject.equals(item.getUserid().toString())) {
-            System.out.println("Access denied to delete item , wrong credentials....");
-            return;
-        }
-
         itemService.delete(id);
     }
 
     /**
-<<<<<<< HEAD
-     * Buy item, delete item from database and return item object
-     * @param id item id
-     * @param token jwt token with user id in subject
-     */
-    @DeleteMapping("/item/buy/{id}")
-    private void buyItem(@PathVariable("id") Long id, @RequestHeader (name="Authorization") String token)
-    {
-        String tokenSubject = TokenController.getTokenSubject(token);
-        //get item
-        Item item = itemService.getItemById(id);
-        //delete item from item database
-        itemService.delete(id);
-        //TODO: add item to user bought items in database
-    }
-
-=======
      * POST request to update a specific item in the database
      * @param item Item object with the updated information
      * @param token JWT token containing the id of the user, needed in header to verify that the user is allowed to update the item
      * @return id of the updated item
      */
->>>>>>> main
     //creating post mapping that post the student detail in the database
     @PostMapping("/item/update")
     private Long saveItem(@RequestBody Item item, @RequestHeader (name="Authorization") String token)

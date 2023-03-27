@@ -5,9 +5,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-<<<<<<< HEAD
-
-=======
 import javax.persistence.Entity;
 
 /**
@@ -15,7 +12,6 @@ import javax.persistence.Entity;
  * @param username Username of the user trying to login to the API.
  * @param password Password of the user trying to login to the API. The password gets hashed, and the hash is compared to the hash stored in the database.
  */
->>>>>>> main
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public record LoginRequest(String username, String password) {

@@ -87,9 +87,6 @@ public class ItemService
     {
         itemRepository.deleteById(id);
     }
-<<<<<<< HEAD
-
-=======
     public List<Item> getAllItemForSpecialUser(Long id) {
         List<Item> items = new ArrayList<>();
         itemRepository.findAll().forEach(item -> {
@@ -99,5 +96,4 @@ public class ItemService
         });
         return items;
     }
->>>>>>> main
 }

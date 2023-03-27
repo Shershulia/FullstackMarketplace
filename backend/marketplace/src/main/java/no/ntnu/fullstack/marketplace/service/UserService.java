@@ -5,16 +5,13 @@ import no.ntnu.fullstack.marketplace.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-<<<<<<< HEAD
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.util.ArrayList;
 import java.util.List;
-=======
 /**
  * UserService class for handling user data from the database
  */
->>>>>>> main
 @Service
 public class UserService
 {
@@ -103,8 +100,15 @@ public class UserService
         userRepository.deleteById(id);
     }
 
-<<<<<<< HEAD
-    public static String hashPassword(String password){
+
+
+
+    /**
+     * Method for hashing a password with bcrypt and returning the hashed password
+     * @param password password to hash
+     * @return hashed password
+     */
+    public static String hashPassword(String password) {
         try{
             MessageDigest md = MessageDigest.getInstance("SHA-256");
             byte[] hashedPassword = md.digest(password.getBytes(StandardCharsets.UTF_8));
@@ -121,18 +125,3 @@ public class UserService
         }
     }
 }
-
-=======
-
-    /**
-     * Method for hashing a password with bcrypt and returning the hashed password
-     * @param password password to hash
-     * @return hashed password
-     */
-    public static String hashPassword(String password) {
-//        System.out.println("Hashing password");
-//        return BCrypt.hashpw(password, BCrypt.gensalt());
-        return password; //TODO: remove this line and uncomment the above line when ready to use bcrypt
-    }
-}
->>>>>>> main

@@ -61,11 +61,7 @@ public class TokenController {
 
         System.out.println("Checking password: " + loginRequest.password() + " hashed: " + hashedPassword + " stored: " + user.getPassword());
         if (user != null) {
-<<<<<<< HEAD
             if (user.getPassword().equals(hashedPassword) || user.getPassword().equals(loginRequest.password()) ) { //last condition is for testing purpose
-=======
-            if (user.getPassword().equals(hashedPassword)) {
->>>>>>> main
                 return generateToken(user.getId());
             }
         }

@@ -10,9 +10,7 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-<<<<<<< HEAD
 //@RequestMapping(value = "/user")
-=======
 import java.util.List;
 
 /**
@@ -21,21 +19,12 @@ import java.util.List;
  * Handles requests to /user and /user/{id} endpoints and handles user requests
  */
 @RequestMapping(value = "/user")
->>>>>>> main
 @EnableAutoConfiguration
 @RestController
 @CrossOrigin
 public class UserController {
-<<<<<<< HEAD
-
     private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
 
-    @Autowired
-    UserService userService;
-
-    @GetMapping("/user/{id}")
-    private User getUser(@PathVariable("id") Long id, @RequestHeader(name="Authorization") String token) {
-=======
     /**
      * Service for user related requests
      * Contains methods for creating, updating, deleting and getting users
@@ -51,7 +40,6 @@ public class UserController {
      */
     @GetMapping("/{id}")
     private User getUser(@PathVariable("id") Long id, @RequestHeader (name="Authorization") String token) {
->>>>>>> main
         String tokenSubject = TokenController.getTokenSubject(token);
         LOGGER.debug("Token subject: {} id: {}", tokenSubject, id);
 
@@ -71,7 +59,6 @@ public class UserController {
     }
 
     /**
-<<<<<<< HEAD
      * Get user by id without token check, used for public info like username first name and email address
      * @param id user id
      * @return user object with only public info like username first name and email address
@@ -92,15 +79,6 @@ public class UserController {
     @DeleteMapping("/user/delete/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     private void deleteUser(@RequestBody User user, @RequestHeader(name="Authorization") String token) {
-=======
-     * Delete user from database
-     * @param user user object to delete from database
-     * @param token token from header to verify user credentials so that only the user can delete their own personal data
-     */
-    @DeleteMapping("/delete/{id}")
-    private void deleteUser(@RequestBody User user, @RequestHeader (name="Authorization") String token)
-    {
->>>>>>> main
         String tokenSubject = TokenController.getTokenSubject(token);
         LOGGER.debug("Token subject: {} id: {}", tokenSubject, user.getId());
 

@@ -88,7 +88,6 @@ export default {
         this.item = item;
       });
     },
-<<<<<<< HEAD
     fetchUserDetails() {
         getUserPubById(useRoute().params.id).then(response => {
           let user = response.data;
@@ -97,7 +96,6 @@ export default {
           this.user = user;
         })
     },
-=======
     enterEditMode(){
       this.editMode=true;
     },
@@ -122,7 +120,6 @@ export default {
           console.error(error);
         });
     }
->>>>>>> main
   },
 };
 </script>
@@ -132,13 +129,10 @@ export default {
 @media screen and (max-width: 768px) {
   .item-details-container {
     flex-direction: column;
-<<<<<<< HEAD
     margin-left: 10px;
     margin-right: 10px;
-=======
     margin: 10px 10px 10px 10px;
 
->>>>>>> main
     padding: 10px;
   }
 
@@ -158,10 +152,7 @@ export default {
 
   .item-price {
     font-size: 16px;
-<<<<<<< HEAD
-=======
     margin-bottom: 10px;
->>>>>>> main
   }
 
   .locationWithImage {
@@ -190,12 +181,9 @@ export default {
     margin-top: 10px;
   }
 
-<<<<<<< HEAD
   .image-navigation {
     flex-wrap: wrap;
   }
-=======
->>>>>>> main
 
   .image-navigation button {
     margin-top: 10px;
@@ -206,13 +194,10 @@ export default {
 /* For medium devices */
 @media screen and (min-width: 768px) and (max-width: 1024px) {
   .item-details-container {
-<<<<<<< HEAD
     margin-left: 50px;
     margin-right: 50px;
-=======
     margin: 50px 50px 50px 50px;
   ;
->>>>>>> main
   }
 
   .item-image {
@@ -237,12 +222,9 @@ export default {
 /* For large devices */
 @media screen and (min-width: 1024px) {
   .item-details-container {
-<<<<<<< HEAD
     margin-left: 200px;
     margin-right: 200px;
-=======
     margin: 100px 100px 100px 100px;
->>>>>>> main
   }
 
   .item-image {
@@ -258,13 +240,10 @@ export default {
     font-size: 30px;
   }
 
-<<<<<<< HEAD
   .locationWithImage {
     justify-content: space-evenly;
   }
 
-=======
->>>>>>> main
   .locationWithMap {
     grid-template-columns: auto auto auto;
     padding: 10px;
@@ -281,8 +260,6 @@ export default {
   border-radius: 5px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
-<<<<<<< HEAD
-=======
 .locationWithImage {
   justify-content: center;
 }
@@ -291,7 +268,6 @@ export default {
   justify-content: center;
   align-items: center;
 }
->>>>>>> main
 
 .item-image img {
   display: block;
@@ -308,14 +284,11 @@ export default {
   margin-top: 10px;
 }
 
-<<<<<<< HEAD
-=======
 .item-details {
   width: 50%;
 }
 
 
->>>>>>> main
 .item-name {
   padding: 20px;
   font-size: 36px;
@@ -346,18 +319,15 @@ export default {
   font-size: 24px;
   grid-column: 1 / 3;
   margin-bottom: 30px;
-<<<<<<< HEAD
 }
 
 .map {
   grid-column: 2 / 4;
-=======
   margin-right: 10px;
 }
 
 .map {
   grid-column: 3 / 4;
->>>>>>> main
 }
 
 .item-actions {
@@ -437,6 +407,7 @@ export default {
   margin-right: 10px;
 }
 
+
 .item-location {
   font-size: 20px;
   font-weight: bold;
@@ -445,11 +416,7 @@ export default {
 
 .item-location,
 .item-price {
-<<<<<<< HEAD
   margin: 0;
-}
-
-=======
   margin-bottom: 10px;
 }
 .editItemContainer {
@@ -483,6 +450,5 @@ export default {
 }
 
 
->>>>>>> main
 </style>
 
