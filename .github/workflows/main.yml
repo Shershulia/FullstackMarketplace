@@ -3,7 +3,7 @@ name: Frontend Serve Checker
 on:
   push:
     branches:
-      - main
+      - PlzEnjoyGame-patch-3
 
 jobs:
   frontend-serve-check:
