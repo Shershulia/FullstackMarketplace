@@ -143,13 +143,16 @@ input{
   border: 1px solid;
 }
 .addCategory{
-  background-color: #4CAF50;
+  background-color: #3a883d;
   color: white;
   padding: 10px;
   border-radius: 5px;
   border: none;
   cursor: pointer;
   font-size: 16px;
+}
+.addCategory:hover{
+  background-color: #449f48;
 }
 .deleteCategory{
   background-color: #910000;
@@ -160,6 +163,10 @@ input{
   cursor: pointer;
   font-size: 16px;
 }
+.deleteCategory:hover{
+  background-color: #a60000;
+
+}
 .modifyCategory{
   background-color: #003366;
   color: white;
@@ -168,6 +175,10 @@ input{
   border: none;
   cursor: pointer;
   font-size: 16px;
+}
+.modifyCategory:hover{
+  background-color: #0052cc;
+
 }
 select{
   margin: 10px;

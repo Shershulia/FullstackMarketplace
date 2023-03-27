@@ -13,9 +13,14 @@ export default createStore({
       phone: null,
       permission:null
     },
+    item: {
+      name: null,
+      image: null,
+      productPrice: null,
+    },
     token: null,
     cart: [],
-    price: 0,
+    totalPrice: 0,
   },
   getters: {
     isLoggedIn: (state) => !!state.username && !!state.token,
@@ -23,7 +28,7 @@ export default createStore({
     user: (state) => state.user,
     token: (state) => state.token,
     cart: (state) => state.cart,
-    price: (state) => state.price,
+    price: (state) => state.totalPrice,
   },
   mutations: {
     setUsername(state, username) {
@@ -48,7 +53,10 @@ export default createStore({
       state.token = null;
     },
     setPrice(state, price) {
-      state.price = price;
+      state.totalPrice = price;
+    },
+    addToCart(state, item) {
+      state.cart.push(item);
     }
   },
   actions: {

@@ -32,8 +32,8 @@
         <p>{{category}}</p>
       </li>
       <div class="item-actions">
-        <button class="add-to-cart-button">Add to cart</button>
-        <button class="buy-now-button">Buy now</button>
+        <button class="add-to-cart-button" @click="addToCart(); itemAdded()">Add to cart</button>
+        <button class="buy-now-button" @click="$router.push('/cart'); addToCart()">Buy now</button>
       </div>
     </div>
   </div>
@@ -121,6 +121,16 @@ export default {
           alert("error;could not update item info");
           console.error(error);
         });
+    },
+    addToCart() {
+      this.$store.commit('addToCart', {
+        name: this.item.name,
+        image: this.item.image[this.imgIndex],
+        productPrice: this.item.price,
+      })
+    },
+    itemAdded() {
+      document.getElementsByClassName('add-to-cart-button')[0].innerHTML = "Product added";
     }
   },
 };
@@ -335,7 +345,7 @@ export default {
 }
 
 .add-to-cart-button {
-  background-color: #f0c040;
+  background-color: #e3af39;
 }
 
 .buy-now-button {
@@ -376,14 +386,22 @@ export default {
   font-weight: bold;
   color: white;
   cursor: pointer;
-}
-
-.add-to-cart-button {
-  background-color: #f0c040;
+  margin: 20px;
 }
 
 .buy-now-button {
-  background-color: #f08030;
+  background-color: #c97900;
+}
+.buy-now-button:hover{
+  background-color: #f69200;
+
+}
+
+.add-to-cart-button {
+  background-color: #003366;
+}
+.add-to-cart-button:hover{
+  background-color: #0052cc;
 }
 
 .gpsIcon {
@@ -440,7 +458,7 @@ export default {
   cursor: pointer;
   font-size: 16px;
   transition: all 0.3s ease;
-  margin: 5%;
+  margin-bottom: 2%;
 }
 .adminButton:hover{
   background-color: #a60000;
