@@ -116,7 +116,7 @@ export default {
         imgList.push(this.inputImage);
       }
       this.item.image=imgList;
-      console.log(this.item.image)
+      console.log(this.item.image);
       this.v$.$validate();
       console.log(this.item)
       if (!this.v$.$error){
