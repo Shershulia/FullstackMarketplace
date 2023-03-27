@@ -105,9 +105,6 @@ export default {
     relatedItems(){
       this.findRelatedItems();
     },
-    item(){
-      this.fetchItem();
-    },
   },
   methods: {
     fetchItem() {
@@ -158,8 +155,9 @@ export default {
       });
     },
     updateItem() {
-
-      this.item.image = this.item.image.split(",");
+      if(this.item.image.includes(",")){
+        this.item.image = this.item.image.split(",");
+      }
       axios
         .post(
           "http://localhost:8090/item/update",
