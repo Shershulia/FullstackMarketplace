@@ -14,7 +14,7 @@
         <router-link to="/shopping" class="nav-link" id="shopping" exact-active-class="active">{{ t('shopping') }}</router-link>
       </li>
       <li class="nav-item">
-        <router-link to="/favorites" class="nav-link" id="favorites" exact-active-class="active">{{ t('favorites') }}</router-link>
+        <router-link to="/about" class="nav-link" id="favorites" exact-active-class="active">{{ $t('footer-about-us2') }}</router-link>
       </li>
       <li class="nav-item">
         <router-link to="/cart" class="nav-link" id="cart" exact-active-class="active">{{ t('cart') }}</router-link>
