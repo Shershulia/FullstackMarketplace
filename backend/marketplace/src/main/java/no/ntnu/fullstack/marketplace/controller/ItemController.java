@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Controller for Item objects in the database
@@ -40,6 +41,64 @@ public class ItemController {
         System.out.println("Get all items");
         return itemService.getAllCategory();
     }
+
+    /**
+     * GET request to get available for creation categories in the database
+     * @return List of all categories in the database (no duplicates)
+     */
+    @GetMapping("/item/creation-categories")
+    private List<String> getAvailableCategories() {
+        return itemService.getAvailableCategory();
+    }
+
+    /**
+     * Post request to add category to database
+     * @param requestBody request body which contains new category
+     * @param token JWT token containing the id of the user, needed in header to verify that the user is allowed to add category
+     */
+    @PostMapping("/item/creation-categories")
+    private void addCategory(@RequestBody Map<String, String> requestBody,@RequestHeader (name="Authorization") String token) {
+        //  if (!TokenController.verifyToken(token)) {
+        //      throw new RuntimeException("Invalid token");
+        // }
+        String newCategory = requestBody.get("category");
+        itemService.addCategory(newCategory);
+        System.out.println("Category added");
+
+    }
+    /**
+     * Delete request to delete category from a database
+     * @param categoryDelete category that should be deleted
+     * @param token JWT token containing the id of the user, needed in header to verify that the user is allowed to add category
+     */
+    @DeleteMapping("/item/creation-categories/{categoryDelete}")
+    private void removeCategory(@PathVariable String categoryDelete,@RequestHeader (name="Authorization") String token) {
+        //  if (!TokenController.verifyToken(token)) {
+        //      throw new RuntimeException("Invalid token");
+        // }
+        itemService.delete(categoryDelete);
+        System.out.println("Category deleted");
+
+    }
+    /**
+     * Put request to modify category
+     * @param categoryModified category to be deleted from db
+     * @param requestBody body with a new category
+     * @param token JWT token containing the id of the user, needed in header to verify that the user is allowed to add category
+     */
+    @PutMapping("/item/creation-categories/{categoryModified}")
+    private void modifyCategory(@PathVariable String categoryModified, @RequestBody Map<String, String> requestBody, @RequestHeader (name="Authorization") String token) {
+        //  if (!TokenController.verifyToken(token)) {
+        //      throw new RuntimeException("Invalid token");
+        // }
+        String newCategory = requestBody.get("category");
+        itemService.modify(categoryModified, newCategory);
+        System.out.println("Category modified");
+    }
+
+
+
+
 
     /**
      * GET request to get a specific item in the database
