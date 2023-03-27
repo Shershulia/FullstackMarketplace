@@ -88,22 +88,24 @@ export default {
   },
   created() {
     this.fetchItem();
-    this.fetchUserDetails();
   },
   methods: {
     fetchItem() {
       const route = useRoute();
       let id = route.params.id;
-    getItemById(id).then((response) => {
+
+      getItemById(id).then((response) => {
         let item = response.data;
         console.log(item);
         this.imgNum = item.image.length;
         this.item = item;
+        this.item.userId = item.userId;
+        this.fetchUserDetails();
       });
     },
     fetchUserDetails() {
         console.log("fetchUserDetails");
-        getUserPubById(useRoute().params.id).then(response => {
+        getUserPubById(this.item.userId).then(response => {
           let user = response.data;
           console.log("user");
           console.log(user);
