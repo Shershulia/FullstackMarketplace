@@ -81,7 +81,7 @@ public class UserController {
         return copy;
     }
 
-    @DeleteMapping("/user/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     private void deleteUser(@RequestBody User user, @RequestHeader(name="Authorization") String token) {
         String tokenSubject = TokenController.getTokenSubject(token);
@@ -105,7 +105,7 @@ public class UserController {
      * @return id of updated user
      */
     //creating post mapping that post the student detail in the database
-    @PostMapping("/user/update")
+    @PostMapping("/update")
     private Long saveUser(@RequestBody User user, @RequestHeader(name="Authorization") String token) {
         //forces user to update the profile with the same id as the token
         String tokenSubject = TokenController.getTokenSubject(token);
@@ -124,12 +124,15 @@ public class UserController {
      * @return id of created user
      */
     //create new user and return id
-    @PostMapping("/user/register")
+    @PostMapping("/register")
+    @CrossOrigin
     private Long newUser(@RequestBody UserRequest userRequest) {
         LOGGER.debug("Register new user: {}", userRequest);
+        System.out.println("Register new user: " + userRequest.toString());
 
         if (userService.getUserByUsername(userRequest.username()) != null) {
             LOGGER.warn("Username already exists");
+            System.out.println("Username already exists");
             throw new IllegalArgumentException("Username already exists");
         }
 
@@ -137,6 +140,7 @@ public class UserController {
                 userRequest.name(), userRequest.lastname(), userRequest.age(), "normal");
 
         LOGGER.debug("New user: {}", user);
+        System.out.println("New user: " + user.toString());
         userService.saveOrUpdate(user);
         Long id = userService.getUserByUsername(user.getUsername()).getId();
         LOGGER.debug("New user id: {}", id);
