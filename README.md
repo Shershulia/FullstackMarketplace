@@ -1,6 +1,9 @@
 # Vue3 & SpringBoot Fullstack Application
 ## BuyBetter
-Created by: Vladimir Lenkov, Ivan Shirshikov, Adri
+Created by: Vladimir Lenkov, Ivan Shirshikov, Adrian Gunnar Lauterer
+
+![image](https://user-images.githubusercontent.com/124590485/228015854-85cff626-023e-4a96-b143-74a33a629b2f.png)
+
 
 Welcome to BuyBetter, an eCommerce application made with usability and design in mind. Enjoy a clean and efficient shopping experience at your fingertips for completely free.
 This is a fullstack web application built with Vue3 on the frontend and SpringBoot on the backend. The application is similar to Finn.no, a popular online marketplace in Norway.
