@@ -5,8 +5,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javax.persistence.Entity;
-
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -29,6 +27,23 @@ public record LoginRequest(String username, String password) {
     public String password() {
         return password;
     }
+
+    /**
+     * like username() but with prepended get for closer java naming convention
+     * @return
+     */
+    public String getUsername() {
+        return this.username();
+    }
+
+    /**
+     * like password() but with prepended get for closer java naming convention
+     * @return
+     */
+    public String getPassword() {
+        return this.password();
+    }
+
 }
 
 

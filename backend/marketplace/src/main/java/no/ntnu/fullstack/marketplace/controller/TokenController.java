@@ -89,15 +89,21 @@ public class TokenController {
     }
 
     public static String getTokenSubject(final String token) {
-        // verify access token and return user id
-        if (token != null && token.startsWith("Bearer ")) { // Bearer is the default prefix for JWT
-            final String jwtToken = token.substring(7);
-            final Algorithm hmac512 = Algorithm.HMAC512(keyStr);
-            final JWTVerifier verifier = JWT.require(hmac512).build();
-            verifier.verify(jwtToken);
-            return JWT.decode(jwtToken).getSubject();
+        try {
+            // verify access token and return user id
+            if (token != null && token.startsWith("Bearer ")) { // Bearer is the default prefix for JWT
+                final String jwtToken = token.substring(7);
+                final Algorithm hmac512 = Algorithm.HMAC512(keyStr);
+                final JWTVerifier verifier = JWT.require(hmac512).build();
+                verifier.verify(jwtToken);
+                return JWT.decode(jwtToken).getSubject();
+            }
+            return null;
+
         }
-        return null;
+        catch (Exception e) {
+            return null;
+        }
     }
 
 }
