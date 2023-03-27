@@ -37,22 +37,27 @@ public class UserController {
      */
     @GetMapping("/{id}")
     private User getUser(@PathVariable("id") Long id, @RequestHeader (name="Authorization") String token) {
-        String tokenSubject = TokenController.getTokenSubject(token);
-        LOGGER.debug("Token subject: {} id: {}", tokenSubject, id);
+        try {
+            String tokenSubject = TokenController.getTokenSubject(token);
+            LOGGER.debug("Token subject: {} id: {}", tokenSubject, id);
+            if (!tokenSubject.equals(id.toString()) && !tokenSubject.equals("admin") ){
+                //not access to all the user data if not the same user
+                User user = userService.getUserById(id);
+                User copy = new User();
+                copy.setId(user.getId());
+                copy.setUsername(user.getUsername());
+    //            copy.setName(user.getName());
+                copy.setEmail(user.getEmail());
+                return copy;
+            }
 
-        if (!tokenSubject.equals(id.toString())) {
-            //not access to all the user data if not the same user
             User user = userService.getUserById(id);
-            User copy = new User();
-            copy.setId(user.getId());
-            copy.setUsername(user.getUsername());
-            copy.setName(user.getName());
-            copy.setEmail(user.getEmail());
-            return copy;
+            return user;
+        }catch (Exception e){
+            System.out.println("Error getting user");
+            LOGGER.error("Error getting user:", e.getMessage());
+            return null;
         }
-
-        User user = userService.getUserById(id);
-        return user;
     }
 
     /**
@@ -68,8 +73,10 @@ public class UserController {
         User copy = new User();
         copy.setId(user.getId());
         copy.setUsername(user.getUsername());
-        copy.setName(user.getName());
+//        copy.setName(user.getName());
         copy.setEmail(user.getEmail());
+
+        LOGGER.debug("User: {}", copy);
 
         return copy;
     }
@@ -84,6 +91,8 @@ public class UserController {
             LOGGER.warn("Access denied, wrong credentials....");
             throw new IllegalArgumentException("Access denied, wrong credentials....");
         }
+
+        LOGGER.debug("Delete user: {}", user);
 
         userService.delete(user.getId());
     }
@@ -104,6 +113,8 @@ public class UserController {
 
         LOGGER.debug("Update user: {}", user);
         userService.saveOrUpdate(user);
+
+        LOGGER.debug("User updated: {}", user);
         return user.getId();
     }
 
@@ -123,7 +134,7 @@ public class UserController {
         }
 
         User user = new User(userRequest.username(), userRequest.email(), userRequest.password(),
-                userRequest.name(), userRequest.lastname(), userRequest.age());
+                userRequest.name(), userRequest.lastname(), userRequest.age(), "normal");
 
         LOGGER.debug("New user: {}", user);
         userService.saveOrUpdate(user);
