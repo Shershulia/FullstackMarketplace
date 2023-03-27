@@ -36,6 +36,10 @@
         <button class="buy-now-button" @click="$router.push('/cart'); addToCart()">Buy now</button>
       </div>
     </div>
+    <div class="relatedItems">
+      <p class="relatedPitems">Related items</p>
+      <ListOfLittleItems :list-of-items="outPutIntems"></ListOfLittleItems>
+    </div>
   </div>
   <div v-else class="editItemContainer">
     <h2>Edit item</h2>
@@ -52,14 +56,19 @@
 
 <script>
 import { useRoute } from "vue-router";
-import { deleteItem, getItemById } from "@/services/ItemServiceApi";
+import { deleteItem, getItemById, getItems } from "@/services/ItemServiceApi";
 import GoogleMap from "@/components/GoogleMap.vue";
 import axios from "axios";
+import ListOfLittleItems from "@/components/ListOfLittleItems.vue";
 
 export default {
   name: "ItemDetails",
   components: {
     GoogleMap,
+    ListOfLittleItems,
+  },
+  mounted() {
+    this.fetchItems();
   },
   data() {
     return {
@@ -67,6 +76,8 @@ export default {
       imgIndex: 0,
       imgNum: 0,
       editMode: false,
+      relatedItems:[],
+      outPutIntems:[]
     };
   },
   computed: {
@@ -80,6 +91,11 @@ export default {
   created() {
     this.fetchItem();
   },
+  watch:{
+    relatedItems(){
+      this.findRelatedItems();
+    }
+  },
   methods: {
     fetchItem() {
       const route = useRoute();
@@ -90,6 +106,26 @@ export default {
         this.imgNum = item.image.length;
         this.item = item;
       });
+    },
+    fetchItems() {
+      getItems().then((items) => {
+        console.log("items");
+        console.log(items);
+        this.relatedItems = items;
+        console.log(this.relatedItems);
+      });
+    },
+    findRelatedItems(){
+      this.relatedItems.forEach(related=>{
+        if(this.item.categories.some(r=> related.categories.includes(r)) && this.item.id!==related.id && this.outPutIntems.length<10) {
+          this.outPutIntems.push(related);
+        }
+        if(this.outPutIntems.length<10){
+          if(this.item.description.toLowerCase().indexOf(related.name.toLowerCase())>=0 && !this.outPutIntems.includes(related) && this.item.id!==related.id){
+            this.outPutIntems.push(related);
+          }
+        }
+      })
     },
     enterEditMode(){
       this.editMode=true;
@@ -286,7 +322,6 @@ export default {
 .item-details {
   width: 50%;
 }
-
 
 .item-name {
   padding: 20px;
