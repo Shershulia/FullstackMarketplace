@@ -23,7 +23,7 @@ This will install all the necessary dependencies and start the frontend server.
 
 ### Backend Setup
 
-To setup the backend, navigate to the `backend` directory and run the following commands:
+To setup the backend, navigate to the `backend/marketplace` directory and run the following commands:
 
 ```
 mvn install
