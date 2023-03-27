@@ -85,12 +85,16 @@ describe('Purchasing, viewing cart and getting to checkout', () => {
   })
 
   it('passes if payment validation works, and client is able to confirm purchase', () => {
-    cy.visit('http://localhost:8080/shopping')
+    cy.visit('http://localhost:8080/register-user')
+    cy.get('#account').click()
+    cy.get('[href="/login"]').click()
+    cy.get('#username').type('admin')
+    cy.get('#password').type('admin')
+    cy.get('form > button').click()
+    cy.get('#cart').click()
     cy.on('uncaught:exception', (err, runnable) => {
       return false
     })
-    cy.get(':nth-child(1) > a > .littleCard > .name').click()
-    cy.get('.buy-now-button').click()
     cy.get('.checkout-button').click()
     cy.get('.confirm-purchase-button').should('be.disabled')
     cy.get('#card-number').type('1234567898765432')
