@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javax.persistence.Entity;
+import jakarta.persistence.Entity;
 
 /**
  * Login request model for the login endpoint in the API. This model is used to validate the request body. The request body is validated in the TokenController.
