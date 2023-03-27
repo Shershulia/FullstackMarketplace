@@ -26,7 +26,7 @@ export default {
 </script>
 
 
-<style>
+<style scoped>
 .footer {
   margin: 0;
   background-color: whitesmoke;

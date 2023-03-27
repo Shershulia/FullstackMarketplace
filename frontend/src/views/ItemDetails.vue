@@ -11,10 +11,15 @@
     <div class="item-details">
 
       <h2 class="item-name">{{ item.name }}</h2>
-      <button v-if="item.userid===this.itemBelongsTo" class="goToLoginButton" @click="enterEditMode">Edit</button>
+      <div>
+        <button v-if="item.userid===this.itemBelongsTo.id" class="goToLoginButton" @click="enterEditMode">Edit</button>
+      </div>
+      <div>
+        <button v-if="this.itemBelongsTo.permission ==='admin'" class="adminButton" @click="deleteItem">Delete by admin</button>
+      </div>
+
 
       <p class="item-price">{{ item.price }} kr,-</p>
-      <a :href="'mailto:?to=' + encodeURIComponent(this.user.email) + '&subject=' + encodeURIComponent('Marketplace - Regarding your ' + item.name + '') + '&body=' + encodeURIComponent('I have some questions regarding - ' + item.name + ': \n ')"  class="item-seller">Contact seller</a>
       <div class="locationWithImage">
         <img class="gpsIcon" :src="require(`@/assets/locationLogo.png`)" />
         <p class="item-location">{{ item.location }}</p>
@@ -27,8 +32,8 @@
         <p>{{category}}</p>
       </li>
       <div class="item-actions">
-        <button class="add-to-cart-button">Add to cart</button>
-        <button class="buy-now-button">Buy now</button>
+        <button class="add-to-cart-button" @click="addToCart(); itemAdded()">Add to cart</button>
+        <button class="buy-now-button" @click="$router.push('/cart'); addToCart()">Buy now</button>
       </div>
     </div>
   </div>
@@ -47,7 +52,7 @@
 
 <script>
 import { useRoute } from "vue-router";
-import { getItemById, getUserPubById } from "@/services/ItemServiceApi";
+import { deleteItem, getItemById } from "@/services/ItemServiceApi";
 import GoogleMap from "@/components/GoogleMap.vue";
 import axios from "axios";
 
@@ -58,7 +63,6 @@ export default {
   },
   data() {
     return {
-      user: {},
       item: {},
       imgIndex: 0,
       imgNum: 0,
@@ -70,12 +74,11 @@ export default {
       return this.item.image[this.imgIndex];
     },
     itemBelongsTo() {
-      return this.$store.getters.user.id;
+      return this.$store.getters.user;
     },
   },
   created() {
     this.fetchItem();
-    this.fetchUserDetails();
   },
   methods: {
     fetchItem() {
@@ -88,16 +91,15 @@ export default {
         this.item = item;
       });
     },
-    fetchUserDetails() {
-        getUserPubById(useRoute().params.id).then(response => {
-          let user = response.data;
-          console.log("user");
-          console.log(user);
-          this.user = user;
-        })
-    },
     enterEditMode(){
       this.editMode=true;
+    },
+    deleteItem() {
+      deleteItem(this.item.id).then(() => {
+        this.$emit("deletedItem",this.item.id);
+        alert("Item deleted");
+        this.$router.push("/shopping");
+      });
     },
     updateItem() {
       console.log(this.item)
@@ -119,6 +121,16 @@ export default {
           alert("error;could not update item info");
           console.error(error);
         });
+    },
+    addToCart() {
+      this.$store.commit('addToCart', {
+        name: this.item.name,
+        image: this.item.image[this.imgIndex],
+        productPrice: this.item.price,
+      })
+    },
+    itemAdded() {
+      document.getElementsByClassName('add-to-cart-button')[0].innerHTML = "Product added";
     }
   },
 };
@@ -129,8 +141,6 @@ export default {
 @media screen and (max-width: 768px) {
   .item-details-container {
     flex-direction: column;
-    margin-left: 10px;
-    margin-right: 10px;
     margin: 10px 10px 10px 10px;
 
     padding: 10px;
@@ -181,9 +191,6 @@ export default {
     margin-top: 10px;
   }
 
-  .image-navigation {
-    flex-wrap: wrap;
-  }
 
   .image-navigation button {
     margin-top: 10px;
@@ -194,8 +201,6 @@ export default {
 /* For medium devices */
 @media screen and (min-width: 768px) and (max-width: 1024px) {
   .item-details-container {
-    margin-left: 50px;
-    margin-right: 50px;
     margin: 50px 50px 50px 50px;
   ;
   }
@@ -222,8 +227,6 @@ export default {
 /* For large devices */
 @media screen and (min-width: 1024px) {
   .item-details-container {
-    margin-left: 200px;
-    margin-right: 200px;
     margin: 100px 100px 100px 100px;
   }
 
@@ -238,10 +241,6 @@ export default {
 
   .item-description {
     font-size: 30px;
-  }
-
-  .locationWithImage {
-    justify-content: space-evenly;
   }
 
   .locationWithMap {
@@ -319,10 +318,6 @@ export default {
   font-size: 24px;
   grid-column: 1 / 3;
   margin-bottom: 30px;
-}
-
-.map {
-  grid-column: 2 / 4;
   margin-right: 10px;
 }
 
@@ -350,7 +345,7 @@ export default {
 }
 
 .add-to-cart-button {
-  background-color: #f0c040;
+  background-color: #e3af39;
 }
 
 .buy-now-button {
@@ -391,14 +386,22 @@ export default {
   font-weight: bold;
   color: white;
   cursor: pointer;
-}
-
-.add-to-cart-button {
-  background-color: #f0c040;
+  margin: 20px;
 }
 
 .buy-now-button {
-  background-color: #f08030;
+  background-color: #c97900;
+}
+.buy-now-button:hover{
+  background-color: #f69200;
+
+}
+
+.add-to-cart-button {
+  background-color: #003366;
+}
+.add-to-cart-button:hover{
+  background-color: #0052cc;
 }
 
 .gpsIcon {
@@ -406,7 +409,6 @@ export default {
   height: 25px;
   margin-right: 10px;
 }
-
 
 .item-location {
   font-size: 20px;
@@ -416,7 +418,6 @@ export default {
 
 .item-location,
 .item-price {
-  margin: 0;
   margin-bottom: 10px;
 }
 .editItemContainer {
@@ -448,7 +449,23 @@ export default {
   font-size: 16px;
   margin-top: 10px;
 }
-
+.adminButton{
+  background-color: #910000;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  margin-bottom: 2%;
+}
+.adminButton:hover{
+  background-color: #a60000;
+  color: white;
+  border: 1px solid #333;
+  padding: 15px;
+}
 
 </style>
 

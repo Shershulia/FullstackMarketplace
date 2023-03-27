@@ -1,7 +1,6 @@
 import { createStore } from "vuex";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
-import { url } from "@/services/ItemServiceApi";
 
 export default createStore({
   state: {
@@ -12,10 +11,16 @@ export default createStore({
       name: null,
       email: null,
       phone: null,
+      permission:null
+    },
+    item: {
+      name: null,
+      image: null,
+      productPrice: null,
     },
     token: null,
     cart: [],
-    price: 0,
+    totalPrice: 0,
   },
   getters: {
     isLoggedIn: (state) => !!state.username && !!state.token,
@@ -23,7 +28,7 @@ export default createStore({
     user: (state) => state.user,
     token: (state) => state.token,
     cart: (state) => state.cart,
-    price: (state) => state.price,
+    price: (state) => state.totalPrice,
   },
   mutations: {
     setUsername(state, username) {
@@ -43,18 +48,22 @@ export default createStore({
       state.user.name = null;
       state.user.email = null;
       state.user.phone = null;
+      state.user.permission=null
 
       state.token = null;
     },
     setPrice(state, price) {
-      state.price = price;
+      state.totalPrice = price;
+    },
+    addToCart(state, item) {
+      state.cart.push(item);
     }
   },
   actions: {
     login({ commit }, { username, password }) {
       return new Promise((resolve, reject) => {
         axios
-          .post(url +"/token", {
+          .post("http://localhost:8090/token", {
             username: username,
             password: password,
           })
@@ -75,7 +84,7 @@ export default createStore({
 
             //get user info from server
             axios
-              .get(url + "/user/" + decodedToken.sub, {
+              .get("http://localhost:8090/user/" + decodedToken.sub, {
                 headers: {
                   Authorization: "Bearer " + token,
                 },
@@ -91,6 +100,7 @@ export default createStore({
                   name: response.data.name,
                   lastname: response.data.lastname,
                   age: response.data.age,
+                  permission: response.data.permission,
                 };
                 //update store
                 this.commit("setUser", user);
@@ -104,10 +114,27 @@ export default createStore({
           });
       });
     },
+    validateToken({ commit, state }) {
+      return new Promise((resolve, reject) => {
+        axios
+          .post("http://localhost:8090/verify", {
+            token: state.token,
+          })
+          .then((response) => {
+            console.log(response);
+            resolve(response);
+          })
+          .catch((error) => {
+            console.log(error);
+            commit("clearAuthData");
+            localStorage.removeItem("token");
+            reject(error);
+          });
+      });
+    },
     logout({ commit }) {
       commit("clearAuthData");
       localStorage.removeItem("token");
-      delete axios.defaults.headers.common["Authorization"];
     },
     autoLogin({ commit }) {
       const token = localStorage.getItem("token");
