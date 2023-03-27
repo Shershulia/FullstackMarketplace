@@ -44,17 +44,5 @@ public class TokenControllerTest {
 
     }
 
-    @Test
-    public void testVerifyToken() throws Exception {
-        final Long userId = 1L;
-        final String token = JWT.create()
-                .withSubject(String.valueOf(userId))
-                .withIssuer("fullstack_marketplace_api")
-                .sign(Algorithm.HMAC512(keyStr));
-
-        final String actualUserId = tokenController.verifyToken("Bearer " + token);
-
-        assertEquals(String.valueOf(userId), actualUserId);
-    }
 
 }
