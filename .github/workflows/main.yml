@@ -1,0 +1,26 @@
+name: Merge Conflict Checker
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  merge-conflict-check:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Install dependencies
+      run: |
+        npm install
+
+    - name: Check for merge conflicts
+      run: |
+        git fetch origin
+        git checkout main
+        git merge --no-commit --no-ff "${{ github.event.pull_request.head.ref }}"
+        if [ -n "$(git status --porcelain)" ]; then
+          echo 
