@@ -6,8 +6,8 @@
           {{ t('language') }}
         </a>
         <div class="dropdown-menu" v-if="showLanguageDropdown" @click="hideLanguageDropdown">
-          <a class="dropdown-item" href="#" @click.prevent="setLanguage('English')">{{ t('english') }}</a>
-          <a class="dropdown-item" href="#" @click.prevent="setLanguage('Norwegian')">{{ t('norwegian') }}</a>
+          <a class="dropdown-item" href="#" @click.prevent="setLanguage('English')" id="eng">{{ t('english') }}</a>
+          <a class="dropdown-item" href="#" @click.prevent="setLanguage('Norwegian')" id="nor">{{ t('norwegian') }}</a>
         </div>
       </li>
       <li class="nav-item">
@@ -24,8 +24,11 @@
           {{ t('account') }}
         </a>
         <div class="dropdown-menu" v-if="showAccountDropdown" @click="hideAccountDropdown">
-          <a class="dropdown-item" href="#">{{ t('sign-up') }}</a>
-          <a class="dropdown-item" href="#">{{ t('log-in') }}</a>
+            <button @click="logout" v-if="this.userOnPage.username!==null" to="/register-user" class="logoutButtonForHeader" >Logout</button>
+            <router-link v-else to="/register-user" class="dropdown-item" >{{ t('sign-up') }}</router-link>
+
+            <router-link v-if="this.userOnPage.username!==null" to="/login" class="dropdown-item" >My account</router-link>
+            <router-link v-else to="/login" class="dropdown-item" >{{ t('log-in') }}</router-link>
         </div>
       </li>
     </ul>
@@ -74,7 +77,12 @@ export default {
       else {
         this.$i18n.locale = 'en'
       }
-    }
+    },
+    logout() {
+      console.log("logout");
+      this.$store.dispatch("logout");
+      this.$router.push("/login"); // redirect to the login page
+    },
   },
   mounted() {
     const availableLocales = this.$i18n.availableLocales
@@ -84,8 +92,14 @@ export default {
     } else {
       this.$i18n.locale = 'en';
     }
-  }
-}
+  },
+  computed: {
+    userOnPage() {
+      return this.$store.getters.user;
+    },
+  },
+
+};
 </script>
 
 <style>
@@ -131,18 +145,58 @@ body {
   cursor: pointer;
   white-space: normal;
 }
+.logoutButtonForHeader {
+  background: none;
+  border: none;
+  padding: 0;
+  color: #333;
+  cursor: pointer;
+  font-size: inherit;
+  font-family: inherit;
+  text-decoration: underline;
+}
 
-@media (max-width: 450px) {
-  .footer .row {
-    display: flex;
+@media (max-width: 912px) {
+  .navbar-nav {
     flex-wrap: wrap;
   }
 
-  .footer .col-md-6 {
+  .nav-item {
     width: 50%;
+    box-sizing: border-box;
+  }
+
+  .nav-item:nth-child(odd) {
+    padding-right: 0;
+  }
+
+  .nav-item:nth-child(even) {
+    padding-left: 0;
+  }
+
+  .nav-link {
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+
+  .nav-item.dropdown .dropdown-menu {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .dropdown-item {
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+  }
+
+  .nav-item:nth-child(5) {
+    width: 100%;
+    padding-left: 8px;
+    padding-right: 8px;
+    box-sizing: border-box;
   }
 }
-
-
-
 </style>

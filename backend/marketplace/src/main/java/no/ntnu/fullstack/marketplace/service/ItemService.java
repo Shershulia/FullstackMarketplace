@@ -6,41 +6,98 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
+/**
+ * Service class for Item model for handling database operations and representation of data to the controller layer
+ */
 @Service
 public class ItemService
 {
+    /**
+     * Autowired repository for Item model for handling database operations
+     *
+     */
     @Autowired
     ItemRepository itemRepository;
     //getting all item records
+
+    /**
+     * Get all items from the database and return them as a list
+     * @return List of all items in the database
+     */
     public List<Item> getAllItem()
     {
         List<Item> items = new ArrayList<Item>();
         itemRepository.findAll().forEach(item -> items.add(item));
         return items;
     }
+
+    /**
+     * Get all categories from the database and return them as a list
+     * @return List of all categories in the database
+     */
+    public List<String> getAllCategory()
+    {
+        HashSet<String> categories = new HashSet<String>();
+        //for each item in the database, add each element in the categories list in the item to the categories list
+        itemRepository.findAll().forEach(item -> categories.addAll(item.getCategories()));
+        //convert the hashset to a list
+        List<String> categoriesList = new ArrayList<String>(categories);
+        return categoriesList;
+    }
+
+    /**
+     * Get all item from the database
+     * @param id The id of the item to get
+     * @return item with the given id from the database
+     */
     //getting a specific record
     public Item getItemById(Long id)
     {
         return itemRepository.findById(id).get();
     }
 
-
+    /**
+     * create or update an item in the database
+     * @param item The item to save or update
+     */
     public void saveOrUpdate(Item item)
     {
         itemRepository.save(item);
     }
 
+
+    /**
+     * create a new item in the database
+     * @param item The item to save
+     */
     public void newItem(Item item)
     {
         itemRepository.save(item);
     }
 
+    /**
+     * delete an item from the database
+     * @param id The id of the item to delete
+     */
     //deleting a specific record
     public void delete(Long id)
     {
         itemRepository.deleteById(id);
     }
+<<<<<<< HEAD
 
+=======
+    public List<Item> getAllItemForSpecialUser(Long id) {
+        List<Item> items = new ArrayList<>();
+        itemRepository.findAll().forEach(item -> {
+            if (item.getUserId().equals(id)) {
+                items.add(item);
+            }
+        });
+        return items;
+    }
+>>>>>>> main
 }

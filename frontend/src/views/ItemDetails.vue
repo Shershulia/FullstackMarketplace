@@ -1,5 +1,5 @@
 <template>
-  <div class="item-details-container">
+  <div v-if="!editMode" class="item-details-container">
     <div class="item-image">
       <img :src="currentImageSrc" />
       <div class="image-navigation">
@@ -9,7 +9,10 @@
       </div>
     </div>
     <div class="item-details">
+
       <h2 class="item-name">{{ item.name }}</h2>
+      <button v-if="item.userid===this.itemBelongsTo" class="goToLoginButton" @click="enterEditMode">Edit</button>
+
       <p class="item-price">{{ item.price }} kr,-</p>
       <a :href="'mailto:?to=' + encodeURIComponent(this.user.email) + '&subject=' + encodeURIComponent('Marketplace - Regarding your ' + item.name + '') + '&body=' + encodeURIComponent('I have some questions regarding - ' + item.name + ': \n ')"  class="item-seller">Contact seller</a>
       <div class="locationWithImage">
@@ -18,13 +21,27 @@
       </div>
       <div class="locationWithMap">
         <p class="item-description">{{ item.description }}</p>
-        <GoogleMap class="map" :address="this.item.location" />
+        <GoogleMap class="map" :address="item.location" />
       </div>
+      <li v-for="category in this.item.categories">
+        <p>{{category}}</p>
+      </li>
       <div class="item-actions">
         <button class="add-to-cart-button">Add to cart</button>
         <button class="buy-now-button">Buy now</button>
       </div>
     </div>
+  </div>
+  <div v-else class="editItemContainer">
+    <h2>Edit item</h2>
+
+    <p><strong>Name:</strong> <input v-model="item.name" /></p>
+    <p><strong>Price:</strong> <input v-model="item.price" /></p>
+    <p><strong>Image:</strong> <input v-model="item.image" /></p>
+    <p><strong>Location:</strong> <input v-model="item.location" /></p>
+    <p><strong>Description:</strong> <input v-model="item.description" /></p>
+
+    <button @click="updateItem" class="saveButton">Save</button>
   </div>
 </template>
 
@@ -32,6 +49,7 @@
 import { useRoute } from "vue-router";
 import { getItemById, getUserPubById } from "@/services/ItemServiceApi";
 import GoogleMap from "@/components/GoogleMap.vue";
+import axios from "axios";
 
 export default {
   name: "ItemDetails",
@@ -44,14 +62,17 @@ export default {
       item: {},
       imgIndex: 0,
       imgNum: 0,
+      editMode: false,
     };
   },
   computed: {
     currentImageSrc() {
       return this.item.image[this.imgIndex];
     },
+    itemBelongsTo() {
+      return this.$store.getters.user.id;
+    },
   },
-  mounted() {},
   created() {
     this.fetchItem();
     this.fetchUserDetails();
@@ -62,12 +83,12 @@ export default {
       let id = route.params.id;
       getItemById(id).then((response) => {
         let item = response.data;
-        console.log("item");
         console.log(item);
         this.imgNum = item.image.length;
         this.item = item;
       });
     },
+<<<<<<< HEAD
     fetchUserDetails() {
         getUserPubById(useRoute().params.id).then(response => {
           let user = response.data;
@@ -76,6 +97,32 @@ export default {
           this.user = user;
         })
     },
+=======
+    enterEditMode(){
+      this.editMode=true;
+    },
+    updateItem() {
+      console.log(this.item)
+      axios
+        .post(
+          "http://localhost:8090/item/update",
+          this.item,
+          {
+            headers: {
+              Authorization: "Bearer " + this.$store.getters.token,
+            },
+          }
+        )
+        .then(() => {
+          this.editMode=false;
+        })
+        .catch((error) => {
+          console.error("error:");
+          alert("error;could not update item info");
+          console.error(error);
+        });
+    }
+>>>>>>> main
   },
 };
 </script>
@@ -85,8 +132,13 @@ export default {
 @media screen and (max-width: 768px) {
   .item-details-container {
     flex-direction: column;
+<<<<<<< HEAD
     margin-left: 10px;
     margin-right: 10px;
+=======
+    margin: 10px 10px 10px 10px;
+
+>>>>>>> main
     padding: 10px;
   }
 
@@ -106,6 +158,10 @@ export default {
 
   .item-price {
     font-size: 16px;
+<<<<<<< HEAD
+=======
+    margin-bottom: 10px;
+>>>>>>> main
   }
 
   .locationWithImage {
@@ -134,9 +190,12 @@ export default {
     margin-top: 10px;
   }
 
+<<<<<<< HEAD
   .image-navigation {
     flex-wrap: wrap;
   }
+=======
+>>>>>>> main
 
   .image-navigation button {
     margin-top: 10px;
@@ -147,8 +206,13 @@ export default {
 /* For medium devices */
 @media screen and (min-width: 768px) and (max-width: 1024px) {
   .item-details-container {
+<<<<<<< HEAD
     margin-left: 50px;
     margin-right: 50px;
+=======
+    margin: 50px 50px 50px 50px;
+  ;
+>>>>>>> main
   }
 
   .item-image {
@@ -173,8 +237,12 @@ export default {
 /* For large devices */
 @media screen and (min-width: 1024px) {
   .item-details-container {
+<<<<<<< HEAD
     margin-left: 200px;
     margin-right: 200px;
+=======
+    margin: 100px 100px 100px 100px;
+>>>>>>> main
   }
 
   .item-image {
@@ -190,10 +258,13 @@ export default {
     font-size: 30px;
   }
 
+<<<<<<< HEAD
   .locationWithImage {
     justify-content: space-evenly;
   }
 
+=======
+>>>>>>> main
   .locationWithMap {
     grid-template-columns: auto auto auto;
     padding: 10px;
@@ -210,12 +281,24 @@ export default {
   border-radius: 5px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
+<<<<<<< HEAD
+=======
+.locationWithImage {
+  justify-content: center;
+}
+.item-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+>>>>>>> main
 
 .item-image img {
   display: block;
-  width: 100%;
-  height: auto;
+  width: 75%;
+  height: 75%;
   border-radius: 5px;
+  margin: auto;
 }
 
 .image-navigation {
@@ -225,7 +308,16 @@ export default {
   margin-top: 10px;
 }
 
+<<<<<<< HEAD
+=======
+.item-details {
+  width: 50%;
+}
+
+
+>>>>>>> main
 .item-name {
+  padding: 20px;
   font-size: 36px;
   font-weight: bold;
   margin: 0 0 10px 0;
@@ -234,7 +326,7 @@ export default {
 .item-price {
   font-size: 20px;
   font-weight: bold;
-  margin: 0 0 10px 0;
+  margin-bottom: 50px;
 }
 
 .locationWithImage {
@@ -254,10 +346,18 @@ export default {
   font-size: 24px;
   grid-column: 1 / 3;
   margin-bottom: 30px;
+<<<<<<< HEAD
 }
 
 .map {
   grid-column: 2 / 4;
+=======
+  margin-right: 10px;
+}
+
+.map {
+  grid-column: 3 / 4;
+>>>>>>> main
 }
 
 .item-actions {
@@ -345,7 +445,44 @@ export default {
 
 .item-location,
 .item-price {
+<<<<<<< HEAD
   margin: 0;
 }
 
+=======
+  margin-bottom: 10px;
+}
+.editItemContainer {
+  background-color: #f8f8f8;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.editItemContainer p {
+  margin: 10px 0;
+}
+
+.editItemContainer input {
+  width: 40%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+.saveButton {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+
+>>>>>>> main
 </style>
+

@@ -20,6 +20,11 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import java.io.IOException;
 import java.util.Collections;
 
+/**
+ * This filter is responsible for validating the JWT token sent by the client.
+ * If the token is valid, it will add the user details to the Spring Security context.
+ */
+
 public class JWTAuthorizationFilter extends OncePerRequestFilter {
     private static final Logger LOGGER = LogManager.getLogger(JWTAuthorizationFilter.class);
 

@@ -19,11 +19,16 @@
           class="searchInput"
           v-model="searchValue"
       />
+      <!-- <select v-model="searchCategory">
+        <option value="">Select category</option>
+        <option>Electronics</option>
+        <option>Clothing and Accessories</option>
+        <option>Home and Garden</option>
+        <option>Health and Beauty</option>
+        <option>Sports and Outdoors</option> -->
       <select v-model="searchCategory">
         <option value="">Select category</option>
-        <option>Chair</option>
-        <option>B</option>
-        <option>C</option>
+        <option v-for="category in this.categories" :key="category">{{ category }}</option>
       </select>
       <input
           type="text"
@@ -38,6 +43,7 @@
 
 <script>
 import ListOfLittleItems from "@/components/ListOfLittleItems.vue";
+import { getItemsCategories } from "@/services/ItemServiceApi";
 
 async function getLatAndLng(location){
   const address = location;
@@ -76,12 +82,18 @@ async function getLatAndLng(location){
           item["latitude"] = latAndLng[0];
           item["longitude"] = latAndLng[1];
       }
+
+      this.categories = await getItemsCategories();
+
+      console.log(this.categories);
+
     },
     components: {
       ListOfLittleItems
     },
     data() {
       return {
+        categories: [],
         searchValue:"",
         searchCategory:"",
         searchLocation:"",
@@ -97,7 +109,9 @@ async function getLatAndLng(location){
            items = items.filter((item) => item.name.toLowerCase().includes(this.searchValue.trim().toLowerCase()));
          }
          if (this.searchCategory !== "") {
-           items = items.filter((item) => item.category.toLowerCase() === this.searchCategory.toLowerCase());
+           console.log(items);
+           items = items.filter((item) => item.categories.
+             some((category)=> category.toLowerCase()===this.searchCategory.toLowerCase()));
          }
          if (navigator.geolocation && this.searchLocation.toLowerCase() === "current" && this.searchByLocation) {
            navigator.geolocation.getCurrentPosition((position) => {
@@ -156,7 +170,7 @@ async function getLatAndLng(location){
     }
   };
 </script>
-<style>
+<style scoped>
 .container {
   display: flex;
   flex-direction: column-reverse;

@@ -81,6 +81,7 @@
 			<artifactId>jakarta.persistence-api</artifactId>
 		</dependency>
         <dependency>
+<<<<<<< HEAD
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
             <version>5.9.1</version>
@@ -123,6 +124,10 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-test</artifactId>
             <version>3.0.4</version>
+=======
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+>>>>>>> main
             <scope>test</scope>
         </dependency>
 
