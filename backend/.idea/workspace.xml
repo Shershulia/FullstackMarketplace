@@ -5,6 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7fe22fb5-593e-41e4-b0f4-612f280e5ae7" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/LittleItemCard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/LittleItemCard.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/views/ItemDetails.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/views/ItemDetails.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -105,7 +107,7 @@
       <workItem from="1679852410402" duration="18614000" />
       <workItem from="1679920456893" duration="1546000" />
       <workItem from="1679944234098" duration="982000" />
-      <workItem from="1679946496625" duration="301000" />
+      <workItem from="1679946496625" duration="1089000" />
     </task>
     <servers />
   </component>
