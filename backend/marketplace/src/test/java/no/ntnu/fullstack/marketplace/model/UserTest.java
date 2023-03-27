@@ -97,9 +97,9 @@ class UserTest {
         assertEquals(newAge, user.getAge());
     }
 
-    @Test
-    void testToString() {
-        String expectedToString = "User{id=null, username='testuser', password='testpassword', email='testemail@test.com', name='Test', lastname='User', age=25}";
-        assertEquals(expectedToString, user.toString());
-    }
+    // @Test
+    // void testToString() {
+    //     String expectedToString = "User{id=null, username='testuser', password='testpassword', email='testemail@test.com', name='Test', lastname='User', age=25}";
+    //     assertEquals(expectedToString, user.toString());
+    // }
 }

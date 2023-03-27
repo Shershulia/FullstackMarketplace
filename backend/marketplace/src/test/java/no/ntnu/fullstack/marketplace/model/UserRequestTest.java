@@ -18,7 +18,7 @@ class UserRequestTest {
 
         assertEquals("{\"username\":\"john123\",\"email\":\"john@example.com\"," +
                 "\"password\":\"password123\",\"name\":\"John\",\"lastname\":\"Doe\"," +
-                "\"age\":25}", json);
+                "\"age\":25,"+"\"permission\":\"normal\"}", json);
     }
 
     @Test
