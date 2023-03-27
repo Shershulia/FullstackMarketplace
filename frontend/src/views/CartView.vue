@@ -51,7 +51,6 @@ export default {
     },
     changePrice() {
       this.$store.commit("setPrice", this.$store.state.cart.reduce((total, item) => total + parseFloat(item.productPrice), 0).toFixed(2))
-      console.log(this.$store.state.price)
     },
   },
   computed: {

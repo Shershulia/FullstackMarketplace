@@ -31,6 +31,10 @@
           v-model="searchLocation"
           @keyup.enter="findLocation"
       />
+
+      <div class="popup" @click="popUpFunction">?
+        <span class="popuptext" id="myPopup">Click enter to make search by location faster</span>
+      </div>
     </div>
   </div>
 </template>
@@ -78,8 +82,6 @@ async function getLatAndLng(location){
           item["longitude"] = latAndLng[1];
       }
 
-      console.log(this.categories);
-
     },
     components: {
       ListOfLittleItems
@@ -102,7 +104,6 @@ async function getLatAndLng(location){
            items = items.filter((item) => item.name.toLowerCase().includes(this.searchValue.trim().toLowerCase()));
          }
          if (this.searchCategory !== "") {
-           console.log(items);
            items = items.filter((item) => item.categories.
              some((category)=> category.toLowerCase()===this.searchCategory.toLowerCase()));
          }
@@ -158,6 +159,10 @@ async function getLatAndLng(location){
         this.latitude= latAndLng[0];
         this.longitude= latAndLng[1];
         this.searchByLocation=true;
+      },
+      popUpFunction() {
+        var popup = document.getElementById("myPopup");
+        popup.classList.toggle("show");
       }
 
     }
@@ -214,6 +219,39 @@ select {
   margin-left: 10%;
   margin-right: 10%;
 
+}
+
+.popup {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* The actual popup */
+.popup .popuptext {
+  visibility: hidden;
+  width: 160px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: absolute;
+  z-index: 1;
+  top: 150%;
+  left: 100%;
+  margin-left: -80px;
+}
+
+
+/* Toggle this class - hide and show the popup */
+.popup .show {
+  visibility: visible;
+  animation: fadeIn 1s;
 }
 
 </style>

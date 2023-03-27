@@ -3,7 +3,7 @@
     <h2>Checkout</h2>
     <label><strong>Total cost: {{ price }} kr</strong></label>
     <br /> <br />
-    <form class="checkout-form">
+    <form class="checkout-form" v-if="this.userLog.name !==null">
       <label for="card-number">Card Number</label>
       <input type="text" id="card-number" placeholder="1234 5678 9012 3456" v-model="cardNumber" required>
 
@@ -18,7 +18,9 @@
 
       <button class="confirm-purchase-button" :disabled="!canConfirmPurchase" @click.prevent="confirmPurchase">Confirm Purchase</button>
     </form>
-
+    <div v-else>
+      You should log into your account to buy items
+    </div>
     <div v-if="showConfirmation" class="checkout-confirmation">Purchase confirmed! Thank you for your business.</div>
   </div>
 </template>
@@ -46,6 +48,9 @@ export default defineComponent({
     },
     canConfirmPurchase() {
       return this.cardNumber.length > 15 && this.cardholderName !== '' && this.cvv.length > 2;
+    },
+    userLog() {
+      return this.$store.getters.user;
     },
   },
   methods: {

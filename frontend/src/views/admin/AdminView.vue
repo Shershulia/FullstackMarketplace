@@ -39,7 +39,6 @@ export default {
   name: "AdminView",
   async mounted() {
     this.categories=await getCreationCategories();
-    console.log(this.categories);
   },
   data() {
     return {
