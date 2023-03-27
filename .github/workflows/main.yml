@@ -21,7 +21,11 @@ jobs:
     - name: Run frontend serve
       run: |
         cd frontend
-        npm run serve
+        npm run serve &
+
+    - name: Wait for frontend serve to start
+      run: |
+        timeout 15 bash -c 'until printf "" 2>>/dev/null >>/dev/tcp/localhost/8080; do sleep 1; done' || exit 1
 
     - name: Check frontend serve status
       run: |
