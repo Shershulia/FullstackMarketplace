@@ -193,14 +193,21 @@ export default {
 
 }
 .saveButton{
-  background-color: #4CAF50;
+  background-color: #3a883d;
   color: white;
   padding: 10px;
   border-radius: 5px;
   border: none;
   cursor: pointer;
   font-size: 16px;
+  transition: all 0.3s ease;
   margin-top: 10px;
+}
+.saveButton:hover{
+  background-color: #449f48;
+  color: white;
+  border: 1px solid #333;
+  padding: 15px;
 }
 .adminButton{
   background-color: #910000;
@@ -210,6 +217,13 @@ export default {
   border: none;
   cursor: pointer;
   font-size: 16px;
+  transition: all 0.3s ease;
   margin-top: 10px;
+}
+.adminButton:hover{
+  background-color: #a60000;
+  color: white;
+  border: 1px solid #333;
+  padding: 15px;
 }
 </style>

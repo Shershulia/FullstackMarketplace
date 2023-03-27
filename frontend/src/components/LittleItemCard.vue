@@ -24,7 +24,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .littleCard {
   width: 250px;
   cursor: pointer;
@@ -51,7 +51,7 @@ export default {
   padding: 10px;
   border-radius: 10px;
   color: white;
-  background-color: rgb(126, 126, 126, 0.7);
+  background-color: rgba(126, 126, 126, 0.7);
 }
 .name {
   font-size: 18px;

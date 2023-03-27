@@ -439,7 +439,14 @@ export default {
   border: none;
   cursor: pointer;
   font-size: 16px;
+  transition: all 0.3s ease;
   margin: 5%;
+}
+.adminButton:hover{
+  background-color: #a60000;
+  color: white;
+  border: 1px solid #333;
+  padding: 15px;
 }
 
 </style>

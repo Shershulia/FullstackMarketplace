@@ -7,6 +7,9 @@ import RegisterUser from "../views/RegisterUser.vue";
 import AboutView from "@/views/AboutView";
 import CreateItem from "@/views/CreateItem.vue";
 import AdminView from "@/views/admin/AdminView.vue";
+import CartView from "@/views/CartView";
+import CheckoutView from "@/views/CheckoutView";
+
 
 const routes = [
   {
@@ -62,6 +65,16 @@ const routes = [
     name: "RegisterUser",
     component: RegisterUser,
   },
+  {
+    path: "/cart",
+    name: "Cart",
+    component: CartView,
+  },
+  {
+    path: "/checkout",
+    name: "Checkout",
+    component: CheckoutView,
+  }
 ];
 
 const router = createRouter({

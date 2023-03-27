@@ -28,7 +28,7 @@ export default {
       items: [],
     };
   },
-  created() {
+  mounted() {
     this.fetchItems();
   },
   methods: {

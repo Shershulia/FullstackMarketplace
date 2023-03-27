@@ -1,22 +1,22 @@
 <template>
   <div class="home">
     <div class="adminPanel" v-if="userForAdmin.permission==='admin'">
-      <p><strong>Categories in database:</strong></p>
+      <p><strong>Available categories in database:</strong></p>
       <select>
         <option v-for="category in categories" :key="category">{{ category }}</option>
       </select>
       <p><strong>Enter a new category</strong></p>
       <input v-model="newCategory">
       <button class="addCategory" @click="addCategory">Add category</button>
-
+      <hr>
       <p><strong>Modify already existed category</strong></p>
-      <p><strong>Choose category:</strong></p>
+      <p><strong>Choose category to modify:</strong></p>
       <select v-model="modifiedCategory" @change="setSame">
         <option v-for="category in categories" :key="category">{{ category }}</option>
       </select>
       <input v-model="modifyTo">
       <button class="modifyCategory" @click="modifyCategory">Modify category</button>
-
+      <hr>
       <p><strong>Choose category to delete</strong></p>
       <select v-model="deleteCategory">
         <option v-for="category in categories" >{{ category }}</option>
@@ -121,6 +121,9 @@ export default {
 </script>
 
 <style scoped>
+hr {
+  width: 50%;
+}
 .adminPanel{
   background-color: #f8f8f8;
   padding: 20px;
@@ -147,7 +150,6 @@ input{
   border: none;
   cursor: pointer;
   font-size: 16px;
-  margin-top: 10px;
 }
 .deleteCategory{
   background-color: #910000;
@@ -157,7 +159,6 @@ input{
   border: none;
   cursor: pointer;
   font-size: 16px;
-  margin-top: 10px;
 }
 .modifyCategory{
   background-color: #003366;
@@ -167,6 +168,15 @@ input{
   border: none;
   cursor: pointer;
   font-size: 16px;
-  margin-top: 10px;
+}
+select{
+  margin: 10px;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid gray;
+  width: 150px;
+}
+p{
+  margin: 20px 20px 0px 0px;
 }
 </style>

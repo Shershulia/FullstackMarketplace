@@ -3,7 +3,8 @@
     <NavigationBar />
   </header>
   <router-view />
-  <footer><MarketplaceFooter />
+  <footer>
+    <MarketplaceFooter />
   </footer>
 </template>
 

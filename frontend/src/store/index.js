@@ -14,12 +14,16 @@ export default createStore({
       permission:null
     },
     token: null,
+    cart: [],
+    price: 0,
   },
   getters: {
     isLoggedIn: (state) => !!state.username && !!state.token,
     username: (state) => state.user.username,
     user: (state) => state.user,
     token: (state) => state.token,
+    cart: (state) => state.cart,
+    price: (state) => state.price,
   },
   mutations: {
     setUsername(state, username) {
@@ -43,6 +47,9 @@ export default createStore({
 
       state.token = null;
     },
+    setPrice(state, price) {
+      state.price = price;
+    }
   },
   actions: {
     login({ commit }, { username, password }) {
