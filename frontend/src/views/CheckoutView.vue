@@ -56,6 +56,7 @@ export default defineComponent({
   methods: {
     confirmPurchase() {
       this.confirmation = true
+      this.$store.state.cart.splice(0)
     },
   },
 })
