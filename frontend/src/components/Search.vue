@@ -26,7 +26,7 @@
       </select>
       <input
           type="text"
-          placeholder="Search by location (or Current)"
+          placeholder="Search by location - Current"
           class="searchInput"
           v-model="searchLocation"
           @keyup.enter="findLocation"
