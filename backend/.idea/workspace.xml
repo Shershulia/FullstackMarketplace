@@ -5,8 +5,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7fe22fb5-593e-41e4-b0f4-612f280e5ae7" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../.vscode/settings.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/marketplace/src/test/java/no/ntnu/fullstack/marketplace/controller/ItemControllerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/marketplace/src/test/java/no/ntnu/fullstack/marketplace/controller/TokenControllerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/marketplace/src/test/java/no/ntnu/fullstack/marketplace/controller/UserControllerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/marketplace/src/test/java/no/ntnu/fullstack/marketplace/model/ItemTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/marketplace/src/test/java/no/ntnu/fullstack/marketplace/model/UserInfoResponseTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/marketplace/src/test/java/no/ntnu/fullstack/marketplace/model/UserRequestTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/marketplace/src/test/java/no/ntnu/fullstack/marketplace/model/UserTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/marketplace/src/test/java/no/ntnu/fullstack/marketplace/service/ItemServiceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/marketplace/src/test/java/no/ntnu/fullstack/marketplace/service/UserServiceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/.vscode/settings.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/marketplace/src/main/java/no/ntnu/fullstack/marketplace/model/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/marketplace/src/main/java/no/ntnu/fullstack/marketplace/model/Item.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/marketplace/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/marketplace/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/marketplace/src/main/java/no/ntnu/fullstack/marketplace/MarketplaceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/marketplace/src/main/java/no/ntnu/fullstack/marketplace/MarketplaceApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/marketplace/src/main/java/no/ntnu/fullstack/marketplace/controller/TokenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/marketplace/src/main/java/no/ntnu/fullstack/marketplace/controller/TokenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/marketplace/src/main/java/no/ntnu/fullstack/marketplace/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/marketplace/src/main/java/no/ntnu/fullstack/marketplace/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/marketplace/src/main/java/no/ntnu/fullstack/marketplace/model/LoginRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/marketplace/src/main/java/no/ntnu/fullstack/marketplace/model/LoginRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/marketplace/src/main/java/no/ntnu/fullstack/marketplace/security/JWTAuthorizationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/marketplace/src/main/java/no/ntnu/fullstack/marketplace/security/JWTAuthorizationFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/marketplace/src/main/java/no/ntnu/fullstack/marketplace/security/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/marketplace/src/main/java/no/ntnu/fullstack/marketplace/security/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/marketplace/src/main/java/no/ntnu/fullstack/marketplace/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/marketplace/src/main/java/no/ntnu/fullstack/marketplace/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/cypress/e2e/home.cy.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/cypress/e2e/home.cy.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/services/ItemServiceApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/services/ItemServiceApi.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/views/CreateItem.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/views/CreateItem.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/views/HomeView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/views/HomeView.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/views/ItemDetails.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/views/ItemDetails.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

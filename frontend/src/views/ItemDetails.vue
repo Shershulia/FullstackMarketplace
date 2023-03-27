@@ -20,6 +20,14 @@
 
 
       <p class="item-price">{{ item.price }} kr,-</p>
+      <a v-if="user.email"
+        :href="'mailto:?to=' + encodeURIComponent(user.email) + '&subject=' + encodeURIComponent('Marketplace - Regarding your ' + item.name + '') + '&body=' + encodeURIComponent('I have some questions regarding - ' + item.name + ': \n ')"
+        class="item-seller"
+        v-tooltip="{ content: user.email, placement: 'bottom' }"
+      >
+        Contact seller
+      </a>
+      <p v-else class="item-seller">Contact seller</p>
       <div class="locationWithImage">
         <img class="gpsIcon" :src="require(`@/assets/locationLogo.png`)" />
         <p class="item-location">{{ item.location }}</p>
@@ -46,9 +54,9 @@
 
     <p><strong>Name:</strong> <input v-model="item.name" /></p>
     <p><strong>Price:</strong> <input v-model="item.price" /></p>
-    <p><strong>Image:</strong> <input v-model="item.image" /></p>
-    <p><strong>Location:</strong> <input v-model="item.location" /></p>
-    <p><strong>Description:</strong> <input v-model="item.description" /></p>
+    <p><strong title='url to image hosted on diffrent page (multiple seperated by "," with no spacing between)'>Image:</strong> <input v-model="item.image" /></p>
+    <p><strong title="the adress of the item">Location:</strong> <input v-model="item.location" /></p>
+    <p><strong title="short description of the item">Description:</strong> <input v-model="item.description" /></p>
 
     <button @click="updateItem" class="saveButton">Save</button>
   </div>
@@ -56,7 +64,7 @@
 
 <script>
 import { useRoute } from "vue-router";
-import { deleteItem, getItemById, getItems } from "@/services/ItemServiceApi";
+import { deleteItem, getItemById, getUserPubById , getItems} from "@/services/ItemServiceApi";
 import GoogleMap from "@/components/GoogleMap.vue";
 import axios from "axios";
 import ListOfLittleItems from "@/components/ListOfLittleItems.vue";
@@ -72,6 +80,7 @@ export default {
   },
   data() {
     return {
+      user: {},
       item: {},
       imgIndex: 0,
       imgNum: 0,
@@ -90,17 +99,21 @@ export default {
   },
   created() {
     this.fetchItem();
+    this.fetchUserDetails();
   },
   watch:{
     relatedItems(){
       this.findRelatedItems();
-    }
+    },
+    item(){
+      this.fetchItem();
+    },
   },
   methods: {
     fetchItem() {
       const route = useRoute();
       let id = route.params.id;
-      getItemById(id).then((response) => {
+    getItemById(id).then((response) => {
         let item = response.data;
         console.log(item);
         this.imgNum = item.image.length;
@@ -115,17 +128,27 @@ export default {
         console.log(this.relatedItems);
       });
     },
-    findRelatedItems(){
-      this.relatedItems.forEach(related=>{
-        if(this.item.categories.some(r=> related.categories.includes(r)) && this.item.id!==related.id && this.outPutIntems.length<10) {
+    findRelatedItems() {
+      this.relatedItems.forEach(related => {
+        if (this.item.categories.some(r => related.categories.includes(r)) && this.item.id !== related.id && this.outPutIntems.length < 10) {
           this.outPutIntems.push(related);
         }
-        if(this.outPutIntems.length<10){
-          if(this.item.description.toLowerCase().indexOf(related.name.toLowerCase())>=0 && !this.outPutIntems.includes(related) && this.item.id!==related.id){
+        if (this.outPutIntems.length < 10) {
+          if (this.item.description.toLowerCase().indexOf(related.name.toLowerCase()) >= 0 && !this.outPutIntems.includes(related) && this.item.id !== related.id) {
             this.outPutIntems.push(related);
           }
         }
       })
+    },
+    fetchUserDetails() {
+        console.log("fetchUserDetails");
+        getUserPubById(useRoute().params.id).then(response => {
+          let user = response.data;
+          console.log("user");
+          console.log(user);
+          this.user = user;
+        })
+
     },
     enterEditMode(){
       this.editMode=true;

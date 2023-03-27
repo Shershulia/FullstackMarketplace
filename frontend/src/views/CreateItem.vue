@@ -13,7 +13,7 @@
       {{ v$.item.price.$errors[0].$message }}
     </p>
 
-    <p><strong>Image:</strong> <input v-model="inputImage" :class="{ 'invalid-input': v$.$error && v$.inputImage.$error }" /></p>
+    <p><strong title='url to image hosted on diffrent page (multiple seperated by "," with no spacing between)'>Image:</strong> <input v-model="inputImage" :class="{ 'invalid-input': v$.$error && v$.inputImage.$error }" /></p>
     <p class="errorMessage" v-if="v$.inputImage.$error">
       {{ v$.inputImage.$errors[0].$message }}
     </p>
