@@ -1,0 +1,28 @@
+name: Frontend Serve Checker
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  frontend-serve-check:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Install dependencies
+      run: |
+        cd frontend
+        npm install
+
+    - name: Run frontend serve
+      run: |
+        cd frontend
+        npm run serve
+
+    - name: Check frontend serve status
+      run: |
+        curl -IsS http://localhost:8080/health || exit 1
