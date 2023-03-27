@@ -39,6 +39,12 @@ export const getItemsCategories = () => {
   });
 };
 
+export const getCreationCategories = () => {
+  return apiClient.get(`/item/creation-categories`, {}).then((response) => {
+    return response.data;
+  });
+};
+
 
 //register
 export const register = (user) => {

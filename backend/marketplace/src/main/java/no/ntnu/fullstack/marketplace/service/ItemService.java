@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 
@@ -22,6 +23,12 @@ public class ItemService
     @Autowired
     ItemRepository itemRepository;
     //getting all item records
+    /**
+     * All basic categories for item that user can set during item creation
+     *
+     */
+    private List<String> basicCategories = new ArrayList<>(Arrays.asList("Electronics","Clothing and Accessories",
+            "Home and Garden", "Health and Beauty", "Sports and Outdoors"));
 
     /**
      * Get all items from the database and return them as a list
@@ -46,6 +53,56 @@ public class ItemService
         //convert the hashset to a list
         List<String> categoriesList = new ArrayList<String>(categories);
         return categoriesList;
+    }
+
+    /**
+     * Get all available categories from the database for item creation
+     * @return List of all categories in the database
+     */
+    public List<String> getAvailableCategory()
+    {
+        return basicCategories;
+    }
+    /**
+     * Add category
+     * @param  category category added to basic categories
+     */
+    public void addCategory(String category)
+    {
+        basicCategories.add(category);
+    }
+    /**
+     * Modify category
+     * @param  categoryModifyed category should be modifyed from basic categories
+     * @param  newCategory category will be set instead of modified
+     */
+    public void modify(String categoryModifyed,String newCategory)
+    {
+        itemRepository.findAll().forEach(item -> {
+            if (item.getCategories().contains(categoryModifyed)){
+                List<String> nowCategories = item.getCategories();
+                nowCategories.remove(categoryModifyed);
+                nowCategories.add(newCategory);
+                item.setCategories(nowCategories);
+                itemRepository.save(item);
+            }
+        });
+        basicCategories.remove(categoryModifyed);
+        basicCategories.add(newCategory);
+    }
+    /**
+     * Delete category
+     * @param  deletedCategory category should be deleted from basic categories
+     */
+    public void delete(String deletedCategory)
+    {
+        itemRepository.findAll().forEach(item -> {
+            if (item.getCategories().contains(deletedCategory)){
+                item.getCategories().remove(deletedCategory);
+                itemRepository.save(item);
+            }
+        });
+        basicCategories.remove(deletedCategory);
     }
 
     /**

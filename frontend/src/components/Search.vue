@@ -19,13 +19,7 @@
           class="searchInput"
           v-model="searchValue"
       />
-      <!-- <select v-model="searchCategory">
-        <option value="">Select category</option>
-        <option>Electronics</option>
-        <option>Clothing and Accessories</option>
-        <option>Home and Garden</option>
-        <option>Health and Beauty</option>
-        <option>Sports and Outdoors</option> -->
+
       <select v-model="searchCategory">
         <option value="">Select category</option>
         <option v-for="category in this.categories" :key="category">{{ category }}</option>
@@ -43,7 +37,7 @@
 
 <script>
 import ListOfLittleItems from "@/components/ListOfLittleItems.vue";
-import { getItemsCategories } from "@/services/ItemServiceApi";
+import { getCreationCategories } from "@/services/ItemServiceApi";
 
 async function getLatAndLng(location){
   const address = location;
@@ -77,13 +71,12 @@ async function getLatAndLng(location){
       },
     },
     async mounted() {
+      this.categories = await getCreationCategories();
         for (let item of this.items) {
           const latAndLng = await getLatAndLng(item.location);
           item["latitude"] = latAndLng[0];
           item["longitude"] = latAndLng[1];
       }
-
-      this.categories = await getItemsCategories();
 
       console.log(this.categories);
 

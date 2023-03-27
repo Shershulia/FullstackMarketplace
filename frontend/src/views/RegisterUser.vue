@@ -158,6 +158,7 @@ export default {
           name: this.firstName,
           lastname: this.lastName,
           age: this.age,
+          permission:"normal",
         };
         console.log(request);
         //use ItemServiceApi to send request to backend
@@ -224,7 +225,7 @@ input:focus {
 }
 
 input[type="submit"] {
-  background-color: #0052cc;
+  background-color: #003366;
   color: white;
   font-size: 18px;
   font-weight: bold;
@@ -249,7 +250,7 @@ input[type="submit"]:hover {
   flex-direction: column;
 }
 .goToLoginButton {
-  background-color: #e68a00;
+  background-color: #c97900;
   color: black;
   font-size: 18px;
   font-weight: bold;
@@ -260,7 +261,7 @@ input[type="submit"]:hover {
   transition: all 0.3s ease;
 }
 .goToLoginButton:hover {
-  background-color: #f89502;
+  background-color: #f69200;
   padding: 15px 20px;
 }
 .showPassword {

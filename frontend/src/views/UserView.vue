@@ -7,6 +7,7 @@
       <p><strong>Name:</strong> {{ user.name }}</p>
       <p><strong>Last Name:</strong> {{ user.lastname }}</p>
       <p><strong>Age:</strong> {{ user.age }}</p>
+      <p v-if="user.permission==='admin'"><strong>Permission level:</strong> {{ user.permission }}</p>
       <button @click="toggleEditMode" class="buttonEdit">Edit</button>
     </div>
     <div v-else>
@@ -22,11 +23,18 @@
 
       <button @click="toggleEditMode" class="buttonEdit">Save</button>
     </div>
-    <button class="goToLoginButton" @click="logout" >Logout</button>
+    <div>
+      <button class="goToLoginButton" @click="logout" >Logout</button>
+    </div>
+    <div>
+      <button @click="goToSaveItemPage" class="saveButton">Create item</button>
+    </div>
+    <div>
+      <button v-if="user.permission==='admin'" @click="goToAdminPage" class="adminButton">Go to admin panel</button>
+    </div>
   </div>
   <div class="itemsIndividual" v-if="items.length>0">
     <p>Your items:</p>
-    <button @click="goToSaveItemPage" class="saveButton">Create item</button>
     <ListOfLittleItemsEditableAndDeletable :listOfItems="this.items"></ListOfLittleItemsEditableAndDeletable>
   </div>
 </template>
@@ -56,6 +64,7 @@ export default {
         return this.$store.getters.user;
       },
       editUser() {
+        console.log(this.user.permission);
         let euser = {
           username: this.user.username,
           password: this.user.password,
@@ -63,6 +72,7 @@ export default {
           name: this.user.name,
           lastname: this.user.lastname,
           age: this.user.age,
+          permission:this.user.permission,
         };
         return euser;
       },
@@ -116,6 +126,8 @@ export default {
                 lastname: this.editUser.lastname,
                 age: this.editUser.age,
                 password: this.password,
+                permission: this.editUser.permission,
+
               },
               {
                 headers: {
@@ -143,6 +155,9 @@ export default {
       },
       goToSaveItemPage(){
         this.$router.push("/item/create");
+      },
+      goToAdminPage(){
+        this.$router.push("/admin");
       },
 
   }
@@ -178,13 +193,37 @@ export default {
 
 }
 .saveButton{
-  background-color: #4CAF50;
+  background-color: #3a883d;
   color: white;
   padding: 10px;
   border-radius: 5px;
   border: none;
   cursor: pointer;
   font-size: 16px;
+  transition: all 0.3s ease;
   margin-top: 10px;
+}
+.saveButton:hover{
+  background-color: #449f48;
+  color: white;
+  border: 1px solid #333;
+  padding: 15px;
+}
+.adminButton{
+  background-color: #910000;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+}
+.adminButton:hover{
+  background-color: #a60000;
+  color: white;
+  border: 1px solid #333;
+  padding: 15px;
 }
 </style>

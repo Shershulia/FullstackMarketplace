@@ -24,7 +24,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .littleCard {
   width: 250px;
   cursor: pointer;

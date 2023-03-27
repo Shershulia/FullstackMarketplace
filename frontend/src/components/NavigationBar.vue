@@ -11,21 +11,21 @@
         </div>
       </li>
       <li class="nav-item">
-        <router-link to="/shopping" class="nav-link" id="shopping">{{ t('shopping') }}</router-link>
+        <router-link to="/shopping" class="nav-link" id="shopping" exact-active-class="active">{{ t('shopping') }}</router-link>
       </li>
       <li class="nav-item">
-        <router-link to="/favorites" class="nav-link" id="favorites">{{ t('favorites') }}</router-link>
+        <router-link to="/favorites" class="nav-link" id="favorites" exact-active-class="active">{{ t('favorites') }}</router-link>
       </li>
       <li class="nav-item">
-        <router-link to="/cart" class="nav-link" id="cart">{{ t('cart') }}</router-link>
+        <router-link to="/cart" class="nav-link" id="cart" exact-active-class="active">{{ t('cart') }}</router-link>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" role="button" aria-haspopup="true" aria-expanded="false" @click="toggleAccountDropdown" id="account">
           {{ t('account') }}
         </a>
         <div class="dropdown-menu" v-if="showAccountDropdown" @click="hideAccountDropdown">
-            <button @click="logout" v-if="this.userOnPage.username!==null" to="/register-user" class="logoutButtonForHeader" >Logout</button>
-            <router-link v-else to="/register-user" class="dropdown-item" >{{ t('sign-up') }}</router-link>
+            <button @click="logout" v-if="this.userOnPage.username!==null" to="/register-user" class="logoutButtonForHeader"  >Logout</button>
+            <router-link v-else to="/register-user" class="dropdown-item" exact-active-class="active">{{ t('sign-up') }}</router-link>
 
             <router-link v-if="this.userOnPage.username!==null" to="/login" class="dropdown-item" >My account</router-link>
             <router-link v-else to="/login" class="dropdown-item" >{{ t('log-in') }}</router-link>
@@ -102,7 +102,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 body {
   margin: 0;
   padding: 0;
@@ -115,6 +115,7 @@ body {
   border-bottom: 1px solid #ccc;
   border-radius: 5px;
 }
+
 .navbar-nav {
   display: flex;
   justify-content: space-between;
@@ -127,10 +128,19 @@ body {
   padding: 8px;
 }
 
+
 .nav-link {
   color: #333;
   text-decoration: none;
   cursor: pointer;
+}
+.nav-link:hover {
+  background-color: lightgray;
+}
+
+.nav-link.active {
+  background-color: darkgray;
+  color: #1c1b1b;
 }
 
 .dropdown-menu {
